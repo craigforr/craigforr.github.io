@@ -37,11 +37,11 @@ But for as many of us that know the scripting-side of PowerShell, I venture that
 
 
     
-    <link rel="stylesheet" href="/css/reset.css?t=2018-02-13%2023%3a54%3a22.865165%20-0500%20EST%20m%3d%2b0.064046401">
-    <link rel="stylesheet" href="/css/pygments.css?t=2018-02-13%2023%3a54%3a22.865165%20-0500%20EST%20m%3d%2b0.064046401">
-    <link rel="stylesheet" href="/css/main.css?t=2018-02-13%2023%3a54%3a22.865165%20-0500%20EST%20m%3d%2b0.064046401">
+    <link rel="stylesheet" href="/css/reset.css?t=2018-02-14%2013%3a18%3a24.3376257%20-0500%20EST%20m%3d%2b0.221656501">
+    <link rel="stylesheet" href="/css/pygments.css?t=2018-02-14%2013%3a18%3a24.3376257%20-0500%20EST%20m%3d%2b0.221656501">
+    <link rel="stylesheet" href="/css/main.css?t=2018-02-14%2013%3a18%3a24.3376257%20-0500%20EST%20m%3d%2b0.221656501">
     
-        <link rel="stylesheet" href="/css/override.css?t=2018-02-13%2023%3a54%3a22.865165%20-0500%20EST%20m%3d%2b0.064046401">
+        <link rel="stylesheet" href="/css/override.css?t=2018-02-14%2013%3a18%3a24.3376257%20-0500%20EST%20m%3d%2b0.221656501">
     
 
 
@@ -170,7 +170,7 @@ But for as many of us that know the scripting-side of PowerShell, I venture that
 
 <h2 id="the-hidden-shell-within-powershell">The Hidden Shell Within PowerShell</h2>
 
-<p>Now that Microsoft has put PowerShell on every modern version of Windows and Windows Server, there&rsquo;s no longer any reason for anyone to avoid the command line in Windows.<sup class="footnote-ref" id="fnref:2"><a rel="footnote" href="#fn:2">2</a></sup> There is now a extremely powerful, versitile, fully-functional shell on every Windows system. <mark>My aim in this series of posts is to show you that PowerShell is not just an excellent scripting language, but is also a fantastic interactive shell as well</mark> &mdash; easy enough to use for fast command line work, and powerful enough to compete with anything you&rsquo;re doing with graphical tools.  If you&rsquo;re a UNIX or Linux admin, I want to convince you that PowerShell is on par with your favorite UNIX shell too (and may even have some advantages).</p>
+<p>Now that Microsoft has put PowerShell on every modern version of Windows and Windows Server, there&rsquo;s no longer any reason for anyone to avoid the command line in Windows.<sup class="footnote-ref" id="fnref:2"><a rel="footnote" href="#fn:2">2</a></sup> There is now an extremely powerful, versitile, fully-functional shell on every Windows system. <mark>My aim in this series of posts is to show you that PowerShell is not just an excellent scripting language, but is also a fantastic interactive shell as well</mark> &mdash; easy enough to use for fast command line work, and powerful enough to compete with anything you&rsquo;re doing with graphical tools.  If you&rsquo;re a UNIX or Linux admin, I want to convince you that PowerShell is on par with your favorite UNIX shell too (and may even have some advantages).</p>
 
 <h2 id="the-meat-inside-the-shell">The Meat Inside the Shell</h2>
 
@@ -192,7 +192,7 @@ Get-Date &quot;12/25&quot; | select DayOfWeek
 
 <p>This last command lets us use tab-completion on the original command.  We just have to surround the command line with parens, type a dot (<code>.</code>) and then press tab to cycle through the properties and methods on the object.</p>
 
-<p>I&rsquo;ll talk about properties, methods, and the object pipeline in more detail, but this demonstrates how easy it is to get information from PowerShell and manipulate it.<sup class="footnote-ref" id="fnref:3"><a rel="footnote" href="#fn:3">3</a></sup></p>
+<p>I&rsquo;ll talk about properties, methods, and the object pipeline in more detail later, but this demonstrates how easy it is to get information from PowerShell and manipulate it.<sup class="footnote-ref" id="fnref:3"><a rel="footnote" href="#fn:3">3</a></sup></p>
 
 <h2 id="how-to-follow-along">How to Follow Along</h2>
 
@@ -210,7 +210,7 @@ Get-Date &quot;12/25&quot; | select DayOfWeek
 PSVersion                      5.1.14393.1944
 </code></pre>
 
-<p>That&rsquo;s it for now.  Next time, we&rsquo;ll talk about how to add custom alias to make typing commands interactively a lot faster.</p>
+<p>That&rsquo;s it for now.  Next time, we&rsquo;ll talk about how to add custom aliases to make typing commands interactively a lot faster.</p>
 <div class="footnotes">
 
 <hr />
@@ -220,7 +220,7 @@ PSVersion                      5.1.14393.1944
  <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
 <li id="fn:2">Actually, Microsoft has done more than that.  They&rsquo;ve not only released major improvements to the Command Prompt (<code>cmd.exe</code>), but they&rsquo;ve gone so far as to create an entire subsystem to bolt true, unported Linux binaries into the Windows environment with &ldquo;Windows Subsystem for Linux.&rdquo;
  <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
-<li id="fn:3">And for you UNIX-folks that would normally type something like <code>date -d '2018-12-25'</code>, hang tight.  One thing you&rsquo;ll like about PowerShell cmdlets is that they have common features and syntax that make remembering (or rediscovering) them easier.  In contrast, ask yourself if you recall the syntax for converting timezones with <code>date</code> off the top of your head, and I think you&rsquo;ll get what I&rsquo;m driving at.
+<li id="fn:3">And for you UNIX folks that would normally type something like <code>date -d '2018-12-25'</code>, hang tight.  One thing you&rsquo;ll like about PowerShell cmdlets is that they have common features and syntax that make remembering (or rediscovering) them easier.  In contrast, ask yourself if you recall the syntax for converting timezones with <code>date</code> off the top of your head, and I think you&rsquo;ll get what I&rsquo;m driving at.
  <a class="footnote-return" href="#fnref:3"><sup>[return]</sup></a></li>
 </ol>
 </div>
