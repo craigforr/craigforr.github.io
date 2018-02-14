@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Craig Forrester</title>
+    <link>http://www.craigforrester.com/tags/</link>
+    <description>Recent content in Tags on Craig Forrester</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Tue, 13 Feb 2018 20:00:00 -0500</lastBuildDate>
+    
+	<atom:link href="http://www.craigforrester.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Powershell</title>
+      <link>http://www.craigforrester.com/tags/powershell/</link>
+      <pubDate>Tue, 13 Feb 2018 20:00:00 -0500</pubDate>
+      
+      <guid>http://www.craigforrester.com/tags/powershell/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

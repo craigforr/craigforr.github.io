@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Powershell on Craig Forrester</title>
+    <link>http://www.craigforrester.com/tags/powershell/</link>
+    <description>Recent content in Powershell on Craig Forrester</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Tue, 13 Feb 2018 20:00:00 -0500</lastBuildDate>
+    
+	<atom:link href="http://www.craigforrester.com/tags/powershell/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Interactive PowerShell, Part 1: The Hidden Shell</title>
+      <link>http://www.craigforrester.com/posts/interactive-powershell-part-1/</link>
+      <pubDate>Tue, 13 Feb 2018 20:00:00 -0500</pubDate>
+      
+      <guid>http://www.craigforrester.com/posts/interactive-powershell-part-1/</guid>
+      <description>A Shell? What&amp;rsquo;s That? Most of us that know PowerShell know it as an automation tool &amp;mdash; as a way to get remote systems to do things in repeatable ways.
+But for as many of us that know the scripting-side of PowerShell, I venture that far fewer know and use PowerShell as an interactive shell. Sure, we may occasionally use it as Command Prompt replacement, but are we truly harnessing the full capacity of PowerShell as a shell?</description>
+    </item>
+    
+  </channel>
+</rss>

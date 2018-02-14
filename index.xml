@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Craig Forrester</title>
+    <link>http://www.craigforrester.com/</link>
+    <description>Recent content on Craig Forrester</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Tue, 13 Feb 2018 20:00:00 -0500</lastBuildDate>
+    
+	<atom:link href="http://www.craigforrester.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Interactive PowerShell, Part 1: The Hidden Shell</title>
+      <link>http://www.craigforrester.com/posts/interactive-powershell-part-1/</link>
+      <pubDate>Tue, 13 Feb 2018 20:00:00 -0500</pubDate>
+      
+      <guid>http://www.craigforrester.com/posts/interactive-powershell-part-1/</guid>
+      <description>A Shell? What&amp;rsquo;s That? Most of us that know PowerShell know it as an automation tool &amp;mdash; as a way to get remote systems to do things in repeatable ways.
+But for as many of us that know the scripting-side of PowerShell, I venture that far fewer know and use PowerShell as an interactive shell. Sure, we may occasionally use it as Command Prompt replacement, but are we truly harnessing the full capacity of PowerShell as a shell?</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>http://www.craigforrester.com/about/</link>
+      <pubDate>Fri, 29 Sep 2017 20:00:00 -0400</pubDate>
+      
+      <guid>http://www.craigforrester.com/about/</guid>
+      <description>This is the personal website of Craig Forrester. I am a Christian, a husband, a father, and aspiring polymath &amp;ndash; in that order. I drink my coffee black.
+I like my coffee black, my text editor modal, and my
+What is &amp;ldquo;The Pleasure of Finding Things Out&amp;rdquo;? The Pleasure of Finding Things Out and subsequent monograph by physcist, teacher, and all-around &amp;ldquo;curious character&amp;rdquo; Richard Feyman</description>
+    </item>
+    
+  </channel>
+</rss>

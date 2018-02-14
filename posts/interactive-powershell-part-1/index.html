@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="author" content="Craig Forrester">
+<meta name="description" content="A Shell? What&rsquo;s That? Most of us that know PowerShell know it as an automation tool &mdash; as a way to get remote systems to do things in repeatable ways.
+But for as many of us that know the scripting-side of PowerShell, I venture that far fewer know and use PowerShell as an interactive shell. Sure, we may occasionally use it as Command Prompt replacement, but are we truly harnessing the full capacity of PowerShell as a shell?">
+
+
+<title>
+
+
+     Interactive PowerShell, Part 1: The Hidden Shell 
+
+</title>
+<link rel="canonical" href="http://www.craigforrester.com/posts/interactive-powershell-part-1/">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/color-brewer.min.css">
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    
+    <link rel="stylesheet" href="/css/reset.css?t=2018-02-13%2023%3a13%3a42.7464866%20-0500%20EST%20m%3d%2b0.064036601">
+    <link rel="stylesheet" href="/css/pygments.css?t=2018-02-13%2023%3a13%3a42.7464866%20-0500%20EST%20m%3d%2b0.064036601">
+    <link rel="stylesheet" href="/css/main.css?t=2018-02-13%2023%3a13%3a42.7464866%20-0500%20EST%20m%3d%2b0.064036601">
+    
+        <link rel="stylesheet" href="/css/override.css?t=2018-02-13%2023%3a13%3a42.7464866%20-0500%20EST%20m%3d%2b0.064036601">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="/img/favicon.ico"
+
+>
+
+
+
+
+</head>
+
+
+<body lang="en">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+                
+                
+                
+                
+                
+                    
+                
+                    
+                
+                    
+                
+                
+                <a href="/"><img class="avatar" src="/img/profile.jpg" srcset="http://www.craigforrester.com/img/profile.jpg 1x"></a>
+            
+            <a href="/"><div class="name">Craig Forrester</div></a>
+            
+              <h3 class="self-intro">Enjoying The Pleasure of Finding Things Out.</h3>
+            
+            <nav>
+                <ul>
+                    
+                        <li class="nav-about"><a href="http://www.craigforrester.com/about/"><span>About</span></a></li>
+                    
+                        <li class="nav-posts"><a href="http://www.craigforrester.com/posts/"><span>Posts</span></a></li>
+                    
+                        <li class="nav-rss-feed"><a href="http://www.craigforrester.com/index.xml"><span>RSS</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="//github.com/craigforr" target="_blank" rel="noopener"><img class="icon" src="/img/github.svg" alt="github" /></a>
+        
+
+        
+
+        
+
+        
+            <a href="//linkedin.com/in/craigforrester" target="_blank" rel="noopener"><img class="icon" src="/img/linkedin.svg" alt="linkedin" /></a>
+        
+
+        
+
+        
+
+        
+
+        
+            <a href="mailto:cf@craigforrester.com"><img class="icon" src="/img/email.svg" alt="email" /></a>
+        
+
+        
+            <a href="http://www.craigforrester.com/index.xml"><img class="icon" src="/img/rss.svg" alt="rss" /></a>
+        
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Interactive PowerShell, Part 1: The Hidden Shell
+
+</div>
+
+                    <div class="initials"><a href="http://www.craigforrester.com/"></a></div>
+                </div>
+                <div class="meta">
+                    
+                    <div class="date" title='2018-02-13 20:00:00 EST'>February 13, 2018</div>
+                    
+                    
+		    <div class="reading-time"><div class="middot"></div>4 minutes read</div>
+                    
+                </div>
+            </div>
+            <div class="markdown">
+                
+
+<h2 id="a-shell-what-s-that">A Shell?  What&rsquo;s That?</h2>
+
+<p>Most of us that know PowerShell know it as an automation tool &mdash; as a way to get remote systems to do things in repeatable ways.</p>
+
+<p>But for as many of us that know the scripting-side of PowerShell, I venture that far fewer know and use PowerShell as an interactive shell.  Sure, we may occasionally use it as Command Prompt replacement, but are we truly harnessing the full capacity of PowerShell as a shell?</p>
+
+<p>In my experience, most Windows systems administrators only use the command prompt when they have to &mdash; typically to run a script or a one-off command.  And, honestly, you can&rsquo;t blame them.  Historically, Windows has had really poor native command line tools.  CMD has always been missing the most basic of conveniences that virtually all UNIX shells enjoyed, making interactive use really frustrating; and Windows commands suffered from a lack of consistency &mdash; in syntax, in structure, in support from version to version, and in their inputs and outputs.<sup class="footnote-ref" id="fnref:1"><a rel="footnote" href="#fn:1">1</a></sup>  I could go on, but suffice it to say that if you&rsquo;ve been a Windows sysadmin, no one could really blame you for avoiding the command prompt&hellip;</p>
+
+<p>That all has changed with PowerShell.</p>
+
+<h2 id="the-hidden-shell-within-powershell">The Hidden Shell Within PowerShell</h2>
+
+<p>Now that Microsoft has put PowerShell on every modern version of Windows and Windows Server, there&rsquo;s no longer any reason for anyone to avoid the command line in Windows.<sup class="footnote-ref" id="fnref:2"><a rel="footnote" href="#fn:2">2</a></sup> There is now a extremely powerful, versitile, fully-functional shell on every Windows system. <mark>My aim in this series of posts is to show you that PowerShell is not just an excellent scripting language, but is also a fantastic interactive shell as well</mark> &mdash; easy enough to use for fast command line work, and powerful enough to compete with anything you&rsquo;re doing with graphical tools.  If you&rsquo;re a UNIX or Linux admin, I want to convince you that PowerShell is on par with your favorite UNIX shell too (and may even have some advantages).</p>
+
+<h2 id="the-meat-inside-the-shell">The Meat Inside the Shell</h2>
+
+<p>PowerShell offers a lot of convenience without much work at all, once you understand some basic concepts, like the object pipeline.</p>
+
+<p>For example, say that we want to know what day of the week Christmas falls this year:</p>
+
+<pre><code class="language-powershell"># Start by getting the date and time of Christmas
+Get-Date &quot;12/25&quot;
+
+# Now all we have to do is select the Day property of the result
+Get-Date &quot;12/25&quot; | select DayOfWeek
+
+# If we don't know that property exists, or don't want to type it out,
+# we could just put parentheses around our original command
+# so that we can access it as an object and access its properties
+(Get-Date &quot;12/25&quot;).DayOfWeek
+</code></pre>
+
+<p>This last command lets us use tab-completion on the original command.  We just have to surround the command line with parens, type a dot (<code>.</code>) and then press tab to cycle through the properties and methods on the object.</p>
+
+<p>I&rsquo;ll talk about properties, methods, and the object pipeline in more detail, but this demonstrates how easy it is to get information from PowerShell and manipulate it.<sup class="footnote-ref" id="fnref:3"><a rel="footnote" href="#fn:3">3</a></sup></p>
+
+<h2 id="how-to-follow-along">How to Follow Along</h2>
+
+<p>For the duration of this series I will be using PowerShell 5.1 on Windows 10. If you would like to follow along, and don&rsquo;t have it installed, you can <a href="https://docs.microsoft.com/en-us/powershell/wmf/5.1/install-configure" title="Install and Configure WMF 5.1">download and install the Windows Management Framework version 5.1</a> on your computer.</p>
+
+<p>Don&rsquo;t know what version of PowerShell you&rsquo;re running?  Try this at your PowerShell prompt:</p>
+
+<pre><code class="language-powershell">$PSVersionTable
+</code></pre>
+
+<p>Your PowerShell version is the value of <code>PSVersion</code> in the output:</p>
+
+<pre><code class="language-nohighlight">Name                           Value
+----                           -----
+PSVersion                      5.1.14393.1944
+</code></pre>
+
+<p>That&rsquo;s it for now.  Next time, we&rsquo;ll talk about how to add custom alias to make typing commands interactively a lot faster.</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1">One could argue that UNIX commands suffered some of the same but, based on my experience, I would argue that the <em>degree</em> that they suffer those issues is profoundly less severe.
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+<li id="fn:2">Actually, Microsoft has done more than that.  They&rsquo;ve not only released major improvements to the Command Prompt (<code>cmd.exe</code>), but they&rsquo;ve gone so far as to create an entire subsystem to bolt true, unported Linux binaries into the Windows environment with &ldquo;Windows Subsystem for Linux.&rdquo;
+ <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
+<li id="fn:3">And for you UNIX-folks that would normally type something like <code>date -d '2018-12-25'</code>, hang tight.  One thing you&rsquo;ll like about PowerShell cmdlets is that they have common features and syntax that make remembering (or rediscovering) them easier.  In contrast, ask yourself if you recall the syntax for converting timezones with <code>date</code> off the top of your head, and I think you&rsquo;ll get what I&rsquo;m driving at.
+ <a class="footnote-return" href="#fnref:3"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+                <br>
+		        <p><a href="/posts/">Back to posts</a></p>
+            </div>
+            <div class="disqus">
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-454251-4', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/powershell.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+
+</body>
+</html>
+

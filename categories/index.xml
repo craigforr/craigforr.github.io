@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Craig Forrester</title>
+    <link>http://www.craigforrester.com/categories/</link>
+    <description>Recent content in Categories on Craig Forrester</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    
+	<atom:link href="http://www.craigforrester.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Tutorials</title>
+      <link>http://www.craigforrester.com/categories/tutorials/</link>
+      <pubDate>Tue, 13 Feb 2018 20:00:00 -0500</pubDate>
+      
+      <guid>http://www.craigforrester.com/categories/tutorials/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
