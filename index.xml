@@ -21,16 +21,5 @@
 But for as many of us that know the scripting-side of PowerShell, I venture that far fewer know and use PowerShell as an interactive shell. Sure, we may occasionally use it as Command Prompt replacement, but are we truly harnessing the full capacity of PowerShell as a shell?</description>
     </item>
     
-    <item>
-      <title>About</title>
-      <link>http://www.craigforrester.com/about/</link>
-      <pubDate>Fri, 29 Sep 2017 20:00:00 -0400</pubDate>
-      
-      <guid>http://www.craigforrester.com/about/</guid>
-      <description>This is the personal website of Craig Forrester. I am a Christian, a husband, a father, and aspiring polymath &amp;ndash; in that order. I drink my coffee black.
-I like my coffee black, my text editor modal, and my
-What is &amp;ldquo;The Pleasure of Finding Things Out&amp;rdquo;? The Pleasure of Finding Things Out and subsequent monograph by physcist, teacher, and all-around &amp;ldquo;curious character&amp;rdquo; Richard Feyman</description>
-    </item>
-    
   </channel>
 </rss>
