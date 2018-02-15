@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="author" content="Craig Forrester">
+<meta name="description" content="Getting Comfortable One of the first complaints you may have against PowerShell is how much typing you have to do if you&rsquo;re going to use it interactively.
+Take the cmdlet used to output IP addresses on a Windows 10 system:
+Get-NetIPAddress  That&rsquo;s 16 characters long, as compared with the 7 character ipconfig we all know and love. It&rsquo;s even longer if you want to make the output readable in the shell:">
+
+
+<title>
+
+
+     Interactive PowerShell, Part 2: Aliases 
+
+</title>
+<link rel="canonical" href="http://www.craigforrester.com/posts/interactive-powershell-part-2-aliases/">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/color-brewer.min.css">
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    
+    <link rel="stylesheet" href="/css/reset.css?t=2018-02-14%2021%3a13%3a04.4697485%20-0500%20EST%20m%3d%2b0.109076901">
+    <link rel="stylesheet" href="/css/pygments.css?t=2018-02-14%2021%3a13%3a04.4697485%20-0500%20EST%20m%3d%2b0.109076901">
+    <link rel="stylesheet" href="/css/main.css?t=2018-02-14%2021%3a13%3a04.4697485%20-0500%20EST%20m%3d%2b0.109076901">
+    
+        <link rel="stylesheet" href="/css/override.css?t=2018-02-14%2021%3a13%3a04.4697485%20-0500%20EST%20m%3d%2b0.109076901">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="/img/favicon.ico"
+
+>
+
+
+
+
+</head>
+
+
+<body lang="en">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+                
+                
+                
+                
+                
+                    
+                
+                    
+                
+                    
+                
+                
+                <a href="/"><img class="avatar" src="/img/profile.jpg" srcset="http://www.craigforrester.com/img/profile.jpg 1x"></a>
+            
+            <a href="/"><div class="name">Craig Forrester</div></a>
+            
+              <h3 class="self-intro">The Pleasure of Finding Things Out</h3>
+            
+            <nav>
+                <ul>
+                    
+                        <li class="nav-about"><a href="http://www.craigforrester.com/about/"><span>About</span></a></li>
+                    
+                        <li class="nav-posts"><a href="http://www.craigforrester.com/posts/"><span>Posts</span></a></li>
+                    
+                        <li class="nav-rss-feed"><a href="http://www.craigforrester.com/index.xml"><span>RSS</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="//github.com/craigforr" target="_blank" rel="noopener"><img class="icon" src="/img/github.svg" alt="github" /></a>
+        
+
+        
+
+        
+
+        
+            <a href="//linkedin.com/in/craigforrester" target="_blank" rel="noopener"><img class="icon" src="/img/linkedin.svg" alt="linkedin" /></a>
+        
+
+        
+
+        
+
+        
+
+        
+            <a href="mailto:cf@craigforrester.com"><img class="icon" src="/img/email.svg" alt="email" /></a>
+        
+
+        
+            <a href="http://www.craigforrester.com/index.xml"><img class="icon" src="/img/rss.svg" alt="rss" /></a>
+        
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Interactive PowerShell, Part 2: Aliases
+
+</div>
+
+                    <div class="initials"><a href="http://www.craigforrester.com/"></a></div>
+                </div>
+                <div class="meta">
+                    
+                    <div class="date" title='2018-02-14 20:00:00 EST'>February 14, 2018</div>
+                    
+                    
+		    <div class="reading-time"><div class="middot"></div>5 minutes read</div>
+                    
+                </div>
+            </div>
+            <div class="markdown">
+                
+
+<h2 id="getting-comfortable">Getting Comfortable</h2>
+
+<p>One of the first complaints you may have against PowerShell is how much typing you have to do if you&rsquo;re going to use it interactively.</p>
+
+<p>Take the cmdlet used to output IP addresses on a Windows 10 system:</p>
+
+<pre><code class="language-powershell">Get-NetIPAddress
+</code></pre>
+
+<p>That&rsquo;s 16 characters long, as compared with the 7 character <code>ipconfig</code> we all know and love.  It&rsquo;s even longer if you want to make the output readable in the shell:</p>
+
+<pre><code class="language-powershell">Get-NetIPAddress | Format-Table -AutoSize
+</code></pre>
+
+<p>Now we can easily view the output, but we&rsquo;ve increased our typing to  31 characters.  You get the idea: If we are going to use any of these cmdlets on a regular basis interactively, then we&rsquo;re going to need to shorten them&hellip; drastically.</p>
+
+<h2 id="aliases">Aliases</h2>
+
+<p>Aliases are one solution to our problem.  You can think of an alias as a short &ldquo;nickname&rdquo; for another (usually longer) command.  If you have a UNIX background, then the concept of aliases is probably familiar, but the way PowerShell handles them may be a bit confusing at first.</p>
+
+<p>Using our example of the <code>Get-NetIPAddress</code> cmdlet, let&rsquo;s create an alias to shorten up our command:</p>
+
+<pre><code class="language-powershell">New-Alias -Name ip -Value Get-NetIPAddress -Description &quot;Get IP address configuration&quot;
+</code></pre>
+
+<p>With our new alias created, we can now type two characters to get the same information:</p>
+
+<pre><code class="language-powershell">ip
+</code></pre>
+
+<p>&ldquo;Helpful,&rdquo; you say, &ldquo;but I still have to type <code>| Format-Table -AutoSize</code> to get readable output!&rdquo;  True.  In this case, you may be tempted to put this into the alias also, like this:</p>
+
+<pre><code class="language-powershell"># This doesn't work like you may want it to
+New-Alias -Name ip -Value Get-NetIPAddress | Format-Table -AutoSize
+</code></pre>
+
+<p>If you try this, it will unceremoniously take you back to the prompt and appear to have worked, but if you type your alias <code>ip</code> again, you get the same output as before.  Frustrating.  Let&rsquo;s take closer look&hellip;.</p>
+
+<pre><code class="language-powershell">New-Alias -Name ip -Value Get-NetIPAddress | Format-Table -AutoSize
+#                                          ^ End of the New-Alias command
+</code></pre>
+
+<p>The pipe you add into your <code>Value</code> parameter is not actually being added to the alias, but is telling PowerShell to send the output of <code>New-Alias</code> to
+<code>Format-Table</code>.  &ldquo;Ah, you say, I see what&rsquo;s going on&hellip; I&rsquo;ll wrap it in quotes!&rdquo; So, you try this instead:</p>
+
+<pre><code class="language-powershell">New-Alias -Name ip -Value &quot;Get-NetIPAddress | Format-Table -AutoSize&quot;
+</code></pre>
+
+<p>This also appears to work&hellip; Until you type <code>ip</code> and get a nasty error:</p>
+
+<pre><code class="language-nohighlight">ip : The term 'Get-NetIPAddress | ft -AutoSize' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ ip
++ ~~
+    + CategoryInfo          : ObjectNotFound: (Get-NetIPAddress | ft -AutoSize:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+</code></pre>
+
+<p>So, obviously we&rsquo;re doing something wrong here.  As it turns out, you cannot make pipelines into aliases like we tried to do here. We also can&rsquo;t add command arguments to our aliases either.  So, aliases are fairly basic in what they allow us to do, but they do at least give us a way of shortening commands we commonly type interatively.</p>
+
+<p>So then, how do we get around the problem with our <code>Get-NetIPAddress</code> command line? Is there a way to do what we want?  Yes, we can use a function instead:</p>
+
+<pre><code class="language-powershell">function ip {
+    Get-NetIPAddress | Format-Table -AutoSize
+}
+</code></pre>
+
+<p>I will cover PowerShell functions more fully in another post, but this will get you started.</p>
+
+<h2 id="built-in-aliases">Built-In Aliases</h2>
+
+<p>In addition to what you can create for yourself, PowerShell also has a number of built-in aliases as well. You may have used these already without even realizing it, because many of them use the names of well-known Windows or UNIX shell commands. You may have discovered this already, if you typed <code>dir</code> or <code>echo</code> and gotten unexpected results:</p>
+
+<pre><code class="language-nohighlight">PS&gt; dir /s
+dir : Cannot find path 'C:\s' because it does not exist.
+At line:1 char:1
++ dir /s
++ ~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\s:String) [Get-ChildItem], ItemNotFoundException
+        + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.GetChildItemCommand
+</code></pre>
+
+<p>Or if you&rsquo;re from a UNIX background:</p>
+
+<pre><code class="language-nohighlight">PS&gt; ls -l
+Get-ChildItem : Missing an argument for parameter 'LiteralPath'. Specify a parameter of type 'System.String[]' and try again.
+At line:1 char:4
++ ls -l
++    ~~
+    + CategoryInfo          : InvalidArgument: (:) [Get-ChildItem], ParameterBindingException
+        + FullyQualifiedErrorId : MissingArgument,Microsoft.PowerShell.Commands.GetChildItemCommand
+</code></pre>
+
+<p>&ldquo;What..?&rdquo; It turns out both are aliases to PowerShell cmdlets:</p>
+
+<pre><code class="language-nohighlight">PS&gt; 'dir','ls','echo' | %{ Get-Alias $_ }
+
+CommandType     Name
+-----------     ----
+Alias           dir -&gt; Get-ChildItem
+Alias           ls -&gt; Get-ChildItem
+Alias           echo -&gt; Write-Output
+</code></pre>
+
+<p>You can see some <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-alias?view=powershell-5.1#examples" title="PowerShell 5.1 Alias Examples">examples</a> in the documentation, or type <code>Get-Alias</code> in your shell to see them all.</p>
+
+<h2 id="deleting-aliases">Deleting Aliases</h2>
+
+<p>One more thing before we wrap it up.  To delete an alias, you may assume you can type something like this, but you&rsquo;d be wrong:</p>
+
+<pre><code class="language-powershell"># This does not work
+Remove-Alias -Name 'ip'
+</code></pre>
+
+<p>The solution to this is a bit odd:</p>
+
+<pre><code class="language-powershell"># This works:
+Remove-Item -Path 'Alias:\ip'
+</code></pre>
+
+<p>That may seem strange if you aren&rsquo;t familiar with how PowerShell stores session information in &ldquo;drives,&rdquo; but don&rsquo;t worry, we&rsquo;ll cover that in a later post.</p>
+
+<p>Hopefully, aliases will give your interactive productivity a little boost.  Later in this series we&rsquo;ll go over other aliases for more advanced cmdlets, as we cover them. In the next post, we&rsquo;ll talk about how to customize our shell environment a bit to make it a little more comfortable.</p>
+
+<h2 id="additional-reading">Additional Reading:</h2>
+
+<ul>
+<li>Documentation: <a href="https://docs.microsoft.com/en-us/powershell/module/Microsoft.PowerShell.Utility/New-Alias?view=powershell-5.1">New-Alias</a></li>
+<li>Documentation: <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-alias?view=powershell-5.1">Get-Alias</a></li>
+<li>Documentation: <a href="https://docs.microsoft.com/en-us/powershell/module/Microsoft.PowerShell.Management/Remove-Item?view=powershell-5.1">Remove-Item</a></li>
+</ul>
+
+                <br>
+		        <p><a href="/posts/">Back to posts</a></p>
+            </div>
+            <div class="disqus">
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-454251-4', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/powershell.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+
+</body>
+</html>
+
