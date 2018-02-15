@@ -6,10 +6,21 @@
     <description>Recent content in Posts on Craig Forrester</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Tue, 13 Feb 2018 20:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Wed, 14 Feb 2018 20:00:00 -0500</lastBuildDate>
     
 	<atom:link href="http://www.craigforrester.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Interactive PowerShell, Part 2: Aliases</title>
+      <link>http://www.craigforrester.com/posts/interactive-powershell-part-2-aliases/</link>
+      <pubDate>Wed, 14 Feb 2018 20:00:00 -0500</pubDate>
+      
+      <guid>http://www.craigforrester.com/posts/interactive-powershell-part-2-aliases/</guid>
+      <description>Getting Comfortable One of the first complaints you may have against PowerShell is how much typing you have to do if you&amp;rsquo;re going to use it interactively.
+Take the cmdlet used to output IP addresses on a Windows 10 system:
+Get-NetIPAddress  That&amp;rsquo;s 16 characters long, as compared with the 7 character ipconfig we all know and love. It&amp;rsquo;s even longer if you want to make the output readable in the shell:</description>
+    </item>
     
     <item>
       <title>Interactive PowerShell, Part 1: The Hidden Shell</title>

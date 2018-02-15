@@ -6,10 +6,21 @@
     <description>Recent content on Craig Forrester</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Tue, 13 Feb 2018 23:47:00 -0500</lastBuildDate>
+    <lastBuildDate>Wed, 14 Feb 2018 20:00:00 -0500</lastBuildDate>
     
 	<atom:link href="http://www.craigforrester.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Interactive PowerShell, Part 2: Aliases</title>
+      <link>http://www.craigforrester.com/posts/interactive-powershell-part-2-aliases/</link>
+      <pubDate>Wed, 14 Feb 2018 20:00:00 -0500</pubDate>
+      
+      <guid>http://www.craigforrester.com/posts/interactive-powershell-part-2-aliases/</guid>
+      <description>Getting Comfortable One of the first complaints you may have against PowerShell is how much typing you have to do if you&amp;rsquo;re going to use it interactively.
+Take the cmdlet used to output IP addresses on a Windows 10 system:
+Get-NetIPAddress  That&amp;rsquo;s 16 characters long, as compared with the 7 character ipconfig we all know and love. It&amp;rsquo;s even longer if you want to make the output readable in the shell:</description>
+    </item>
     
     <item>
       <title>About</title>
@@ -18,7 +29,7 @@
       
       <guid>http://www.craigforrester.com/about/</guid>
       <description>This is the personal website of Craig Forrester. I am a Christian, a husband, a father, and aspiring polymath &amp;ndash; in that order. I like my coffee black, my text editor modal, and my Occam&amp;rsquo;s razor sharp.
-What is &amp;ldquo;The Pleasure of Finding Things Out&amp;rdquo;? The Pleasure of Finding Things Out is a phrase that comes from physcist, teacher, and all-around &amp;ldquo;curious character&amp;rdquo; Richard Feyman. It evokes a whimsical attitude toward life and learning that resonates with me.</description>
+What is &amp;ldquo;The Pleasure of Finding Things Out&amp;rdquo;? The Pleasure of Finding Things Out is a phrase that comes from physcist, teacher, and all-around &amp;ldquo;curious character&amp;rdquo; Richard Feyman. It evokes a whimsical attitude toward life and learning that I share.</description>
     </item>
     
     <item>
