@@ -6,10 +6,23 @@
     <description>Recent content in Posts on Craig Forrester</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Wed, 14 Feb 2018 20:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Thu, 15 Feb 2018 19:00:00 -0500</lastBuildDate>
     
 	<atom:link href="http://www.craigforrester.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>List Running Desktop Applications with PowerShell</title>
+      <link>http://www.craigforrester.com/posts/powershell-list-running-desktop-apps/</link>
+      <pubDate>Thu, 15 Feb 2018 19:00:00 -0500</pubDate>
+      
+      <guid>http://www.craigforrester.com/posts/powershell-list-running-desktop-apps/</guid>
+      <description>Here&amp;rsquo;s a quick PowerShell tip&amp;hellip;
+TL;DR Have you ever wanted to get a list of running desktop applications in PowerShell? Maybe you want to see what you have open but would rather not fumble around with Task Manager?
+Here&amp;rsquo;s a one-liner to do just that:
+gps | ? { $_.MainWindowTitle }  Sample output:
+Handles NPM(K) PM(K) WS(K) CPU(s) Id SI ProcessName ------- ------ ----- ----- ------ -- -- ----------- 4269 188 382940 424100 1,336.</description>
+    </item>
     
     <item>
       <title>Interactive PowerShell, Part 2: Aliases</title>

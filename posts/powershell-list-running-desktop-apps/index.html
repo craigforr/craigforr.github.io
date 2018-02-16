@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="author" content="Craig Forrester">
+<meta name="description" content="Here&rsquo;s a quick PowerShell tip&hellip;
+TL;DR Have you ever wanted to get a list of running desktop applications in PowerShell? Maybe you want to see what you have open but would rather not fumble around with Task Manager?
+Here&rsquo;s a one-liner to do just that:
+gps | ? { $_.MainWindowTitle }  Sample output:
+Handles NPM(K) PM(K) WS(K) CPU(s) Id SI ProcessName ------- ------ ----- ----- ------ -- -- ----------- 4269 188 382940 424100 1,336.">
+
+
+<title>
+
+
+     List Running Desktop Applications with PowerShell 
+
+</title>
+<link rel="canonical" href="http://www.craigforrester.com/posts/powershell-list-running-desktop-apps/">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/color-brewer.min.css">
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    
+    <link rel="stylesheet" href="/css/reset.css?t=2018-02-15%2019%3a01%3a00.8044314%20-0500%20EST%20m%3d%2b0.073034701">
+    <link rel="stylesheet" href="/css/pygments.css?t=2018-02-15%2019%3a01%3a00.8044314%20-0500%20EST%20m%3d%2b0.073034701">
+    <link rel="stylesheet" href="/css/main.css?t=2018-02-15%2019%3a01%3a00.8044314%20-0500%20EST%20m%3d%2b0.073034701">
+    
+        <link rel="stylesheet" href="/css/override.css?t=2018-02-15%2019%3a01%3a00.8044314%20-0500%20EST%20m%3d%2b0.073034701">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="/img/favicon.ico"
+
+>
+
+
+
+
+</head>
+
+
+<body lang="en">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+                
+                
+                
+                
+                
+                    
+                
+                    
+                
+                    
+                
+                
+                <a href="/"><img class="avatar" src="/img/profile.jpg" srcset="http://www.craigforrester.com/img/profile.jpg 1x"></a>
+            
+            <a href="/"><div class="name">Craig Forrester</div></a>
+            
+              <h3 class="self-intro">The Pleasure of Finding Things Out</h3>
+            
+            <nav>
+                <ul>
+                    
+                        <li class="nav-about"><a href="http://www.craigforrester.com/about/"><span>About</span></a></li>
+                    
+                        <li class="nav-posts"><a href="http://www.craigforrester.com/posts/"><span>Posts</span></a></li>
+                    
+                        <li class="nav-rss-feed"><a href="http://www.craigforrester.com/index.xml"><span>RSS</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="//github.com/craigforr" target="_blank" rel="noopener"><img class="icon" src="/img/github.svg" alt="github" /></a>
+        
+
+        
+
+        
+
+        
+            <a href="//linkedin.com/in/craigforrester" target="_blank" rel="noopener"><img class="icon" src="/img/linkedin.svg" alt="linkedin" /></a>
+        
+
+        
+
+        
+
+        
+
+        
+            <a href="mailto:cf@craigforrester.com"><img class="icon" src="/img/email.svg" alt="email" /></a>
+        
+
+        
+            <a href="http://www.craigforrester.com/index.xml"><img class="icon" src="/img/rss.svg" alt="rss" /></a>
+        
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    List Running Desktop Applications with PowerShell
+
+</div>
+
+                    <div class="initials"><a href="http://www.craigforrester.com/"></a></div>
+                </div>
+                <div class="meta">
+                    
+                    <div class="date" title='2018-02-15 19:00:00 EST'>February 15, 2018</div>
+                    
+                    
+		    <div class="reading-time"><div class="middot"></div>2 minutes read</div>
+                    
+                </div>
+            </div>
+            <div class="markdown">
+                
+
+<p>Here&rsquo;s a quick PowerShell tip&hellip;</p>
+
+<h2 id="tl-dr">TL;DR</h2>
+
+<p>Have you ever wanted to get a list of running desktop applications in PowerShell?  Maybe you want to see what you have open but would rather not fumble around with Task Manager?</p>
+
+<p>Here&rsquo;s a one-liner to do just that:</p>
+
+<pre><code class="language-powershell">gps | ? { $_.MainWindowTitle }
+</code></pre>
+
+<p>Sample output:</p>
+
+<pre><code class="language-nohighlight">Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id  SI ProcessName
+-------  ------    -----      -----     ------     --  -- -----------
+   4269     188   382940     424100   1,336.84  12888   1 chrome
+     37       3     1568       2560       0.05   5176   1 cmd
+    927      54    53892      69800       8.05   8988   1 EXCEL
+   1385     105    87956      98928     157.45   5024   1 explorer
+    212      15    26572      18204      16.58  13256   1 gvim
+</code></pre>
+
+<h2 id="breaking-it-down">Breaking it Down</h2>
+
+<p>The first command, <code>gps</code>, is a built-in alias for <code>Get-Process</code>, and <code>?</code> is an alias for <code>Where-Object</code>.  So, by specifying the <code>MainWindowTitle</code> property, we&rsquo;re essentially limiting our output to only those processes that have window titles.</p>
+
+<p>If we were to expand the previous command line into full cmdlet names, it would look like this:</p>
+
+<pre><code class="language-powershell">Get-Process | Where-Object { $_.MainWindowTitle }
+</code></pre>
+
+<h2 id="list-running-apps-with-their-titles-and-process-ids">List Running Apps with their Titles and Process IDs</h2>
+
+<p>Now let&rsquo;s add a little more to the previous command line in order make it a bit more useful to us.</p>
+
+<pre><code class="language-powershell">Get-Process | Where-Object { $_.MainWindowTitle } | Format-Table ID,Name,Mainwindowtitle –AutoSize
+</code></pre>
+
+<p>Here some sample output:</p>
+
+<pre><code class="language-nohighlight">  Id Name                 MainWindowTitle
+  -- ----                 ---------------
+6040 ApplicationFrameHost Windows Defender Security Center
+5036 cmd                  Command Prompt
+5148 powershell           Windows PowerShell
+</code></pre>
+
+<p>This gives us the window title, so that we know what to look for in the task bar; it gives us the process names, so that we know what executable is running &ldquo;underneath&rdquo; those window titles; and it gives us the process ID, so that we can work with a specific process easily if we need to.</p>
+
+<p>We can put all this into a function in our PowerShell Profile and have it to use whenever we need it:</p>
+
+<pre><code class="language-powershell">function Get-DesktopApps {
+    Get-Process | Where-Object { $_.MainWindowTitle } |
+        Format-Table ID,Name,Mainwindowtitle –AutoSize
+}
+</code></pre>
+
+<h2 id="additional-reading">Additional Reading</h2>
+
+<ul>
+<li>Documentation: <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-process?view=powershell-5.1" title="Get-Process">Get-Process</a></li>
+<li>Documentation: <a href="https://docs.microsoft.com/en-us/powershell/module/Microsoft.PowerShell.Core/Where-Object?view=powershell-5.1" title="Where-Object">Where-Object</a></li>
+<li>Documentation: <a href="https://docs.microsoft.com/en-us/powershell/module/Microsoft.PowerShell.Utility/Format-Table?view=powershell-5.1" title="Format-Table">Format-Table</a></li>
+</ul>
+
+                <br>
+		        <p><a href="/posts/">Back to posts</a></p>
+            </div>
+            <div class="disqus">
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-454251-4', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/powershell.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+
+</body>
+</html>
+
