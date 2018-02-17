@@ -6,10 +6,20 @@
     <description>Recent content in Tutorials on Craig Forrester</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Wed, 14 Feb 2018 20:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Fri, 16 Feb 2018 19:00:00 -0500</lastBuildDate>
     
 	<atom:link href="http://www.craigforrester.com/categories/tutorials/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Interactive PowerShell, Part 3: Profiles</title>
+      <link>http://www.craigforrester.com/posts/interactive-powershell-part-3-profiles/</link>
+      <pubDate>Fri, 16 Feb 2018 19:00:00 -0500</pubDate>
+      
+      <guid>http://www.craigforrester.com/posts/interactive-powershell-part-3-profiles/</guid>
+      <description>Profiles One of the first things I do when working interactively on a Linux system is customize a few key configuration files, one of which is .bash_aliases, so that I can work more comfortably and efficiently at the command line.
+PowerShell has its own equivalent of .bashrc in which you can create your own functions, aliases, and shortcuts to make working with PowerShell as an interactive shell much easier. It&amp;rsquo;s known as a profile.</description>
+    </item>
     
     <item>
       <title>Interactive PowerShell, Part 2: Aliases</title>
