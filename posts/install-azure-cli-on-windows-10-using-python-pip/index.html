@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="author" content="Craig Forrester">
+<meta name="description" content="TL;DR If you want to cut to the chase, here&rsquo;s the complete list of commands:
+# Download the Python 3.6.4 installer with PowerShell Invoke-WebRequest -Uri &#39;https://www.python.org/ftp/python/3.6.4/python-3.6.4-amd64.exe&#39; -OutFile &#39;.\python-3.6.4-amd64.exe&#39; # Passive Install of Python for All Users # Run this from an elevated PowerShell prompt .\python-3.6.4-amd64.exe /passive TargetDir=&quot;C:\Python&quot; InstallAllUsers=1 PrependPath=1 Include_test=0  Run these in a new PowerShell window after installing Python:
+# Install Azure CLI system-wide pip install azure-cli # Upgrade Azure CLI later on pip install --upgrade azure-cli  For a fuller explanation, read on&hellip;">
+
+
+<title>
+
+
+     Install Azure CLI on Windows 10 using Python pip 
+
+</title>
+<link rel="canonical" href="http://www.craigforrester.com/posts/install-azure-cli-on-windows-10-using-python-pip/">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/color-brewer.min.css">
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    
+    <link rel="stylesheet" href="/css/reset.css?t=2018-02-20%2012%3a46%3a16.8971045%20-0500%20EST%20m%3d%2b0.094208701">
+    <link rel="stylesheet" href="/css/pygments.css?t=2018-02-20%2012%3a46%3a16.8971045%20-0500%20EST%20m%3d%2b0.094208701">
+    <link rel="stylesheet" href="/css/main.css?t=2018-02-20%2012%3a46%3a16.8971045%20-0500%20EST%20m%3d%2b0.094208701">
+    
+        <link rel="stylesheet" href="/css/override.css?t=2018-02-20%2012%3a46%3a16.8971045%20-0500%20EST%20m%3d%2b0.094208701">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="/img/favicon.ico"
+
+>
+
+
+
+
+</head>
+
+
+<body lang="en">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+                
+                
+                
+                
+                
+                    
+                
+                    
+                
+                    
+                
+                
+                <a href="/"><img class="avatar" src="/img/profile.jpg" srcset="http://www.craigforrester.com/img/profile.jpg 1x"></a>
+            
+            <a href="/"><div class="name">Craig Forrester</div></a>
+            
+              <h3 class="self-intro">The Pleasure of Finding Things Out</h3>
+            
+            <nav>
+                <ul>
+                    
+                        <li class="nav-about"><a href="http://www.craigforrester.com/about/"><span>About</span></a></li>
+                    
+                        <li class="nav-posts"><a href="http://www.craigforrester.com/posts/"><span>Posts</span></a></li>
+                    
+                        <li class="nav-rss-feed"><a href="http://www.craigforrester.com/index.xml"><span>RSS</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="//github.com/craigforr" target="_blank" rel="noopener"><img class="icon" src="/img/github.svg" alt="github" /></a>
+        
+
+        
+
+        
+
+        
+            <a href="//linkedin.com/in/craigforrester" target="_blank" rel="noopener"><img class="icon" src="/img/linkedin.svg" alt="linkedin" /></a>
+        
+
+        
+
+        
+
+        
+
+        
+            <a href="mailto:cf@craigforrester.com"><img class="icon" src="/img/email.svg" alt="email" /></a>
+        
+
+        
+            <a href="http://www.craigforrester.com/index.xml"><img class="icon" src="/img/rss.svg" alt="rss" /></a>
+        
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Install Azure CLI on Windows 10 using Python pip
+
+</div>
+
+                    <div class="initials"><a href="http://www.craigforrester.com/"></a></div>
+                </div>
+                <div class="meta">
+                    
+                    <div class="date" title='2018-02-19 17:00:00 EST'>February 19, 2018</div>
+                    
+                    
+		    <div class="reading-time"><div class="middot"></div>4 minutes read</div>
+                    
+                </div>
+            </div>
+            <div class="markdown">
+                
+
+<h2 id="tl-dr">TL;DR</h2>
+
+<p>If you want to cut to the chase, here&rsquo;s the complete list of commands:</p>
+
+<pre><code class="language-powershell"># Download the Python 3.6.4 installer with PowerShell
+Invoke-WebRequest -Uri 'https://www.python.org/ftp/python/3.6.4/python-3.6.4-amd64.exe' -OutFile '.\python-3.6.4-amd64.exe'
+
+# Passive Install of Python for All Users
+# Run this from an elevated PowerShell prompt
+.\python-3.6.4-amd64.exe /passive TargetDir=&quot;C:\Python&quot; InstallAllUsers=1 PrependPath=1 Include_test=0
+</code></pre>
+
+<p>Run these in a new PowerShell window after installing Python:</p>
+
+<pre><code class="language-powershell"># Install Azure CLI system-wide
+pip install azure-cli
+
+# Upgrade Azure CLI later on
+pip install --upgrade azure-cli
+</code></pre>
+
+<p>For a fuller explanation, read on&hellip;</p>
+
+<h2 id="why-azure-cli">Why Azure CLI?</h2>
+
+<p>If you manage anything in Azure for any length of time, you will most-likely find yourself wanting to get faster and more efficient at it, which means you&rsquo;re going to want to use command line tools and scripting.  One of the best tools you have at your disposal is free, directly from Microsoft: Azure CLI.</p>
+
+<p>If you&rsquo;re mostly familiar with Windows, you may ask: &ldquo;Why not use Azure PowerShell instead?&rdquo;  I would argue that it doesn&rsquo;t have to be an either/or proposition &mdash; we can make use of Azure PowerShell modules <em>and</em> Azure CLI both, for differing, similiar, or even overlapping uses.  I&rsquo;ll give you a few reasons why you may want to consider having both in your toolbox&hellip;</p>
+
+<p>One reason for using Azure CLI is simply laziness.  It takes a great deal more typing to perform even simple actions using PowerShell than the Azure CLI.  This alone can provide enough of a productivity boost to make any effort worth it.  Yes, PowerShell gives us the ability to craft custom <a href="/posts/interactive-powershell-part-2-aliases/" title="Interactive PowerShell, Part 2: Aliases">aliases</a>, but there are hundreds of Azure cmdlets and doing so would be a waste of time when Azure CLI is already available.  Azure CLI already has a beautifully organized command hiarchy that is perfect for interactive use. This leads us to our second reason&hellip;</p>
+
+<p>Azure CLI commands are easier to recall and build on when you&rsquo;re typing interactively; far more than PowerShell, in my opinion.</p>
+
+<h2 id="installing-azure-cli-on-windows">Installing Azure CLI on Windows</h2>
+
+<p>If you&rsquo;re using Windows, you may be tempted to follow the documentation and use the <a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?view=azure-cli-latest" title="Install Azure CLI 2.0 on Windows">Windows installer</a> to install Azure CLI.</p>
+
+<p>For one, because having Python installed on your system has numerous other benefits besides, not the least of which is that you can use it directly for scripting, building applications, or installing other tools.</p>
+
+<p>Another benefit is that Python comes with its own package management tool called <a href="https://docs.python.org/3/installing/" title="Installing Python Modules">pip</a> for installing and managing Python modules. Think: Apt, or Homebrew, or NuGet, but for Python.  And if you know any of these tools already, then you probably don&rsquo;t need much convincing that having a package manager is a good idea. If you&rsquo;re not familiar with package managers, then it should suffice to say that they make installing, upgrading, removing, and maintaining software much easier &mdash; no more searching for installers, downloading, saving, installing, and repeating the entire process when a new version is released.</p>
+
+<h2 id="install-python">Install Python</h2>
+
+<p>You will need Python 3 to get started, so go <a href="https://www.python.org/downloads/windows/" title="Download Python for Windows">download</a> that first.</p>
+
+<pre><code class="language-powershell"># Download the Python 3.6.4 installer with PowerShell
+Invoke-WebRequest -Uri 'https://www.python.org/ftp/python/3.6.4/python-3.6.4-amd64.exe' -OutFile '.\python-3.6.4-amd64.exe'
+</code></pre>
+
+<p>Once it&rsquo;s downloaded, go ahead install it, system-wide:</p>
+
+<pre><code class="language-powershell"># Run this from an elevated PowerShell prompt
+.\python-3.6.4-amd64.exe /passive TargetDir=&quot;C:\Python&quot; InstallAllUsers=1 PrependPath=1 Include_test=0
+
+</code></pre>
+
+<p>This will install Python 3 to <code>C:\Python</code>, available for all users, add install and Scripts directories to your <code>PATH</code> environment variable, and the <code>.py</code> file extension to your <code>PATHEXT</code> environment variable, for easy launching of scripts.</p>
+
+<p>If you do not want to install it system-wide, or are not able to for lack of rights on your system, you can simply remove <code>InstallAllUsers=1</code>.  See the <a href="https://docs.python.org/3.6/using/windows.html" title="Using Python on Windows">Using Python on Windows</a> in the Python documentation for more details.</p>
+
+<p>Once installed, you should be able to open a <em>new</em> PowerShell window and run the following two commands successfully:</p>
+
+<pre><code class="language-nohighlight">PS&gt; python --version
+Python 3.6.4
+
+PS&gt; pip --version
+pip 9.0.1 from c:\python\lib\site-packages (python 3.6)
+</code></pre>
+
+<h2 id="install-azure-cli-using-pip">Install Azure CLI using pip</h2>
+
+<p>Now that Python and pip are installed, install Azure CLI is as easy as running this single command:</p>
+
+<pre><code class="language-powershell"># Install Azure CLI system-wide
+pip install azure-cli
+</code></pre>
+
+<p>If you did not do a system-wide installation, but performed user install instead, then run <code>pip install</code> with the <code>--user</code> switch:</p>
+
+<pre><code class="language-powershell"># Install Azure CLI for the Current User
+pip install --user azure-cli
+</code></pre>
+
+<h2 id="upgrading-azure-cli-using-pip">Upgrading Azure CLI using pip</h2>
+
+<p>To upgrade Azure CLI later on, simply run <code>pip install</code> with the the <code>--upgrade</code> switch:</p>
+
+<pre><code class="language-powershell"># Upgrade Azure CLI
+pip install --upgrade azure-cli
+</code></pre>
+
+<p>Once complete, you should see <code>Successfully installed...</code> followed by all the packages upgraded.</p>
+
+<p>Hopefully you found this an easy way to get Azure CLI installed.  In future posts, I&rsquo;ll go over using Azure CLI interactively on Windows.  If you&rsquo;re axious to get started, type <code>az help</code> for a summary of commands, and <code>az login</code> to start the login process.</p>
+
+<h2 id="additional-reading">Additional Reading</h2>
+
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?view=azure-cli-latest" title="Install Azure CLI 2.0 on Windows">Install Azure CLI 2.0 on Windows</a></li>
+</ul>
+
+                <br>
+		        <p><a href="/posts/">Back to posts</a></p>
+            </div>
+            <div class="disqus">
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-454251-4', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/powershell.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+
+</body>
+</html>
+
