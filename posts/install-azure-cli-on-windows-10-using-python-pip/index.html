@@ -38,11 +38,11 @@
 
 
     
-    <link rel="stylesheet" href="/css/reset.css?t=2018-02-20%2012%3a50%3a37.2921476%20-0500%20EST%20m%3d%2b0.077054701">
-    <link rel="stylesheet" href="/css/pygments.css?t=2018-02-20%2012%3a50%3a37.2921476%20-0500%20EST%20m%3d%2b0.077054701">
-    <link rel="stylesheet" href="/css/main.css?t=2018-02-20%2012%3a50%3a37.2921476%20-0500%20EST%20m%3d%2b0.077054701">
+    <link rel="stylesheet" href="/css/reset.css?t=2018-02-21%2009%3a17%3a34.1233917%20-0500%20EST%20m%3d%2b0.066047001">
+    <link rel="stylesheet" href="/css/pygments.css?t=2018-02-21%2009%3a17%3a34.1233917%20-0500%20EST%20m%3d%2b0.066047001">
+    <link rel="stylesheet" href="/css/main.css?t=2018-02-21%2009%3a17%3a34.1233917%20-0500%20EST%20m%3d%2b0.066047001">
     
-        <link rel="stylesheet" href="/css/override.css?t=2018-02-20%2012%3a50%3a37.2921476%20-0500%20EST%20m%3d%2b0.077054701">
+        <link rel="stylesheet" href="/css/override.css?t=2018-02-21%2009%3a17%3a34.1233917%20-0500%20EST%20m%3d%2b0.066047001">
     
 
 
@@ -149,7 +149,7 @@
                 </div>
                 <div class="meta">
                     
-                    <div class="date" title='2018-02-19 17:00:00 EST'>February 19, 2018</div>
+                    <div class="date" title='2018-02-19 20:00:00 EST'>February 19, 2018</div>
                     
                     
 		    <div class="reading-time"><div class="middot"></div>4 minutes read</div>
@@ -188,13 +188,13 @@ pip install --upgrade azure-cli
 
 <p>If you&rsquo;re mostly familiar with Windows, you may ask: &ldquo;Why not use Azure PowerShell instead?&rdquo;  I would argue that it doesn&rsquo;t have to be an either/or proposition &mdash; we can make use of Azure PowerShell modules <em>and</em> Azure CLI both, for differing, similiar, or even overlapping uses.  I&rsquo;ll give you a few reasons why you may want to consider having both in your toolbox&hellip;</p>
 
-<p>One reason for using Azure CLI is simply laziness.  It takes a great deal more typing to perform even simple actions using PowerShell than the Azure CLI.  This alone can provide enough of a productivity boost to make any effort worth it.  Yes, PowerShell gives us the ability to craft custom <a href="/posts/interactive-powershell-part-2-aliases/" title="Interactive PowerShell, Part 2: Aliases">aliases</a>, but there are hundreds of Azure cmdlets and doing so would be a waste of time when Azure CLI is already available.  Azure CLI already has a beautifully organized command hiarchy that is perfect for interactive use. This leads us to our second reason&hellip;</p>
+<p>One reason for using Azure CLI is simply laziness.  It takes a great deal more typing to perform even simple actions using PowerShell than the Azure CLI.  This alone can provide enough of a productivity boost to make any effort worth it.  Yes, PowerShell gives us the ability to craft custom <a href="/posts/interactive-powershell-part-2-aliases/" title="Interactive PowerShell, Part 2: Aliases">aliases</a>, but there are hundreds of Azure cmdlets and doing so would be a waste of time when Azure CLI is already available.  Azure CLI already has a beautifully organized command hierarchy that is perfect for interactive use. This leads us to our second reason&hellip;</p>
 
 <p>Azure CLI commands are easier to recall and build on when you&rsquo;re typing interactively; far more than PowerShell, in my opinion.</p>
 
 <h2 id="installing-azure-cli-on-windows">Installing Azure CLI on Windows</h2>
 
-<p>If you&rsquo;re using Windows, you may be tempted to follow the documentation and use the <a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?view=azure-cli-latest" title="Install Azure CLI 2.0 on Windows">Windows installer</a> to install Azure CLI.</p>
+<p>If you&rsquo;re using Windows, you may be tempted to follow the documentation and use the <a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?view=azure-cli-latest" title="Install Azure CLI 2.0 on Windows">Windows installer</a> to install Azure CLI. Azure CLI 2 is written in Python, and so suggest installing it with Python instead. There are a couple of reasons for this.</p>
 
 <p>For one, because having Python installed on your system has numerous other benefits besides, not the least of which is that you can use it directly for scripting, building applications, or installing other tools.</p>
 
@@ -212,7 +212,6 @@ Invoke-WebRequest -Uri 'https://www.python.org/ftp/python/3.6.4/python-3.6.4-amd
 
 <pre><code class="language-powershell"># Run this from an elevated PowerShell prompt
 .\python-3.6.4-amd64.exe /passive TargetDir=&quot;C:\Python&quot; InstallAllUsers=1 PrependPath=1 Include_test=0
-
 </code></pre>
 
 <p>This will install Python 3 to <code>C:\Python</code>, available for all users, add install and Scripts directories to your <code>PATH</code> environment variable, and the <code>.py</code> file extension to your <code>PATHEXT</code> environment variable, for easy launching of scripts.</p>
@@ -250,9 +249,15 @@ pip install --user azure-cli
 pip install --upgrade azure-cli
 </code></pre>
 
+<p>Or, for user installs:</p>
+
+<pre><code class="language-powershell"># Upgrade Azure CLI
+pip install --upgrade --user azure-cli
+</code></pre>
+
 <p>Once complete, you should see <code>Successfully installed...</code> followed by all the packages upgraded.</p>
 
-<p>Hopefully you found this an easy way to get Azure CLI installed.  In future posts, I&rsquo;ll go over using Azure CLI interactively on Windows.  If you&rsquo;re axious to get started, type <code>az help</code> for a summary of commands, and <code>az login</code> to start the login process.</p>
+<p>Hopefully you found this an easy way to get Azure CLI installed.  In future posts, I&rsquo;ll go over using Azure CLI interactively on Windows.  If you&rsquo;re anxious to get started, type <code>az help</code> for a summary of commands, and <code>az login</code> to start the login process.</p>
 
 <h2 id="additional-reading">Additional Reading</h2>
 
