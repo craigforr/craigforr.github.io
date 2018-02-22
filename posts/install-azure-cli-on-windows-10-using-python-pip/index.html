@@ -37,12 +37,11 @@
 
 
 
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/pygments.css">
+    <link rel="stylesheet" href="/css/main.css">
     
-    <link rel="stylesheet" href="/css/reset.css?t=2018-02-21%2009%3a17%3a34.1233917%20-0500%20EST%20m%3d%2b0.066047001">
-    <link rel="stylesheet" href="/css/pygments.css?t=2018-02-21%2009%3a17%3a34.1233917%20-0500%20EST%20m%3d%2b0.066047001">
-    <link rel="stylesheet" href="/css/main.css?t=2018-02-21%2009%3a17%3a34.1233917%20-0500%20EST%20m%3d%2b0.066047001">
-    
-        <link rel="stylesheet" href="/css/override.css?t=2018-02-21%2009%3a17%3a34.1233917%20-0500%20EST%20m%3d%2b0.066047001">
+        <link rel="stylesheet" href="/css/override.css">
     
 
 
@@ -149,10 +148,10 @@
                 </div>
                 <div class="meta">
                     
-                    <div class="date" title='2018-02-19 20:00:00 EST'>February 19, 2018</div>
+                    <div class="date" title='2018-02-19 21:00:00 EST'>February 19, 2018</div>
                     
                     
-		    <div class="reading-time"><div class="middot"></div>4 minutes read</div>
+		    <div class="reading-time"><div class="middot"></div>5 minutes read</div>
                     
                 </div>
             </div>
@@ -194,7 +193,7 @@ pip install --upgrade azure-cli
 
 <h2 id="installing-azure-cli-on-windows">Installing Azure CLI on Windows</h2>
 
-<p>If you&rsquo;re using Windows, you may be tempted to follow the documentation and use the <a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?view=azure-cli-latest" title="Install Azure CLI 2.0 on Windows">Windows installer</a> to install Azure CLI. Azure CLI 2 is written in Python, and so suggest installing it with Python instead. There are a couple of reasons for this.</p>
+<p>If you&rsquo;re using Windows, you may be tempted to follow the documentation and use the <a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?view=azure-cli-latest" title="Install Azure CLI 2.0 on Windows">Windows installer</a> to install Azure CLI. Azure CLI 2 is written in Python, and so I suggest installing it with Python instead. There are a couple of reasons for this.</p>
 
 <p>For one, because having Python installed on your system has numerous other benefits besides, not the least of which is that you can use it directly for scripting, building applications, or installing other tools.</p>
 
@@ -256,6 +255,64 @@ pip install --upgrade --user azure-cli
 </code></pre>
 
 <p>Once complete, you should see <code>Successfully installed...</code> followed by all the packages upgraded.</p>
+
+<h2 id="verifying-the-installation">Verifying the Installation</h2>
+
+<p>Now, to verify the installation, simply open a Command Prompt or PowerShell window and check that the <code>az</code> command works and the version installed:</p>
+
+<pre><code class="language-nohighlight">PS&gt; az --version
+azure-cli (2.0.27)
+
+acr (2.0.21)
+acs (2.0.26)
+advisor (0.1.2)
+appservice (0.1.26)
+backup (1.0.6)
+batch (3.1.10)
+batchai (0.1.5)
+billing (0.1.7)
+cdn (0.0.13)
+cloud (2.0.12)
+cognitiveservices (0.1.10)
+command-modules-nspkg (2.0.1)
+configure (2.0.14)
+consumption (0.2.1)
+container (0.1.18)
+core (2.0.27)
+cosmosdb (0.1.19)
+dla (0.0.18)
+dls (0.0.19)
+eventgrid (0.1.10)
+extension (0.0.9)
+feedback (2.1.0)
+find (0.2.8)
+interactive (0.3.16)
+iot (0.1.17)
+keyvault (2.0.18)
+lab (0.0.17)
+monitor (0.1.2)
+network (2.0.23)
+nspkg (3.0.1)
+profile (2.0.19)
+rdbms (0.0.12)
+redis (0.2.11)
+reservations (0.1.1)
+resource (2.0.23)
+role (2.0.19)
+servicefabric (0.0.10)
+sql (2.0.21)
+storage (2.0.25)
+vm (2.0.26)
+
+Python location 'C:\Python\python.exe'
+Extensions directory 'C:\Users\user\.azure\cliextensions'
+
+Python (Windows) 3.6.4 (v3.6.4:d48eceb, Dec 19 2017, 06:54:40) [MSC v.1900 64 bit (AMD64)]
+
+Legal docs and information: aka.ms/AzureCliLegal
+</code></pre>
+
+<p>If you see output like this, then congratulations, you&rsquo;ve gotten the CLI to install and run correctly!</p>
 
 <p>Hopefully you found this an easy way to get Azure CLI installed.  In future posts, I&rsquo;ll go over using Azure CLI interactively on Windows.  If you&rsquo;re anxious to get started, type <code>az help</code> for a summary of commands, and <code>az login</code> to start the login process.</p>
 

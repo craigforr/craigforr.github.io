@@ -10,6 +10,10 @@ section.main .content .markdown ul li {
     list-style-type: disc;
     list-style-position: inside;
 }
+section.main .content .markdown pre {
+    white-space: pre;
+    overflow-x: auto; !important
+}
 mark {
     background-color: #ffffcc;
 }

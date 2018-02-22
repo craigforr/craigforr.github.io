@@ -6,15 +6,26 @@
     <description>Recent content in Azure on Craig Forrester</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 19 Feb 2018 20:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Thu, 22 Feb 2018 18:00:00 -0500</lastBuildDate>
     
 	<atom:link href="http://www.craigforrester.com/tags/azure/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Azure CLI Basics: Initial Configuration</title>
+      <link>http://www.craigforrester.com/posts/azure-cli-basics-initial-configuration/</link>
+      <pubDate>Thu, 22 Feb 2018 18:00:00 -0500</pubDate>
+      
+      <guid>http://www.craigforrester.com/posts/azure-cli-basics-initial-configuration/</guid>
+      <description>In my previous post in this series, I discussed how to install Azure CLI using Python&amp;rsquo;s package manager, pip, and how to use it to keep it updated. In this post, we&amp;rsquo;ll cover how to set some default configuration.
+Verifying Azure CLI Installation To start with, it&amp;rsquo;s a good idea to verify the installation works and check the version installed:
+PS&amp;gt; az --version azure-cli (2.0.27) acr (2.0.21) acs (2.0.26) advisor (0.</description>
+    </item>
+    
+    <item>
       <title>Install Azure CLI on Windows 10 using Python pip</title>
       <link>http://www.craigforrester.com/posts/install-azure-cli-on-windows-10-using-python-pip/</link>
-      <pubDate>Mon, 19 Feb 2018 20:00:00 -0500</pubDate>
+      <pubDate>Mon, 19 Feb 2018 21:00:00 -0500</pubDate>
       
       <guid>http://www.craigforrester.com/posts/install-azure-cli-on-windows-10-using-python-pip/</guid>
       <description>TL;DR If you want to cut to the chase, here&amp;rsquo;s the complete list of commands:
