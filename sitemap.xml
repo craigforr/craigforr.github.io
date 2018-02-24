@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://www.craigforrester.com/posts/interactive-powershell-part-4-objects/</loc>
+    <lastmod>2018-02-23T18:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.craigforrester.com/posts/azure-cli-basics-initial-configuration/</loc>
     <lastmod>2018-02-22T18:00:00-05:00</lastmod>
   </url>
@@ -56,7 +61,7 @@
   
   <url>
     <loc>http://www.craigforrester.com/</loc>
-    <lastmod>2018-02-22T18:00:00-05:00</lastmod>
+    <lastmod>2018-02-23T18:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -68,13 +73,13 @@
   
   <url>
     <loc>http://www.craigforrester.com/posts/</loc>
-    <lastmod>2018-02-22T18:00:00-05:00</lastmod>
+    <lastmod>2018-02-23T18:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://www.craigforrester.com/tags/powershell/</loc>
-    <lastmod>2018-02-16T19:00:00-05:00</lastmod>
+    <lastmod>2018-02-23T18:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -98,7 +103,7 @@
   
   <url>
     <loc>http://www.craigforrester.com/categories/tutorials/</loc>
-    <lastmod>2018-02-22T18:00:00-05:00</lastmod>
+    <lastmod>2018-02-23T18:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   

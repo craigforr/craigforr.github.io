@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="author" content="Craig Forrester">
+<meta name="description" content="In my previous post in this series, I discussed how to set up your PowerShell profile so that you could start collecting shortcuts and tools into it that will make working with PowerShell interactively much, much easier. In this post, I&rsquo;d like to take a step back and talk about what distinguishes PowerShell from other shells and what that means for how we use it. This leads to a good question:">
+
+
+<title>
+
+
+     Interactive PowerShell, Part 4: Objects 
+
+</title>
+<link rel="canonical" href="http://www.craigforrester.com/posts/interactive-powershell-part-4-objects/">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/color-brewer.min.css">
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/pygments.css">
+    <link rel="stylesheet" href="/css/main.css">
+    
+        <link rel="stylesheet" href="/css/override.css">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="/img/favicon.ico"
+
+>
+
+
+
+
+</head>
+
+
+<body lang="en">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+                
+                
+                
+                
+                
+                    
+                
+                    
+                
+                    
+                
+                
+                <a href="/"><img class="avatar" src="/img/profile.jpg" srcset="http://www.craigforrester.com/img/profile.jpg 1x"></a>
+            
+            <a href="/"><div class="name">Craig Forrester</div></a>
+            
+              <h3 class="self-intro">The Pleasure of Finding Things Out</h3>
+            
+            <nav>
+                <ul>
+                    
+                        <li class="nav-about"><a href="http://www.craigforrester.com/about/"><span>About</span></a></li>
+                    
+                        <li class="nav-posts"><a href="http://www.craigforrester.com/posts/"><span>Posts</span></a></li>
+                    
+                        <li class="nav-rss-feed"><a href="http://www.craigforrester.com/index.xml"><span>RSS</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="//github.com/craigforr" target="_blank" rel="noopener"><img class="icon" src="/img/github.svg" alt="github" /></a>
+        
+
+        
+
+        
+
+        
+            <a href="//linkedin.com/in/craigforrester" target="_blank" rel="noopener"><img class="icon" src="/img/linkedin.svg" alt="linkedin" /></a>
+        
+
+        
+
+        
+
+        
+
+        
+            <a href="mailto:cf@craigforrester.com"><img class="icon" src="/img/email.svg" alt="email" /></a>
+        
+
+        
+            <a href="http://www.craigforrester.com/index.xml"><img class="icon" src="/img/rss.svg" alt="rss" /></a>
+        
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Interactive PowerShell, Part 4: Objects
+
+</div>
+
+                    <div class="initials"><a href="http://www.craigforrester.com/"></a></div>
+                </div>
+                <div class="meta">
+                    
+                    <div class="date" title='2018-02-23 18:00:00 EST'>February 23, 2018</div>
+                    
+                    
+		    <div class="reading-time"><div class="middot"></div>6 minutes read</div>
+                    
+                </div>
+            </div>
+            <div class="markdown">
+                
+
+<p>In my <a href="/posts/interactive-powershell-part-3-profiles/" title="Interactive PowerShell, Part 3: Profiles">previous post</a> in this series, I discussed how to set up your PowerShell profile so that you could start collecting shortcuts and tools into it that will make working with PowerShell interactively much, much easier.  In this post, I&rsquo;d like to take a step back and talk about what distinguishes PowerShell from other shells and what that means for how we use it.  This leads to a good question:</p>
+
+<blockquote>
+<p>What makes PowerShell different from other shells?</p>
+</blockquote>
+
+<p>To answer this question, we have to first take a look at how most command shells have traditionally done their work.</p>
+
+<h2 id="text-pipelines">Text Pipelines</h2>
+
+<p>Traditionally, shells have relied on text &mdash; text for input and text for output.  If you had command in the Command Prompt that you need to filter for specific information, you would send the output of that command to another one whose job it was to look only for a particular sequence of characters.</p>
+
+<pre><code class="language-cmd">:: Findstr outputs lines matching either SERVICE NAME or RUNNING
+:: in the output of the SC command
+sc query | findstr &quot;SERVICE_NAME RUNNING&quot;
+::       ^ Pipe character tells shell to pass 'sc' output to 'findstr'
+</code></pre>
+
+<p>The basic unit of operation for most shells is text characters.  The shell passes a stream of text from one command to another. Each command in the pipeline operates in turn on sets of the characters it gets from the previous command &mdash; perhaps delimiting them by word boundaries with spaces or tabs, or treating each line as a distinct item to work with by using line breaks. It manipulates those characters, or groups of them, and passes it changes on down the pipeline to the next command. This is a bit of an oversimplification, but it should suffice to say that text is <em>lingua franca</em> of most command shells.</p>
+
+<h2 id="object-pipelines">Object Pipelines</h2>
+
+<p>What makes PowerShell unique is that its basic unit of operation is objects. We could quibble over the details of that statement, but from the perspective of a PowerShell user, they are working with objects, not text.</p>
+
+<p>Take, for example, the PowerShell implementation of the <code>sc</code> command line I showed you above:</p>
+
+<pre><code class="language-powershell">gsv | ?{ $_.Status -eq 'Running' }
+</code></pre>
+
+<p>This cryptic command line does pretty much the same thing as the previous example with <code>sc</code>, but it is actually working with objects.</p>
+
+<p>&ldquo;But wait,&rdquo; you say, &ldquo;Isn&rsquo;t it just filtering through text output like <code>findstr</code> does?</p>
+
+<p>Actually, no, it&rsquo;s not, and that  is what makes PowerShell so powerful, and so easy to work with&hellip;</p>
+
+<p>The <code>gsv</code> command is an <a href="/posts/interactive-powershell-part-2-aliases/" title="Interactive PowerShell, Part 2: Aliases">alias</a> for <code>Get-Service</code> and <code>?</code> is an alias for <code>Where-Object</code>.  If we were to expand that last command out and reconstruct it a bit, it would look like this:</p>
+
+<pre><code class="language-powershell">Get-Service | Where-Object -Property Status -EQ -Value Running
+</code></pre>
+
+<p><code>Get-Service</code> is actually passing objects to the <code>Where-Object</code> cmdlet, which looks at the properties of those objects and only returns (passes on down the pipeline) those whose value is equal to &ldquo;Running&rdquo;.</p>
+
+<p>This notion of &ldquo;Properties&rdquo; lets us do things like this:</p>
+
+<pre><code class="language-powershell">Get-Service | Sort-Object -Property Status
+</code></pre>
+
+<p>This kind of filtering and sorting in text based shells is much more cumbersome.  If, for example, the commands themselves do not natively support it, sort on a &ldquo;column&rdquo; of text can require a lot of extra work. PowerShell lets us do this with ease, because it&rsquo;s using objects.</p>
+
+<h2 id="what-is-an-object-anyway">What is an Object anyway?</h2>
+
+<p>If you&rsquo;ve used PowerShell for any time at all, you&rsquo;ve likely stumbled over a reference to objects &mdash; and if you haven&rsquo;t yet, you will.  But what exactly is an &ldquo;object&rdquo; and why does it matter?</p>
+
+<p>It&rsquo;s a bit academic, but once we understand what an &ldquo;object&rdquo; is, and how PowerShell stitches them together in a &ldquo;pipeline&rdquo;, we will far more efficient using PowerShell, interactively and when we create scripts.</p>
+
+<blockquote>
+<p>An object is a container for data and code.</p>
+</blockquote>
+
+<p>That&rsquo;s my personal definition. It&rsquo;s short and to the point, and it drives to the two key aspects of what most PowerShell output objects have in them.  You can compare objects to cars, for example:</p>
+
+<table>
+<thead>
+<tr>
+<th>Container</th>
+<th>Object</th>
+<th>Car</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Data</td>
+<td>Property</td>
+<td>Option</td>
+</tr>
+
+<tr>
+<td>Code</td>
+<td>Method</td>
+<td>Feature</td>
+</tr>
+</tbody>
+</table>
+
+<p>An object&rsquo;s data is accessed through its properties, which are like the options on a car &mdash; for example, its color being red.  An objects code is accessed through its methods, which are like the features of a car &mdash; for example, the ability to accelerate, stop, or engage all-wheel drive.</p>
+
+<p>So, here&rsquo;s an example of what that might look like for either:</p>
+
+<table>
+<thead>
+<tr>
+<th>Object</th>
+<th><strong>Windows Service</strong></th>
+<th>Car</th>
+<th><strong>Mustang</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Property</td>
+<td><strong>ServiceName</strong></td>
+<td>Option</td>
+<td><strong>Leather Interior</strong></td>
+</tr>
+
+<tr>
+<td>Method</td>
+<td><strong>Start</strong></td>
+<td>Feature</td>
+<td><strong>Set Cruise Control</strong></td>
+</tr>
+</tbody>
+</table>
+
+<p>Now, obviously a car has thousands of options and features, and objects have only a few, but another way that you can think of the distinctions between properties and methods is that properties <em>are</em> something, and methods <em>do</em> something. Or, if you like language, properties are <em>nouns</em>, methods are <em>verbs</em>:</p>
+
+<table>
+<thead>
+<tr>
+<th>Container</th>
+<th>Object</th>
+<th>Car</th>
+<th><strong>Thing</strong></th>
+<th><strong>Word</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Data</td>
+<td>Property</td>
+<td>Option</td>
+<td><strong>Is</strong></td>
+<td><strong>Noun</strong></td>
+</tr>
+
+<tr>
+<td>Code</td>
+<td>Method</td>
+<td>Feature</td>
+<td><strong>Does</strong></td>
+<td><strong>Verb</strong></td>
+</tr>
+</tbody>
+</table>
+
+<p>We can explore what various objects <em>are</em> and <em>do</em> inside PowerShell with the <code>Get-Member</code> cmdlet:</p>
+
+<pre><code class="language-powershell">Get-Service | Get-Member
+</code></pre>
+
+<p>Sample output:</p>
+
+<pre><code class="language-nohighlight">   TypeName: System.ServiceProcess.ServiceController
+
+   Name                      MemberType    Definition
+   ----                      ----------    ----------
+   Name                      AliasProperty Name = ServiceName
+   RequiredServices          AliasProperty RequiredServices = ServicesDependedOn
+   Disposed                  Event         System.EventHandler Disposed(System.Object, System.EventArgs)
+   Close                     Method        void Close()
+   Continue                  Method        void Continue()
+   CreateObjRef              Method        System.Runtime.Remoting.ObjRef CreateObjRef(type requestedType)
+   Dispose                   Method        void Dispose(), void IDisposable.Dispose()
+   Equals                    Method        bool Equals(System.Object obj)
+   ExecuteCommand            Method        void ExecuteCommand(int command)
+   GetHashCode               Method        int GetHashCode()
+   GetLifetimeService        Method        System.Object GetLifetimeService()
+   GetType                   Method        type GetType()
+   InitializeLifetimeService Method        System.Object InitializeLifetimeService()
+   Pause                     Method        void Pause()
+   Refresh                   Method        void Refresh()
+   Start                     Method        void Start(), void Start(string[] args)
+   Stop                      Method        void Stop()
+   WaitForStatus             Method        void WaitForStatus(System.ServiceProcess.ServiceControllerStatus desiredStatus), ...
+   CanPauseAndContinue       Property      bool CanPauseAndContinue {get;}
+   CanShutdown               Property      bool CanShutdown {get;}
+   CanStop                   Property      bool CanStop {get;}
+   Container                 Property      System.ComponentModel.IContainer Container {get;}
+   DependentServices         Property      System.ServiceProcess.ServiceController[] DependentServices {get;}
+   DisplayName               Property      string DisplayName {get;set;}
+   MachineName               Property      string MachineName {get;set;}
+   ServiceHandle             Property      System.Runtime.InteropServices.SafeHandle ServiceHandle {get;}
+   ServiceName               Property      string ServiceName {get;set;}
+   ServicesDependedOn        Property      System.ServiceProcess.ServiceController[] ServicesDependedOn {get;}
+   ServiceType               Property      System.ServiceProcess.ServiceType ServiceType {get;}
+   Site                      Property      System.ComponentModel.ISite Site {get;set;}
+   StartType                 Property      System.ServiceProcess.ServiceStartMode StartType {get;}
+   Status                    Property      System.ServiceProcess.ServiceControllerStatus Status {get;}
+   ToString                  ScriptMethod  System.Object ToString();
+</code></pre>
+
+<p>My hope is that we took some of the mystery, or even anxiety, out of objects for you, and make working with them, and PowerShell, a lot clearer and more straightforward. In my next post in this series, I&rsquo;ll talk more about objects and how we can make use of their properties and methods.</p>
+
+<h2 id="additional-reading">Additional Reading</h2>
+
+<ul>
+<li>Documentation: <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_objects?view=powershell-5.1" title="about_Objects | Microsoft Docs">about_Objects</a></li>
+<li>Documentation: <a href="https://docs.microsoft.com/en-us/powershell/scripting/getting-started/fundamental/understanding-important-windows-powershell-concepts?view=powershell-5.1" title="Understanding Important Windows PowerShell Concepts | Microsoft Docs">Understanding Important Windows PowerShell Concepts</a></li>
+</ul>
+
+                <br>
+		        <p><a href="/posts/">Back to posts</a></p>
+            </div>
+            <div class="disqus">
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-454251-4', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/powershell.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/dos.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+
+</body>
+</html>
+

@@ -216,7 +216,7 @@ Python (Windows) 3.6.4 (v3.6.4:d48eceb, Dec 19 2017, 06:54:40) [MSC v.1900 64 bi
 Legal docs and information: aka.ms/AzureCliLegal
 </code></pre>
 
-<p>As you can see, this parameter provides a wealth of information, including what versions of Azure CLI is installed, along with the versions of individual modules that it uses.  Azure CLI 2.0 is written in Python, so each module is a grouping of Python code that pertains to particular Azure feature/component.</p>
+<p>As you can see, this parameter provides a wealth of information, including what versions of Azure CLI is installed, along with the versions of individual modules that it uses.  Azure CLI 2.0 is written in Python, so each module is a grouping of Python code that pertains to particular Azure feature/component.  So, for example, &ldquo;vm (2.0.26)&rdquo; denotes version 2.0.26 of the module for virtual machines.  Also, note that the location of Python being used is listed, along with the version &mdash; in this case, Python 3.6.4.</p>
 
 <h2 id="adding-azure-cli-to-your-path">Adding Azure CLI to Your PATH</h2>
 
@@ -237,7 +237,10 @@ At line:1 char:1
 $env:PATH -split ';'
 </code></pre>
 
-<p>If the Azure CLI install path is not listed, try opening a new PowerShell window or Command Prompt.  If it still is not listed in your PATH, then you will want to add it to the PATH variable manually.</p>
+<p>If the Azure CLI install path is not listed, try opening a new PowerShell window or Command Prompt.  If it still is not listed in your PATH, then you will want to add it to the PATH variable manually.  If you installed Azure CLI with the MSI file, on x64 the default path is <code>C:\Program Files (x86)\Microsoft SDKs\Azure\CLI2\wbin</code> and you can check whether it exists with PowerShell:</p>
+
+<pre><code class="language-powershell">Test-Path -Path 'C:\Program Files (x86)\Microsoft SDKs\Azure\CLI2\wbin'
+</code></pre>
 
 <p>If you cannot locate the Azure CLI install, you may want to simply <a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest" title="Install Azure CLI 2.0">reinstall Azure CLI</a>, as it automatically adds the necessary directories to your PATH.  You can refer to the <a href="/posts/install-azure-cli-on-windows-10-using-python-pip/" title="Install Azure CLI on Windows 10 using Python pip">previous post</a> for additional information and details on how to <a href="http://www.craigforrester.com/posts/install-azure-cli-on-windows-10-using-python-pip/#upgrading-azure-cli-using-pip" title="Upgrading Azure CLI using pip">install and upgrade Azure CLI with pip</a> on Windows 10.</p>
 
@@ -366,7 +369,7 @@ You're all set! Here are some commands to try:
 
 <p>To view the Azure CLI configuration path in PowerShell on Windows, use <code>$env:USERPROFILE\.azure\config</code>:</p>
 
-<pre><code class="language-nohightlight">PS&gt; cat $env:USERPROFILE\.azure\config
+<pre><code class="language-nohighlight">PS&gt; cat $env:USERPROFILE\.azure\config
 [cloud]
 name = AzureCloud
 
@@ -420,6 +423,8 @@ ga('send', 'pageview');
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/powershell.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/dos.min.js"></script>
   
 
   <script type="text/javascript">
