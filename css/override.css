@@ -2,7 +2,6 @@
    Overrides for Cocoa Theme
 ---------------------------------------------------------------------- */
 section.main .content .markdown ol li {
-
     list-style-type: decimal;
     list-style-position: inside;
 }
