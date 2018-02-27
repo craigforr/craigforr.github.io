@@ -6,10 +6,21 @@
     <description>Recent content in Azure on Craig Forrester</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Thu, 22 Feb 2018 18:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 26 Feb 2018 18:00:00 -0500</lastBuildDate>
     
 	<atom:link href="http://www.craigforrester.com/tags/azure/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Azure CLI Basics: Logging In</title>
+      <link>http://www.craigforrester.com/posts/azure-cli-basics-logging-in/</link>
+      <pubDate>Mon, 26 Feb 2018 18:00:00 -0500</pubDate>
+      
+      <guid>http://www.craigforrester.com/posts/azure-cli-basics-logging-in/</guid>
+      <description>In my previous post, I discussed how to configure some basic Azure CLI settings and verify the installation. In this post, we&amp;rsquo;ll cover how to authenticate Azure CLI to one or more Azure Subscriptions and switch between those subscriptions.
+TL;DR If you&amp;rsquo;re in a hurry, here is a brief summary of the commands used in this post:
+# List currently authenticated subscriptions az account list # Log in to a subscription az login # Display subscriptions by Name and show which is selected az account list --query &amp;quot;[].</description>
+    </item>
     
     <item>
       <title>Azure CLI Basics: Initial Configuration</title>
