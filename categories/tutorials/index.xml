@@ -6,10 +6,20 @@
     <description>Recent content in Tutorials on Craig Forrester</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 26 Feb 2018 18:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Wed, 28 Feb 2018 18:00:00 -0500</lastBuildDate>
     
 	<atom:link href="http://www.craigforrester.com/categories/tutorials/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Interactive PowerShell, Part 5: Object Properties</title>
+      <link>http://www.craigforrester.com/posts/interactive-powershell-part-5-object-properties/</link>
+      <pubDate>Wed, 28 Feb 2018 18:00:00 -0500</pubDate>
+      
+      <guid>http://www.craigforrester.com/posts/interactive-powershell-part-5-object-properties/</guid>
+      <description>In my previous post in this series, I talked about how PowerShell&amp;rsquo;s use of objects distinguishes it from other shells and what that means for how we use it. In this post, I&amp;rsquo;ll talk more about objects and their properties.
+Properties We&amp;rsquo;ve already talked a bit about PowerShell object properties, and said that properties are like the options on a particular model of a car: a car can be red, have leather interior, a navigation system, etc.</description>
+    </item>
     
     <item>
       <title>Azure CLI Basics: Logging In</title>
