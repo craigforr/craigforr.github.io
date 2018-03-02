@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="author" content="Craig Forrester">
+<meta name="description" content="This is the first post in a series I&rsquo;m calling &ldquo;Scripting Notebook,&rdquo; in which I will explore ways of accomplishing various scripting tasks across several languages: Bash, CMD, PowerShell, and Python.
+Creating a File of Arbitrary Size Sometimes when you&rsquo;re testing, for whatever reason, you need one or more files that are a particular size. You don&rsquo;t care what they are, you just need some data to take up disk space, transfer over the network, etc.">
+
+
+<title>
+
+
+     Scripting Notebook: Create a File of a Specific Size 
+
+</title>
+<link rel="canonical" href="http://www.craigforrester.com/posts/scripting-notebook-create-a-file-of-a-specific-size/">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/color-brewer.min.css">
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/pygments.css">
+    <link rel="stylesheet" href="/css/main.css">
+    
+        <link rel="stylesheet" href="/css/override.css">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="/img/favicon.ico"
+
+>
+
+
+
+
+</head>
+
+
+<body lang="en">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+                
+                
+                
+                
+                
+                    
+                
+                    
+                
+                    
+                
+                
+                <a href="/"><img class="avatar" src="/img/profile.jpg" srcset="http://www.craigforrester.com/img/profile.jpg 1x"></a>
+            
+            <a href="/"><div class="name">Craig Forrester</div></a>
+            
+              <h3 class="self-intro">The Pleasure of Finding Things Out</h3>
+            
+            <nav>
+                <ul>
+                    
+                        <li class="nav-about"><a href="http://www.craigforrester.com/about/"><span>About</span></a></li>
+                    
+                        <li class="nav-posts"><a href="http://www.craigforrester.com/posts/"><span>Posts</span></a></li>
+                    
+                        <li class="nav-rss-feed"><a href="http://www.craigforrester.com/index.xml"><span>RSS</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="//github.com/craigforr" target="_blank" rel="noopener"><img class="icon" src="/img/github.svg" alt="github" /></a>
+        
+
+        
+
+        
+
+        
+            <a href="//linkedin.com/in/craigforrester" target="_blank" rel="noopener"><img class="icon" src="/img/linkedin.svg" alt="linkedin" /></a>
+        
+
+        
+
+        
+
+        
+
+        
+            <a href="mailto:cf@craigforrester.com"><img class="icon" src="/img/email.svg" alt="email" /></a>
+        
+
+        
+            <a href="http://www.craigforrester.com/index.xml"><img class="icon" src="/img/rss.svg" alt="rss" /></a>
+        
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Scripting Notebook: Create a File of a Specific Size
+
+</div>
+
+                    <div class="initials"><a href="http://www.craigforrester.com/"></a></div>
+                </div>
+                <div class="meta">
+                    
+                    <div class="date" title='2018-03-01 18:00:00 EST'>March 1, 2018</div>
+                    
+                    
+		    <div class="reading-time"><div class="middot"></div>2 minutes read</div>
+                    
+                </div>
+            </div>
+            <div class="markdown">
+                
+
+<p>This is the first post in a series I&rsquo;m calling &ldquo;Scripting Notebook,&rdquo; in which I will explore ways of accomplishing various scripting tasks across several languages: <strong>Bash, CMD, PowerShell, and Python.</strong></p>
+
+<h2 id="creating-a-file-of-arbitrary-size">Creating a File of Arbitrary Size</h2>
+
+<p>Sometimes when you&rsquo;re testing, for whatever reason, you need one or more files that are a particular size.  You don&rsquo;t care what they are, you just need some data to take up disk space, transfer over the network, etc.  So here, in our four target languages,<sup class="footnote-ref" id="fnref:1"><a rel="footnote" href="#fn:1">1</a></sup> I&rsquo;m going to show how to do exactly that.</p>
+
+<h3 id="cmd">CMD</h3>
+
+<p>In CMD, otherwise known as the Windows Command Prompt, we rely on an old tool called <a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil" title="Fsutil | Microsoft Docs">Fsutil</a>:</p>
+
+<pre><code class="language-cmd">REM Create 1 GB test file:
+fsutil file createnew one-gigabyte-file-cmd.dat 1073741824
+</code></pre>
+
+<h3 id="powershell">PowerShell</h3>
+
+<p>We&rsquo;re cheating a little bit here, using .NET Framework&rsquo;s System.IO.FileStream Class to do most of the work&hellip;</p>
+
+<pre><code class="language-powershell"># Create 1 GB test file
+$f = New-Object System.IO.FileStream .\one-gigabyte-file-powershell.dat, Create, ReadWrite
+$f.SetLength(1GB)
+$f.Close()
+</code></pre>
+
+<p>You may try a &ldquo;pure&rdquo; PowerShell implementation like this, it will take a very, very long time:</p>
+
+<pre><code class="language-powershell"># DO NOT do this. Poor memory utilization, very long execution time
+1..1024 | %{ Add-Content -Value (New-Object byte[] 1mb) -Encoding Byte -Path .\one-gigabyte-file-ps1.dat }
+</code></pre>
+
+<p>And while you may be tempted to &ldquo;optimize&rdquo; that last implementation by using larger objects, it consumes a ton of memory and nasty things will happen. You have been warned!</p>
+
+<h3 id="python">Python</h3>
+
+<p>Here&rsquo;s a clean and fast implementation in Python.  The <code>with</code> operator handles closing out the file for us, as a bonus:</p>
+
+<pre><code class="language-python">with open(&quot;one-gigabyte-file-python.dat&quot;, &quot;wb&quot;) as out:
+    out.truncate(1024**3)
+</code></pre>
+
+<h3 id="bash">Bash</h3>
+
+<p>Then there&rsquo;s the tried-and-ture <code>dd</code> command in bash:</p>
+
+<pre><code class="language-bash">dd if=/dev/zero of=one-gigabyte-file-bash.dat bs=1073741824 count=1
+</code></pre>
+
+<p>This works well on Windows too, if you&rsquo;ve got <a href="https://docs.microsoft.com/en-us/windows/wsl/about" title="Learn about the Windows Subsystem for Linux | Microsoft Docs">WSL</a>, <a href="http://www.mingw.org/">MinGW</a> or <a href="http://cygwin.org/">Cygwin</a> installed.</p>
+
+<h2 id="additional-reading">Additional Reading</h2>
+
+<ul>
+<li>Windows Server Documentation: <a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil" title="Fsutil | Microsoft Docs">Fsutil</a></li>
+<li>.NET Framework Documentation: <a href="https://msdn.microsoft.com/en-us/library/system.io.filestream" title="FileStream Class (System.IO)">FileStream Class (System.IO)</a></li>
+<li>GNU Coreutils Documentation: <a href="https://www.gnu.org/software/coreutils/manual/html_node/dd-invocation.html" title="GNU Coreutils: dd invocation">dd invocation</a></li>
+<li>Python 3 Documentation: <a href="https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files" title="7. Input and Output — Python 3.6.4 documentation">Reading and Writing Files</a></li>
+</ul>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1">I&rsquo;m using the term &ldquo;language&rdquo; very loosely when referring to CMD and Bash because, while these shells each have their own language with their own syntax, we will often be relying on other command line software to do the work &mdash; as is the case immediately here with CMD, where we&rsquo;re using <code>fsutil</code> to create our file.
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+                <br>
+		        <p><a href="/posts/">Back to posts</a></p>
+            </div>
+            <div class="disqus">
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-454251-4', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/powershell.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/dos.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+
+</body>
+</html>
+

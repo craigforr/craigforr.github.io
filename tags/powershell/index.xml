@@ -6,10 +6,20 @@
     <description>Recent content in Powershell on Craig Forrester</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Wed, 28 Feb 2018 18:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Thu, 01 Mar 2018 18:00:00 -0500</lastBuildDate>
     
 	<atom:link href="http://www.craigforrester.com/tags/powershell/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Scripting Notebook: Create a File of a Specific Size</title>
+      <link>http://www.craigforrester.com/posts/scripting-notebook-create-a-file-of-a-specific-size/</link>
+      <pubDate>Thu, 01 Mar 2018 18:00:00 -0500</pubDate>
+      
+      <guid>http://www.craigforrester.com/posts/scripting-notebook-create-a-file-of-a-specific-size/</guid>
+      <description>This is the first post in a series I&amp;rsquo;m calling &amp;ldquo;Scripting Notebook,&amp;rdquo; in which I will explore ways of accomplishing various scripting tasks across several languages: Bash, CMD, PowerShell, and Python.
+Creating a File of Arbitrary Size Sometimes when you&amp;rsquo;re testing, for whatever reason, you need one or more files that are a particular size. You don&amp;rsquo;t care what they are, you just need some data to take up disk space, transfer over the network, etc.</description>
+    </item>
     
     <item>
       <title>Interactive PowerShell, Part 5: Object Properties</title>
