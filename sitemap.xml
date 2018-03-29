@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://www.craigforrester.com/posts/windows-subsystem-for-linux-disable-ipv6-for-apt/</loc>
+    <lastmod>2018-03-29T08:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.craigforrester.com/posts/scripting-notebook-create-a-file-of-a-specific-size/</loc>
     <lastmod>2018-03-01T18:00:00-05:00</lastmod>
   </url>
@@ -58,6 +63,12 @@
   </url>
   
   <url>
+    <loc>http://www.craigforrester.com/tags/apt/</loc>
+    <lastmod>2018-03-29T08:00:00-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://www.craigforrester.com/tags/azure/</loc>
     <lastmod>2018-02-26T18:00:00-05:00</lastmod>
     <priority>0</priority>
@@ -71,7 +82,7 @@
   
   <url>
     <loc>http://www.craigforrester.com/tags/bash/</loc>
-    <lastmod>2018-03-01T18:00:00-05:00</lastmod>
+    <lastmod>2018-03-29T08:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -88,7 +99,7 @@
   
   <url>
     <loc>http://www.craigforrester.com/</loc>
-    <lastmod>2018-03-01T18:00:00-05:00</lastmod>
+    <lastmod>2018-03-29T08:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -100,7 +111,7 @@
   
   <url>
     <loc>http://www.craigforrester.com/posts/</loc>
-    <lastmod>2018-03-01T18:00:00-05:00</lastmod>
+    <lastmod>2018-03-29T08:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -118,13 +129,13 @@
   
   <url>
     <loc>http://www.craigforrester.com/tags/</loc>
-    <lastmod>2018-02-26T18:00:00-05:00</lastmod>
+    <lastmod>2018-03-29T08:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://www.craigforrester.com/categories/tips/</loc>
-    <lastmod>2018-03-01T18:00:00-05:00</lastmod>
+    <lastmod>2018-03-29T08:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -135,8 +146,26 @@
   </url>
   
   <url>
+    <loc>http://www.craigforrester.com/tags/ubuntu/</loc>
+    <lastmod>2018-03-29T08:00:00-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.craigforrester.com/tags/windows/</loc>
+    <lastmod>2018-03-29T08:00:00-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://www.craigforrester.com/tags/windows-10/</loc>
     <lastmod>2018-02-19T21:00:00-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.craigforrester.com/tags/wsl/</loc>
+    <lastmod>2018-03-29T08:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
