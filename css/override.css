@@ -16,6 +16,9 @@ section.main .content .markdown pre {
 mark {
     background-color: #ffffcc;
 }
+section.main .content .markdown mark code {
+    background-color: #eeeebb;
+}
 sub {
     top: 0.4em;
 }

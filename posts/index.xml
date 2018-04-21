@@ -6,10 +6,21 @@
     <description>Recent content in Posts on Craig Forrester</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Thu, 29 Mar 2018 08:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Fri, 20 Apr 2018 00:00:00 -0500</lastBuildDate>
     
 	<atom:link href="http://www.craigforrester.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Display Dates and Times with PowerShell</title>
+      <link>http://www.craigforrester.com/posts/display-dates-and-times-with-powershell/</link>
+      <pubDate>Fri, 20 Apr 2018 00:00:00 -0500</pubDate>
+      
+      <guid>http://www.craigforrester.com/posts/display-dates-and-times-with-powershell/</guid>
+      <description>In the course of any given week, I find myself having to determine dates and times for future and past days, weeks, months &amp;mdash; even years. PowerShell makes this extremely easy. In thise post, we&amp;rsquo;ll discuss how&amp;hellip;
+Getting Dates and Times with PowerShell First let&amp;rsquo;s show how to get the current local time:
+Get-Date  You can display a different date and time by specifying it after Get-Date (as an unnamed parameter):</description>
+    </item>
     
     <item>
       <title>Windows Subsystem for Linux: Disable IPv6 for Apt</title>
