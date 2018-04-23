@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="author" content="Craig Forrester">
+<meta name="description" content="In my previous post in this series, I covered how to authenticate Azure CLI to one or more Azure Subscriptions and switch between those subscriptions. In this post, we will cover how Azure CLI command lines are structured.
+Before we begin, as always, verify that you have logged in and that the correct subscription is selected by running az account list. The currently selected subscription is the one marked True under IsDefault in the output.">
+
+
+<title>
+
+
+     Azure CLI Basics: Anatomy of a Command 
+
+</title>
+<link rel="canonical" href="http://www.craigforrester.com/posts/azure-cli-basics-anatomy-of-a-command/">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/color-brewer.min.css">
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/pygments.css">
+    <link rel="stylesheet" href="/css/main.css">
+    
+        <link rel="stylesheet" href="/css/override.css">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="/img/favicon.ico"
+
+>
+
+
+
+
+</head>
+
+
+<body lang="en">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+                
+                
+                
+                
+                
+                    
+                
+                    
+                
+                    
+                
+                
+                <a href="/"><img class="avatar" src="/img/profile.jpg" srcset="http://www.craigforrester.com/img/profile.jpg 1x"></a>
+            
+            <a href="/"><div class="name">Craig Forrester</div></a>
+            
+              <h3 class="self-intro">The Pleasure of Finding Things Out</h3>
+            
+            <nav>
+                <ul>
+                    
+                        <li class="nav-about"><a href="http://www.craigforrester.com/about/"><span>About</span></a></li>
+                    
+                        <li class="nav-posts"><a href="http://www.craigforrester.com/posts/"><span>Posts</span></a></li>
+                    
+                        <li class="nav-rss-feed"><a href="http://www.craigforrester.com/index.xml"><span>RSS</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="//github.com/craigforr" target="_blank" rel="noopener"><img class="icon" src="/img/github.svg" alt="github" /></a>
+        
+
+        
+
+        
+
+        
+            <a href="//linkedin.com/in/craigforrester" target="_blank" rel="noopener"><img class="icon" src="/img/linkedin.svg" alt="linkedin" /></a>
+        
+
+        
+
+        
+
+        
+
+        
+            <a href="mailto:cf@craigforrester.com"><img class="icon" src="/img/email.svg" alt="email" /></a>
+        
+
+        
+            <a href="http://www.craigforrester.com/index.xml"><img class="icon" src="/img/rss.svg" alt="rss" /></a>
+        
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Azure CLI Basics: Anatomy of a Command
+
+</div>
+
+                    <div class="initials"><a href="http://www.craigforrester.com/"></a></div>
+                </div>
+                <div class="meta">
+                    
+                    <div class="date" title='2018-04-23 18:00:00 EST'>April 23, 2018</div>
+                    
+                    
+		    <div class="reading-time"><div class="middot"></div>7 minutes read</div>
+                    
+                </div>
+            </div>
+            <div class="markdown">
+                
+
+<p>In my previous post in this series, I covered <a href="/posts/azure-cli-basics-logging-in/" title="Azure CLI Basics: Logging In">how to authenticate Azure CLI</a> to one or more Azure Subscriptions and switch between those subscriptions.  In this post, we will cover how Azure CLI command lines are structured.</p>
+
+<p>Before we begin, as always, verify that you have logged in and that the <strong>correct subscription</strong> is selected by running <code>az account list</code>.  The currently selected subscription is the one marked <code>True</code> under <code>IsDefault</code> in the output. If the wrong subscription is selected, see my <a href="/posts/azure-cli-basics-logging-in/" title="Azure CLI Basics: Logging In">previous post on working with subscription logins in Azure CLI</a>.</p>
+
+<h2 id="anatomy-of-an-azure-cli-command">Anatomy of an Azure CLI Command</h2>
+
+<p>One of the interesting things about Azure CLI that you may have noticed already is that the command <code>az</code> can be following by any one of a number of other key terms that change what you are operating on or what operation the command performs.</p>
+
+<p>Here is an example:</p>
+
+<pre><code class="language-nohighlight">$ az vm list --output table
+</code></pre>
+
+<p>Let&rsquo;s take the preceding command line &mdash; which we can use to list all the virtual machines in the subscription &mdash; and break it down into it parts:</p>
+
+<pre><code class="language-nohighlight">Shell Prompt
+| Azure CLI invocation script
+| |  Group
+| |  |  Command
+| |  |  |    Parameter
+| |  |  |    |        Argument
+| |  |  |    |        |
+$ az vm list --output table
+</code></pre>
+
+<p>Now that we have the parts labelled, let&rsquo;s look at what each is for&hellip;.</p>
+
+<h2 id="shell-prompt">Shell Prompt</h2>
+
+<p>This command line is being run in Bash, so the very first part, <code>$</code> (dollar), is the <strong>prompt</strong>, or where you begin entering your command.  The prompt differs from system to system and from shell to shell.  If you are running Azure CLI inside a PowerShell window, you may have <code>PS&gt;</code> as your prompt instead.</p>
+
+<h2 id="the-az-command">The &lsquo;az&rsquo; Command</h2>
+
+<p>The <code>az</code> command list actually a script that wraps around a Python invocation of the <code>azure.cli</code> module:</p>
+
+<pre><code class="language-bash">python -m azure.cli &quot;$@&quot;
+</code></pre>
+
+<p>You can see this for yourself by opening up the script and taking a look.  To find the script on your system, type <code>which az</code> at your prompt.</p>
+
+<p>The wrapper sets some variables and then passes to Python the remaining command line you typed &mdash; specifically, it is passed to the Azure CLI module (<code>azure.cli</code>).</p>
+
+<h2 id="groups-and-subgroups">Groups and Subgroups</h2>
+
+<p>The most immediate word after the <code>az</code> command will be the name of a <strong>group</strong> that will serve as the context in which your command and parameters run, and, as the documentation puts it: &ldquo;Each group represents a service provided by Azure, and the subgroups divide commands for these services into logical groupings.&rdquo; <sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup></p>
+
+<p>For example, to see the <strong>subgroups</strong> for the virtual machines group, type <code>az vm --help</code>:</p>
+
+<pre><code class="language-nohighlight">$ az vm --help
+
+Group
+    az vm: Provision Linux or Windows virtual machines.
+
+Subgroups:
+    availability-set      : Group resources into availability sets.
+    boot-diagnostics      : Troubleshoot the startup of an Azure Virtual Machine.
+    diagnostics           : Configure the Azure Virtual Machine diagnostics extension.
+    disk                  : Manage the managed data disks attached to a VM.
+    encryption            : Manage encryption of VM disks.
+    extension             : Manage extensions on VMs.
+    identity              : Manage service identities of a VM.
+    image                 : Information on available virtual machine images.
+    nic                   : Manage network interfaces. See also `az network nic`.
+    run-command           : Manage run commands on a Virtual Machine.
+    secret
+    unmanaged-disk        : Manage the unmanaged data disks attached to a VM.
+    user                  : Manage user accounts for a VM.
+</code></pre>
+
+<h2 id="subcommands">Subcommands</h2>
+
+<p>In addition to groups and subgroups themselves, there may be actions that we want to perform on those groups or subgroups.  These are the <strong>subcommands</strong> we referred to earlier.  If we scroll down a bit further in our <code>az vm --help</code> output, we see the list of commands:</p>
+
+<pre><code class="language-nohighlight">Commands:
+    assign-identity       : (Deprecated, please use 'az vm identity assign').
+    capture               : Capture information for a stopped VM.
+    convert               : Convert a VM with unmanaged disks to use managed disks.
+    create                : Create an Azure Virtual Machine.
+    deallocate            : Deallocate a VM.
+    delete                : Delete a VM.
+    format-secret
+    generalize            : Mark a VM as generalized, allowing it to be imaged for multiple
+                            deployments.
+    get-instance-view     : Get instance information about a VM.
+    list                  : List details of Virtual Machines.
+    list-ip-addresses     : List IP addresses associated with a VM.
+    list-sizes            : List available sizes for VMs.
+    list-skus             : Get details for compute-related resource SKUs.
+    list-usage            : List available usage resources for VMs.
+    list-vm-resize-options: List available resizing options for VMs.
+    open-port             : Opens a VM to inbound traffic on specified ports.
+    perform-maintenance   : The operation to perform maintenance on a virtual machine.
+    redeploy              : Redeploy an existing VM.
+    remove-identity       : (Deprecated, please use 'az vm identity remove').
+    resize                : Update a VM's size.
+    restart               : Restart VMs.
+    show                  : Get the details of a VM.
+    start                 : Start a stopped VM.
+    stop                  : Stop a running VM.
+    update                : Update the properties of a VM.
+    wait                  : Place the CLI in a waiting state until a condition of the VM is met.
+</code></pre>
+
+<p>A good way to distinguish between subgroups and subcommands is to think of groups as &ldquo;things&rdquo; that we can work with and subcommands as &ldquo;actions&rdquo; we can perform on those things.  Or, if you&rsquo;re an English major, think of them as parts of speech: subgroups as &ldquo;nouns&rdquo; and subcommands as &ldquo;verbs.&rdquo;</p>
+
+<h2 id="getting-help">Getting Help</h2>
+
+<p>This is a good time to pause and state that the help in Azure CLI is extensive.  There is help for every command and group.  <mark>If you commit nothing else to memory, remember all the <code>az</code> sub-groups and commands have help that you can display simply by tacking <code>--help</code> on the end of the command.</mark> The more sub-groups you add, the more specific the help becomes.</p>
+
+<p>Try out these examples:</p>
+
+<pre><code class="language-nohighlight">az --help
+az vm --help
+az vm disk --help
+az vm disk attach --help
+</code></pre>
+
+<p>Remember: You can do this with any set of sub-groups or commands to view detailed help, including arguments and examples.</p>
+
+<h2 id="switches-and-parameters">Switches and Parameters</h2>
+
+<h3 id="parameters">Parameters</h3>
+
+<p>Once you have a command to work with, you can supply all the details for how to run that command with <strong>switches</strong> and <strong>parameters</strong>.  Loosely speaking, a parameters are the bits of the command line that you precede with one or two hyphens &mdash; as in, <code>--resource-group</code> and <code>-g</code> &mdash; and that have some sort of <strong>argument</strong>, or specific details about the parameter &mdash; such as in the name of the resource group:</p>
+
+<pre><code class="language-bash">az vm list --resource-group production-rg
+</code></pre>
+
+<p>Most parameters have shorter equivalents that only take a single hyphen.  The <code>--resource-group</code> parameter has a short form: <code>-g</code>.  So, our example could be rewritten as follows:</p>
+
+<pre><code class="language-bash">az vm list -g production-rg
+</code></pre>
+
+<p>In this example &ldquo;production-rg&rdquo; is the argument to the resource group parameter.  You can think of these as pairs.  You can&rsquo;t have the one without the other &mdash; every parameter needs an argument.</p>
+
+<p>What do we do when there isn&rsquo;t a need for an argument then?  For example, what if we just want to tell the command we want verbose output?  This brings us to switches&hellip;.</p>
+
+<h3 id="switches">Switches</h3>
+
+<p>A <strong>switch</strong> is like a parameter, but it does not have any argument &mdash; it&rsquo;s not paired with any other input.  If you&rsquo;ve ever used <code>--verbose</code> at the end of a command line, it&rsquo;s an example of a switch.</p>
+
+<h2 id="finding-groups-and-commands">Finding Groups and Commands</h2>
+
+<p>With all the help, how do we find the correct command or group?  Or maybe we know what we&rsquo;re looking for, but don&rsquo;t remember where Azure CLI puts the particular thing we&rsquo;re trying to do.  This is where the <code>find</code> subcommand comes in&hellip;</p>
+
+<h3 id="searching-for-commands-or-groups">Searching for Commands or Groups</h3>
+
+<p>Remember how we said that, if nothing else, you should remember the <code>--help</code> switch?  Well, if you remember anything after that, remember the <code>find</code> command:</p>
+
+<pre><code class="language-bash">az find -q $SEARCH_TERM
+</code></pre>
+
+<p>This does exactly what it looks like: It looks through an index of all the Azure CLI commands and displays matches to whatever you&rsquo;re looking for.</p>
+
+<pre><code class="language-bash">az find --search-query &quot;vm&quot;
+</code></pre>
+
+<p>Hopefully we&rsquo;ve cleared up any questions you had about how Azure CLI command lines are constructed.  Once you understand the &ldquo;anatomy&rdquo; of a command, it makes using them (and remembering them) much easier.</p>
+
+<h2 id="additional-reading">Additional Reading</h2>
+
+<ul>
+<li>Documentation: <a href="https://docs.microsoft.com/en-us/cli/azure/get-started-with-azure-cli?view=azure-cli-latest" title="Get started with Azure CLI 2.0 | Microsoft Docs">Get started with Azure CLI 2.0</a></li>
+</ul>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1">See: <a href="https://docs.microsoft.com/en-us/cli/azure/get-started-with-azure-cli?view=azure-cli-latest" title="Get started with Azure CLI 2.0 | Microsoft Docs">Get started with Azure CLI 2.0</a>
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+                <br>
+		        <p><a href="/posts/">Back to posts</a></p>
+            </div>
+            <div class="disqus">
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-454251-4', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/powershell.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/dos.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+
+</body>
+</html>
+

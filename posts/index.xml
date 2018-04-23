@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Craig Forrester</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Fri, 20 Apr 2018 00:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 23 Apr 2018 18:00:00 -0500</lastBuildDate>
     
 	<atom:link href="http://www.craigforrester.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Azure CLI Basics: Anatomy of a Command</title>
+      <link>http://www.craigforrester.com/posts/azure-cli-basics-anatomy-of-a-command/</link>
+      <pubDate>Mon, 23 Apr 2018 18:00:00 -0500</pubDate>
+      
+      <guid>http://www.craigforrester.com/posts/azure-cli-basics-anatomy-of-a-command/</guid>
+      <description>In my previous post in this series, I covered how to authenticate Azure CLI to one or more Azure Subscriptions and switch between those subscriptions. In this post, we will cover how Azure CLI command lines are structured.
+Before we begin, as always, verify that you have logged in and that the correct subscription is selected by running az account list. The currently selected subscription is the one marked True under IsDefault in the output.</description>
+    </item>
     
     <item>
       <title>Display Dates and Times with PowerShell</title>
