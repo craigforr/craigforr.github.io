@@ -6,10 +6,20 @@
     <description>Recent content in Tips on Craig Forrester</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Fri, 20 Apr 2018 00:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Wed, 25 Apr 2018 17:00:00 -0500</lastBuildDate>
     
 	<atom:link href="http://www.craigforrester.com/categories/tips/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Convert Times Between Time Zones with PowerShell</title>
+      <link>http://www.craigforrester.com/posts/convert-times-between-time-zones-with-powershell/</link>
+      <pubDate>Wed, 25 Apr 2018 17:00:00 -0500</pubDate>
+      
+      <guid>http://www.craigforrester.com/posts/convert-times-between-time-zones-with-powershell/</guid>
+      <description>Convert Time for different World Time Zone If you work in a multinational organization like me or you have loved ones or friends who live in other parts of the country or world, then you have, no doubt, found yourself needing to convert time from one time zone to another. In this post, I&amp;rsquo;m going to show you how to do this really easily in PowerShell.
+TL;DR In a hurry?</description>
+    </item>
     
     <item>
       <title>Display Dates and Times with PowerShell</title>

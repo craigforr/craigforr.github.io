@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://www.craigforrester.com/posts/convert-times-between-time-zones-with-powershell/</loc>
+    <lastmod>2018-04-25T17:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.craigforrester.com/posts/azure-cli-basics-anatomy-of-a-command/</loc>
     <lastmod>2018-04-23T18:00:00-05:00</lastmod>
   </url>
@@ -109,7 +114,7 @@
   
   <url>
     <loc>http://www.craigforrester.com/</loc>
-    <lastmod>2018-04-23T18:00:00-05:00</lastmod>
+    <lastmod>2018-04-25T17:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -121,13 +126,13 @@
   
   <url>
     <loc>http://www.craigforrester.com/posts/</loc>
-    <lastmod>2018-04-23T18:00:00-05:00</lastmod>
+    <lastmod>2018-04-25T17:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://www.craigforrester.com/tags/powershell/</loc>
-    <lastmod>2018-04-20T00:00:00-05:00</lastmod>
+    <lastmod>2018-04-25T17:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -145,7 +150,7 @@
   
   <url>
     <loc>http://www.craigforrester.com/categories/tips/</loc>
-    <lastmod>2018-04-20T00:00:00-05:00</lastmod>
+    <lastmod>2018-04-25T17:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   

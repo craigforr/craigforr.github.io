@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="author" content="Craig Forrester">
+<meta name="description" content="Convert Time for different World Time Zone If you work in a multinational organization like me or you have loved ones or friends who live in other parts of the country or world, then you have, no doubt, found yourself needing to convert time from one time zone to another. In this post, I&rsquo;m going to show you how to do this really easily in PowerShell.
+TL;DR In a hurry?">
+
+
+<title>
+
+
+     Convert Times Between Time Zones with PowerShell 
+
+</title>
+<link rel="canonical" href="http://www.craigforrester.com/posts/convert-times-between-time-zones-with-powershell/">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/color-brewer.min.css">
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/pygments.css">
+    <link rel="stylesheet" href="/css/main.css">
+    
+        <link rel="stylesheet" href="/css/override.css">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="/img/favicon.ico"
+
+>
+
+
+
+
+</head>
+
+
+<body lang="en">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+                
+                
+                
+                
+                
+                    
+                
+                    
+                
+                    
+                
+                
+                <a href="/"><img class="avatar" src="/img/profile.jpg" srcset="http://www.craigforrester.com/img/profile.jpg 1x"></a>
+            
+            <a href="/"><div class="name">Craig Forrester</div></a>
+            
+              <h3 class="self-intro">The Pleasure of Finding Things Out</h3>
+            
+            <nav>
+                <ul>
+                    
+                        <li class="nav-about"><a href="http://www.craigforrester.com/about/"><span>About</span></a></li>
+                    
+                        <li class="nav-posts"><a href="http://www.craigforrester.com/posts/"><span>Posts</span></a></li>
+                    
+                        <li class="nav-rss-feed"><a href="http://www.craigforrester.com/index.xml"><span>RSS</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="//github.com/craigforr" target="_blank" rel="noopener"><img class="icon" src="/img/github.svg" alt="github" /></a>
+        
+
+        
+
+        
+
+        
+            <a href="//linkedin.com/in/craigforrester" target="_blank" rel="noopener"><img class="icon" src="/img/linkedin.svg" alt="linkedin" /></a>
+        
+
+        
+
+        
+
+        
+
+        
+            <a href="mailto:cf@craigforrester.com"><img class="icon" src="/img/email.svg" alt="email" /></a>
+        
+
+        
+            <a href="http://www.craigforrester.com/index.xml"><img class="icon" src="/img/rss.svg" alt="rss" /></a>
+        
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Convert Times Between Time Zones with PowerShell
+
+</div>
+
+                    <div class="initials"><a href="http://www.craigforrester.com/"></a></div>
+                </div>
+                <div class="meta">
+                    
+                    <div class="date" title='2018-04-25 17:00:00 EST'>April 25, 2018</div>
+                    
+                    
+		    <div class="reading-time"><div class="middot"></div>5 minutes read</div>
+                    
+                </div>
+            </div>
+            <div class="markdown">
+                
+
+<h2 id="convert-time-for-different-world-time-zone">Convert Time for different World Time Zone</h2>
+
+<p>If you work in a multinational organization like me or you have loved ones or friends who live in other parts of the country or world, then you have, no doubt, found yourself needing to convert time from one time zone to another.  In this post, I&rsquo;m going to show you how to do this really easily in PowerShell.</p>
+
+<h3 id="tl-dr">TL;DR</h3>
+
+<p>In a hurry?  Here&rsquo;s how to convert the current date and time from the local time zone to another one:</p>
+
+<pre><code class="language-powershell">[System.TimeZoneInfo]::ConvertTimeBySystemTimeZoneId( `
+    (Get-Date), 'Greenwich Standard Time')
+</code></pre>
+
+<p>Where we have &lsquo;Greenwich Standard Time&rsquo; here, you can put any time zone you wish and get the current time in that time zone (Note, too, that I have used the backtick (`) to split this into two lines in order to make it easier to read, which you do not have to do).</p>
+
+<p>We are essentially providing two date and time objects &mdash; one to convert <em>from</em>, the other to convert <em>to:</em></p>
+
+<pre><code class="language-powershell">[System.TimeZoneInfo]::ConvertTimeBySystemTimeZoneId( $convert_from , $to )
+</code></pre>
+
+<h3 id="picking-a-date-and-time">Picking a Date and Time</h3>
+
+<p>Breaking it down, you first want to get the time to convert <em>from</em>, using the <code>Get-Date</code> command.  We&rsquo;ll call this the &ldquo;input time&rdquo; from now on.</p>
+
+<pre><code class="language-powershell">Get-Date
+</code></pre>
+
+<p>What if you want to use a different time then the current time though?  Well, the solution is as simple as giving <code>Get-Date</code> the time you want to use:</p>
+
+<pre><code class="language-powershell">Get-Date &quot;2018-12-25 00:00&quot;
+</code></pre>
+
+<p>For more ways of getting dates and times, see my previous post on <a href="/posts/display-dates-and-times-with-powershell/" title="Display Dates and Times with PowerShell">displaying different dates and times with PowerShell</a>.</p>
+
+<h3 id="choosing-a-time-zone">Choosing a Time Zone</h3>
+
+<p>Next, you want to determine the name of the time zone you are converting that input time <em>to</em>.  In my first example, I used &ldquo;Greenwich Standard Time&rdquo;, but what about other time zones?  And how did I know that &ldquo;Greenwich Standard Time&rdquo; was a valid time zone anyway?</p>
+
+<p>To list valid time zones, we can access the .Net <a href="https://msdn.microsoft.com/en-us/library/system.timezoneinfo(v=vs.110).aspx" title="TimeZoneInfo Class (System)">TimeZoneInfo Class</a>, as follows:</p>
+
+<pre><code class="language-powershell">[System.TimeZoneInfo]::GetSystemTimeZones( )
+</code></pre>
+
+<p>This will output a list of time zones as objects.  Here is an example:</p>
+
+<pre><code class="language-nohighlight">Id                         : India Standard Time
+DisplayName                : (UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi
+StandardName               : India Standard Time
+DaylightName               : India Daylight Time
+BaseUtcOffset              : 05:30:00
+SupportsDaylightSavingTime : False
+</code></pre>
+
+<p>Using this information, we can convert from the input time to whatever time zone we choose by using <a href="https://msdn.microsoft.com/en-us/library/bb396328(v=vs.110).aspx" title="TimeZoneInfo.ConvertTimeBySystemTimeZoneId Method (DateTime, String) (System)">TimeZoneInfo.ConvertTimeBySystemTimeZoneId Method</a>:</p>
+
+<pre><code class="language-powershell">[System.TimeZoneInfo]::ConvertTimeBySystemTimeZoneId( `
+    (Get-Date), 'India Standard Time')
+#
+# Example Output:
+# 
+# Tuesday, April 25, 2018 4:30:00 AM
+</code></pre>
+
+<p><code>ConvertTimeBySystemTimeZoneId</code> uses the local system&rsquo;s time zone to determine the input time zone, since the output object of <code>Get-Date</code> does not have the <code>Kind</code> property and <a href="https://msdn.microsoft.com/en-us/library/system.datetime.kind(v=vs.110).aspx" title="DateTime.Kind Property (System)">the default is Unspecified</a>.  So, if we want to convert from a time zone different from the one our system is in, we need to do a bit more work&hellip;</p>
+
+<h3 id="converting-between-two-different-time-zones">Converting Between Two Different Time Zones</h3>
+
+<p>First, we need time zone information for both the source and destination. We&rsquo;ll assign both of these to variable that we can use later:</p>
+
+<pre><code class="language-powershell"># Assign India time zone info to a variable
+$intz = [System.TimeZoneInfo]::GetSystemTimeZones() | 
+    Where-Object { $_.Id -match &quot;India Standard&quot; }
+
+# Assign Eastern Australia time zone info to a variable
+$autz = [System.TimeZoneInfo]::GetSystemTimeZones() |
+    Where-Object { $_.Id -match &quot;AUS Eastern&quot; }
+</code></pre>
+
+<p>Next we need the date and time we would like to convert. We will use a string here, because we will be specifying the input time zone using the variables we just created:</p>
+
+<pre><code class="language-powershell"># This will work
+$time_to_convert = &quot;2018-12-25 00:00&quot;
+
+# This will also work
+$time_to_convert = ((Get-Date).ToString('yyyy-MM-ddTHH:mm:ss'))
+
+# This will NOT work, because the string contains the local time zone
+$time_to_convert = ((Get-Date).ToString('yyyy-MM-ddTHH:mm:ssz'))
+#                                                           ^
+# Note the `z` here tells the ToString method to include the 
+# system's time zone offset, which will confuse ConvertTime()
+# See the example, below...
+</code></pre>
+
+<p>Once we have an input time, input time zone, and output time zone, all that remains is to piece them all together in a call to <code>ConvertTime()</code>:</p>
+
+<pre><code class="language-powershell">[System.TimeZoneInfo]::ConvertTime( `
+    &quot;2018-12-25 00:00&quot;, $intz, $autz)
+
+# Output:
+#
+# Tuesday, December 25, 2018 5:30:00 AM 
+#
+</code></pre>
+
+<p>Remember earlier when we said adding <code>z</code> to the <code>ToString</code> formatting wouldn&rsquo;t work?  Here&rsquo;s the error you will get if you do:</p>
+
+<pre><code class="language-powershell"># This will NOT work, because the string contains the local time zone
+$time_to_convert = '2018-12-25T00:00:00-4'
+
+[System.TimeZoneInfo]::ConvertTime($time_to_convert, $intz, $autz)
+
+#
+# Output:
+# 
+# Exception calling &quot;ConvertTime&quot; with &quot;3&quot; argument(s): &quot;The conversion could not be completed because the supplied DateTime did not have the Kind property set correctly.
+# For example, when the Kind property is DateTimeKind.Local, the source time zone must be TimeZoneInfo.Local.
+# Parameter name: sourceTimeZone&quot;
+# At line:1 char:1
+# + [System.TimeZoneInfo]::ConvertTime( `
+# + ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#     + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+#     + FullyQualifiedErrorId : ArgumentException
+# 
+
+# Here's the working example:
+$time_to_convert = '2018-12-25T00:00:00'
+
+[System.TimeZoneInfo]::ConvertTime($time_to_convert, $intz, $autz)
+
+#
+# Output:
+# 
+# Tuesday, December 25, 2018 5:30:00 AM
+</code></pre>
+
+<p>In the next post, we&rsquo;ll cover how to put all this together into a time zone converter that we can use to easily convert dates and times whenever we have  the need.</p>
+
+<h2 id="additional-reading">Additional Reading</h2>
+
+<ul>
+<li>Post: <a href="/posts/display-dates-and-times-with-powershell/" title="Display Dates and Times with PowerShell">&ldquo;Display Dates and Times with PowerShell&rdquo;</a></li>
+<li>Documentation: <a href="https://msdn.microsoft.com/en-us/library/system.timezoneinfo(v=vs.110).aspx" title="TimeZoneInfo Class (System)">TimeZoneInfo Class</a></li>
+<li>Documentation: <a href="https://msdn.microsoft.com/en-us/library/bb396328(v=vs.110).aspx" title="TimeZoneInfo.ConvertTimeBySystemTimeZoneId Method (DateTime, String) (System)">TimeZoneInfo.ConvertTimeBySystemTimeZoneId Method</a></li>
+<li>Documentation: <a href="https://msdn.microsoft.com/en-us/library/system.datetime.kind(v=vs.110).aspx" title="DateTime.Kind Property (System)">DateTime.Kind Property</a></li>
+</ul>
+
+                <br>
+		        <p><a href="/posts/">Back to posts</a></p>
+            </div>
+            <div class="disqus">
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-454251-4', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/powershell.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/dos.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+
+</body>
+</html>
+
