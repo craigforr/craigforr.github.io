@@ -2,120 +2,120 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Craig Forrester</title>
-    <link>http://www.craigforrester.com/tags/</link>
+    <link>https://www.craigforrester.com/tags/</link>
     <description>Recent content in Tags on Craig Forrester</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Thu, 29 Mar 2018 08:00:00 -0500</lastBuildDate>
     
-	<atom:link href="http://www.craigforrester.com/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.craigforrester.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Apt</title>
-      <link>http://www.craigforrester.com/tags/apt/</link>
+      <link>https://www.craigforrester.com/tags/apt/</link>
       <pubDate>Thu, 29 Mar 2018 08:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/tags/apt/</guid>
+      <guid>https://www.craigforrester.com/tags/apt/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Azure</title>
-      <link>http://www.craigforrester.com/tags/azure/</link>
+      <link>https://www.craigforrester.com/tags/azure/</link>
       <pubDate>Mon, 23 Apr 2018 18:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/tags/azure/</guid>
+      <guid>https://www.craigforrester.com/tags/azure/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Azure Cli</title>
-      <link>http://www.craigforrester.com/tags/azure-cli/</link>
+      <link>https://www.craigforrester.com/tags/azure-cli/</link>
       <pubDate>Mon, 23 Apr 2018 18:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/tags/azure-cli/</guid>
+      <guid>https://www.craigforrester.com/tags/azure-cli/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Bash</title>
-      <link>http://www.craigforrester.com/tags/bash/</link>
+      <link>https://www.craigforrester.com/tags/bash/</link>
       <pubDate>Thu, 29 Mar 2018 08:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/tags/bash/</guid>
+      <guid>https://www.craigforrester.com/tags/bash/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Cmd</title>
-      <link>http://www.craigforrester.com/tags/cmd/</link>
+      <link>https://www.craigforrester.com/tags/cmd/</link>
       <pubDate>Thu, 01 Mar 2018 18:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/tags/cmd/</guid>
+      <guid>https://www.craigforrester.com/tags/cmd/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Pip</title>
-      <link>http://www.craigforrester.com/tags/pip/</link>
+      <link>https://www.craigforrester.com/tags/pip/</link>
       <pubDate>Mon, 19 Feb 2018 21:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/tags/pip/</guid>
+      <guid>https://www.craigforrester.com/tags/pip/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Powershell</title>
-      <link>http://www.craigforrester.com/tags/powershell/</link>
+      <link>https://www.craigforrester.com/tags/powershell/</link>
       <pubDate>Wed, 25 Apr 2018 17:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/tags/powershell/</guid>
+      <guid>https://www.craigforrester.com/tags/powershell/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Python</title>
-      <link>http://www.craigforrester.com/tags/python/</link>
+      <link>https://www.craigforrester.com/tags/python/</link>
       <pubDate>Mon, 23 Apr 2018 18:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/tags/python/</guid>
+      <guid>https://www.craigforrester.com/tags/python/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Ubuntu</title>
-      <link>http://www.craigforrester.com/tags/ubuntu/</link>
+      <link>https://www.craigforrester.com/tags/ubuntu/</link>
       <pubDate>Thu, 29 Mar 2018 08:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/tags/ubuntu/</guid>
+      <guid>https://www.craigforrester.com/tags/ubuntu/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Windows</title>
-      <link>http://www.craigforrester.com/tags/windows/</link>
+      <link>https://www.craigforrester.com/tags/windows/</link>
       <pubDate>Thu, 29 Mar 2018 08:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/tags/windows/</guid>
+      <guid>https://www.craigforrester.com/tags/windows/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Windows 10</title>
-      <link>http://www.craigforrester.com/tags/windows-10/</link>
+      <link>https://www.craigforrester.com/tags/windows-10/</link>
       <pubDate>Mon, 19 Feb 2018 21:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/tags/windows-10/</guid>
+      <guid>https://www.craigforrester.com/tags/windows-10/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Wsl</title>
-      <link>http://www.craigforrester.com/tags/wsl/</link>
+      <link>https://www.craigforrester.com/tags/wsl/</link>
       <pubDate>Thu, 29 Mar 2018 08:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/tags/wsl/</guid>
+      <guid>https://www.craigforrester.com/tags/wsl/</guid>
       <description></description>
     </item>
     

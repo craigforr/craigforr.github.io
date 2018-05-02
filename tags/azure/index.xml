@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Azure on Craig Forrester</title>
-    <link>http://www.craigforrester.com/tags/azure/</link>
+    <link>https://www.craigforrester.com/tags/azure/</link>
     <description>Recent content in Azure on Craig Forrester</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Mon, 23 Apr 2018 18:00:00 -0500</lastBuildDate>
     
-	<atom:link href="http://www.craigforrester.com/tags/azure/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.craigforrester.com/tags/azure/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Azure CLI Basics: Anatomy of a Command</title>
-      <link>http://www.craigforrester.com/posts/azure-cli-basics-anatomy-of-a-command/</link>
+      <link>https://www.craigforrester.com/posts/azure-cli-basics-anatomy-of-a-command/</link>
       <pubDate>Mon, 23 Apr 2018 18:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/posts/azure-cli-basics-anatomy-of-a-command/</guid>
+      <guid>https://www.craigforrester.com/posts/azure-cli-basics-anatomy-of-a-command/</guid>
       <description>In my previous post in this series, I covered how to authenticate Azure CLI to one or more Azure Subscriptions and switch between those subscriptions. In this post, we will cover how Azure CLI command lines are structured.
 Before we begin, as always, verify that you have logged in and that the correct subscription is selected by running az account list. The currently selected subscription is the one marked True under IsDefault in the output.</description>
     </item>
     
     <item>
       <title>Azure CLI Basics: Logging In</title>
-      <link>http://www.craigforrester.com/posts/azure-cli-basics-logging-in/</link>
+      <link>https://www.craigforrester.com/posts/azure-cli-basics-logging-in/</link>
       <pubDate>Mon, 26 Feb 2018 18:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/posts/azure-cli-basics-logging-in/</guid>
+      <guid>https://www.craigforrester.com/posts/azure-cli-basics-logging-in/</guid>
       <description>In my previous post, I discussed how to configure some basic Azure CLI settings and verify the installation. In this post, we&amp;rsquo;ll cover how to authenticate Azure CLI to one or more Azure Subscriptions and switch between those subscriptions.
 TL;DR If you&amp;rsquo;re in a hurry, here is a brief summary of the commands used in this post:
 # List currently authenticated subscriptions az account list # Log in to a subscription az login # Display subscriptions by Name and show which is selected az account list --query &amp;quot;[].</description>
@@ -34,10 +34,10 @@ TL;DR If you&amp;rsquo;re in a hurry, here is a brief summary of the commands us
     
     <item>
       <title>Azure CLI Basics: Initial Configuration</title>
-      <link>http://www.craigforrester.com/posts/azure-cli-basics-initial-configuration/</link>
+      <link>https://www.craigforrester.com/posts/azure-cli-basics-initial-configuration/</link>
       <pubDate>Thu, 22 Feb 2018 18:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/posts/azure-cli-basics-initial-configuration/</guid>
+      <guid>https://www.craigforrester.com/posts/azure-cli-basics-initial-configuration/</guid>
       <description>In my previous post in this series, I discussed how to install Azure CLI using Python&amp;rsquo;s package manager, pip, and how to use it to keep it updated. In this post, we&amp;rsquo;ll cover how to set some default configuration.
 Verifying Azure CLI Installation To start with, it&amp;rsquo;s a good idea to verify the installation works and check the version installed:
 PS&amp;gt; az --version azure-cli (2.0.27) acr (2.0.21) acs (2.0.26) advisor (0.</description>
@@ -45,10 +45,10 @@ PS&amp;gt; az --version azure-cli (2.0.27) acr (2.0.21) acs (2.0.26) advisor (0.
     
     <item>
       <title>Install Azure CLI on Windows 10 using Python pip</title>
-      <link>http://www.craigforrester.com/posts/install-azure-cli-on-windows-10-using-python-pip/</link>
+      <link>https://www.craigforrester.com/posts/install-azure-cli-on-windows-10-using-python-pip/</link>
       <pubDate>Mon, 19 Feb 2018 21:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/posts/install-azure-cli-on-windows-10-using-python-pip/</guid>
+      <guid>https://www.craigforrester.com/posts/install-azure-cli-on-windows-10-using-python-pip/</guid>
       <description>TL;DR If you want to cut to the chase, here&amp;rsquo;s the complete list of commands:
 # Download the Python 3.6.4 installer with PowerShell Invoke-WebRequest -Uri &#39;https://www.python.org/ftp/python/3.6.4/python-3.6.4-amd64.exe&#39; -OutFile &#39;.\python-3.6.4-amd64.exe&#39; # Passive Install of Python for All Users # Run this from an elevated PowerShell prompt .\python-3.6.4-amd64.exe /passive TargetDir=&amp;quot;C:\Python&amp;quot; InstallAllUsers=1 PrependPath=1 Include_test=0  Run these in a new PowerShell window after installing Python:
 # Install Azure CLI system-wide pip install azure-cli # Upgrade Azure CLI later on pip install --upgrade azure-cli  For a fuller explanation, read on&amp;hellip;</description>

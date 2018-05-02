@@ -2,41 +2,41 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tutorials on Craig Forrester</title>
-    <link>http://www.craigforrester.com/categories/tutorials/</link>
+    <link>https://www.craigforrester.com/categories/tutorials/</link>
     <description>Recent content in Tutorials on Craig Forrester</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Mon, 23 Apr 2018 18:00:00 -0500</lastBuildDate>
     
-	<atom:link href="http://www.craigforrester.com/categories/tutorials/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.craigforrester.com/categories/tutorials/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Azure CLI Basics: Anatomy of a Command</title>
-      <link>http://www.craigforrester.com/posts/azure-cli-basics-anatomy-of-a-command/</link>
+      <link>https://www.craigforrester.com/posts/azure-cli-basics-anatomy-of-a-command/</link>
       <pubDate>Mon, 23 Apr 2018 18:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/posts/azure-cli-basics-anatomy-of-a-command/</guid>
+      <guid>https://www.craigforrester.com/posts/azure-cli-basics-anatomy-of-a-command/</guid>
       <description>In my previous post in this series, I covered how to authenticate Azure CLI to one or more Azure Subscriptions and switch between those subscriptions. In this post, we will cover how Azure CLI command lines are structured.
 Before we begin, as always, verify that you have logged in and that the correct subscription is selected by running az account list. The currently selected subscription is the one marked True under IsDefault in the output.</description>
     </item>
     
     <item>
       <title>Interactive PowerShell, Part 5: Object Properties</title>
-      <link>http://www.craigforrester.com/posts/interactive-powershell-part-5-object-properties/</link>
+      <link>https://www.craigforrester.com/posts/interactive-powershell-part-5-object-properties/</link>
       <pubDate>Wed, 28 Feb 2018 18:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/posts/interactive-powershell-part-5-object-properties/</guid>
+      <guid>https://www.craigforrester.com/posts/interactive-powershell-part-5-object-properties/</guid>
       <description>In my previous post in this series, I talked about how PowerShell&amp;rsquo;s use of objects distinguishes it from other shells and what that means for how we use it. In this post, I&amp;rsquo;ll talk more about objects and their properties.
 Properties We&amp;rsquo;ve already talked a bit about PowerShell object properties, and said that properties are like the options on a particular model of a car: a car can be red, have leather interior, a navigation system, etc.</description>
     </item>
     
     <item>
       <title>Azure CLI Basics: Logging In</title>
-      <link>http://www.craigforrester.com/posts/azure-cli-basics-logging-in/</link>
+      <link>https://www.craigforrester.com/posts/azure-cli-basics-logging-in/</link>
       <pubDate>Mon, 26 Feb 2018 18:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/posts/azure-cli-basics-logging-in/</guid>
+      <guid>https://www.craigforrester.com/posts/azure-cli-basics-logging-in/</guid>
       <description>In my previous post, I discussed how to configure some basic Azure CLI settings and verify the installation. In this post, we&amp;rsquo;ll cover how to authenticate Azure CLI to one or more Azure Subscriptions and switch between those subscriptions.
 TL;DR If you&amp;rsquo;re in a hurry, here is a brief summary of the commands used in this post:
 # List currently authenticated subscriptions az account list # Log in to a subscription az login # Display subscriptions by Name and show which is selected az account list --query &amp;quot;[].</description>
@@ -44,19 +44,19 @@ TL;DR If you&amp;rsquo;re in a hurry, here is a brief summary of the commands us
     
     <item>
       <title>Interactive PowerShell, Part 4: Objects</title>
-      <link>http://www.craigforrester.com/posts/interactive-powershell-part-4-objects/</link>
+      <link>https://www.craigforrester.com/posts/interactive-powershell-part-4-objects/</link>
       <pubDate>Fri, 23 Feb 2018 18:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/posts/interactive-powershell-part-4-objects/</guid>
+      <guid>https://www.craigforrester.com/posts/interactive-powershell-part-4-objects/</guid>
       <description>In my previous post in this series, I discussed how to set up your PowerShell profile so that you could start collecting shortcuts and tools into it that will make working with PowerShell interactively much, much easier. In this post, I&amp;rsquo;d like to take a step back and talk about what distinguishes PowerShell from other shells and what that means for how we use it. This leads to a good question:</description>
     </item>
     
     <item>
       <title>Azure CLI Basics: Initial Configuration</title>
-      <link>http://www.craigforrester.com/posts/azure-cli-basics-initial-configuration/</link>
+      <link>https://www.craigforrester.com/posts/azure-cli-basics-initial-configuration/</link>
       <pubDate>Thu, 22 Feb 2018 18:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/posts/azure-cli-basics-initial-configuration/</guid>
+      <guid>https://www.craigforrester.com/posts/azure-cli-basics-initial-configuration/</guid>
       <description>In my previous post in this series, I discussed how to install Azure CLI using Python&amp;rsquo;s package manager, pip, and how to use it to keep it updated. In this post, we&amp;rsquo;ll cover how to set some default configuration.
 Verifying Azure CLI Installation To start with, it&amp;rsquo;s a good idea to verify the installation works and check the version installed:
 PS&amp;gt; az --version azure-cli (2.0.27) acr (2.0.21) acs (2.0.26) advisor (0.</description>
@@ -64,10 +64,10 @@ PS&amp;gt; az --version azure-cli (2.0.27) acr (2.0.21) acs (2.0.26) advisor (0.
     
     <item>
       <title>Install Azure CLI on Windows 10 using Python pip</title>
-      <link>http://www.craigforrester.com/posts/install-azure-cli-on-windows-10-using-python-pip/</link>
+      <link>https://www.craigforrester.com/posts/install-azure-cli-on-windows-10-using-python-pip/</link>
       <pubDate>Mon, 19 Feb 2018 21:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/posts/install-azure-cli-on-windows-10-using-python-pip/</guid>
+      <guid>https://www.craigforrester.com/posts/install-azure-cli-on-windows-10-using-python-pip/</guid>
       <description>TL;DR If you want to cut to the chase, here&amp;rsquo;s the complete list of commands:
 # Download the Python 3.6.4 installer with PowerShell Invoke-WebRequest -Uri &#39;https://www.python.org/ftp/python/3.6.4/python-3.6.4-amd64.exe&#39; -OutFile &#39;.\python-3.6.4-amd64.exe&#39; # Passive Install of Python for All Users # Run this from an elevated PowerShell prompt .\python-3.6.4-amd64.exe /passive TargetDir=&amp;quot;C:\Python&amp;quot; InstallAllUsers=1 PrependPath=1 Include_test=0  Run these in a new PowerShell window after installing Python:
 # Install Azure CLI system-wide pip install azure-cli # Upgrade Azure CLI later on pip install --upgrade azure-cli  For a fuller explanation, read on&amp;hellip;</description>
@@ -75,20 +75,20 @@ PS&amp;gt; az --version azure-cli (2.0.27) acr (2.0.21) acs (2.0.26) advisor (0.
     
     <item>
       <title>Interactive PowerShell, Part 3: Profiles</title>
-      <link>http://www.craigforrester.com/posts/interactive-powershell-part-3-profiles/</link>
+      <link>https://www.craigforrester.com/posts/interactive-powershell-part-3-profiles/</link>
       <pubDate>Fri, 16 Feb 2018 19:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/posts/interactive-powershell-part-3-profiles/</guid>
+      <guid>https://www.craigforrester.com/posts/interactive-powershell-part-3-profiles/</guid>
       <description>Profiles One of the first things I do when working interactively on a Linux system is customize a few key configuration files, one of which is .bash_aliases, so that I can work more comfortably and efficiently at the command line.
 PowerShell has its own equivalent of .bashrc in which you can create your own functions, aliases, and shortcuts to make working with PowerShell as an interactive shell much easier. It&amp;rsquo;s known as a profile.</description>
     </item>
     
     <item>
       <title>Interactive PowerShell, Part 2: Aliases</title>
-      <link>http://www.craigforrester.com/posts/interactive-powershell-part-2-aliases/</link>
+      <link>https://www.craigforrester.com/posts/interactive-powershell-part-2-aliases/</link>
       <pubDate>Wed, 14 Feb 2018 20:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/posts/interactive-powershell-part-2-aliases/</guid>
+      <guid>https://www.craigforrester.com/posts/interactive-powershell-part-2-aliases/</guid>
       <description>Getting Comfortable One of the first complaints you may have against PowerShell is how much typing you have to do if you&amp;rsquo;re going to use it interactively.
 Take the cmdlet used to output IP addresses on a Windows 10 system:
 Get-NetIPAddress  That&amp;rsquo;s 16 characters long, as compared with the 7 character ipconfig we all know and love. It&amp;rsquo;s even longer if you want to make the output readable in the shell:</description>
@@ -96,10 +96,10 @@ Get-NetIPAddress  That&amp;rsquo;s 16 characters long, as compared with the 7 ch
     
     <item>
       <title>Interactive PowerShell, Part 1: The Hidden Shell</title>
-      <link>http://www.craigforrester.com/posts/interactive-powershell-part-1/</link>
+      <link>https://www.craigforrester.com/posts/interactive-powershell-part-1/</link>
       <pubDate>Tue, 13 Feb 2018 20:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/posts/interactive-powershell-part-1/</guid>
+      <guid>https://www.craigforrester.com/posts/interactive-powershell-part-1/</guid>
       <description>A Shell? What&amp;rsquo;s That? Most of us that know PowerShell know it as an automation tool &amp;mdash; as a way to get remote systems to do things in repeatable ways.
 But for as many of us that know the scripting-side of PowerShell, I venture that far fewer know and use PowerShell as an interactive shell. Sure, we may occasionally use it as Command Prompt replacement, but are we truly harnessing the full capacity of PowerShell as a shell?</description>
     </item>

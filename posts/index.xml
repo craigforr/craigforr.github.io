@@ -2,41 +2,41 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Craig Forrester</title>
-    <link>http://www.craigforrester.com/posts/</link>
+    <link>https://www.craigforrester.com/posts/</link>
     <description>Recent content in Posts on Craig Forrester</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Wed, 25 Apr 2018 17:00:00 -0500</lastBuildDate>
     
-	<atom:link href="http://www.craigforrester.com/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.craigforrester.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Convert Times Between Time Zones with PowerShell</title>
-      <link>http://www.craigforrester.com/posts/convert-times-between-time-zones-with-powershell/</link>
+      <link>https://www.craigforrester.com/posts/convert-times-between-time-zones-with-powershell/</link>
       <pubDate>Wed, 25 Apr 2018 17:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/posts/convert-times-between-time-zones-with-powershell/</guid>
+      <guid>https://www.craigforrester.com/posts/convert-times-between-time-zones-with-powershell/</guid>
       <description>Convert Time for different World Time Zone If you work in a multinational organization like me or you have loved ones or friends who live in other parts of the country or world, then you have, no doubt, found yourself needing to convert time from one time zone to another. In this post, I&amp;rsquo;m going to show you how to do this really easily in PowerShell.
 TL;DR In a hurry?</description>
     </item>
     
     <item>
       <title>Azure CLI Basics: Anatomy of a Command</title>
-      <link>http://www.craigforrester.com/posts/azure-cli-basics-anatomy-of-a-command/</link>
+      <link>https://www.craigforrester.com/posts/azure-cli-basics-anatomy-of-a-command/</link>
       <pubDate>Mon, 23 Apr 2018 18:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/posts/azure-cli-basics-anatomy-of-a-command/</guid>
+      <guid>https://www.craigforrester.com/posts/azure-cli-basics-anatomy-of-a-command/</guid>
       <description>In my previous post in this series, I covered how to authenticate Azure CLI to one or more Azure Subscriptions and switch between those subscriptions. In this post, we will cover how Azure CLI command lines are structured.
 Before we begin, as always, verify that you have logged in and that the correct subscription is selected by running az account list. The currently selected subscription is the one marked True under IsDefault in the output.</description>
     </item>
     
     <item>
       <title>Display Dates and Times with PowerShell</title>
-      <link>http://www.craigforrester.com/posts/display-dates-and-times-with-powershell/</link>
+      <link>https://www.craigforrester.com/posts/display-dates-and-times-with-powershell/</link>
       <pubDate>Fri, 20 Apr 2018 00:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/posts/display-dates-and-times-with-powershell/</guid>
+      <guid>https://www.craigforrester.com/posts/display-dates-and-times-with-powershell/</guid>
       <description>In the course of any given week, I find myself having to determine dates and times for future and past days, weeks, months &amp;mdash; even years. PowerShell makes this extremely easy. In thise post, we&amp;rsquo;ll discuss how&amp;hellip;
 Getting Dates and Times with PowerShell First let&amp;rsquo;s show how to get the current local time:
 Get-Date  You can display a different date and time by specifying it after Get-Date (as an unnamed parameter):</description>
@@ -44,40 +44,40 @@ Get-Date  You can display a different date and time by specifying it after Get-D
     
     <item>
       <title>Windows Subsystem for Linux: Disable IPv6 for Apt</title>
-      <link>http://www.craigforrester.com/posts/windows-subsystem-for-linux-disable-ipv6-for-apt/</link>
+      <link>https://www.craigforrester.com/posts/windows-subsystem-for-linux-disable-ipv6-for-apt/</link>
       <pubDate>Thu, 29 Mar 2018 08:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/posts/windows-subsystem-for-linux-disable-ipv6-for-apt/</guid>
+      <guid>https://www.craigforrester.com/posts/windows-subsystem-for-linux-disable-ipv6-for-apt/</guid>
       <description>Apt Error &amp;ldquo;IN6_IS_ADDR_V4MAPPED&amp;rdquo; If you have IPv6 enabled on Windows 10 and attempt to use Apt in Ubuntu on the Windows Subsystem for Linux, you may get the following error:
 http: ../sysdeps/posix/getaddrinfo.c:2603: getaddrinfo: Assertion `IN6_IS_ADDR_V4MAPPED (sin6-&amp;gt;sin6_addr.s6_addr32)&#39; failed. E: Method http has died unexpectedly! E: Sub-process http received signal 6.  There are a number of related issues filed on GitHub for this problem, and a whole lot of varied advice on how to solve it.</description>
     </item>
     
     <item>
       <title>Scripting Notebook: Create a File of a Specific Size</title>
-      <link>http://www.craigforrester.com/posts/scripting-notebook-create-a-file-of-a-specific-size/</link>
+      <link>https://www.craigforrester.com/posts/scripting-notebook-create-a-file-of-a-specific-size/</link>
       <pubDate>Thu, 01 Mar 2018 18:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/posts/scripting-notebook-create-a-file-of-a-specific-size/</guid>
+      <guid>https://www.craigforrester.com/posts/scripting-notebook-create-a-file-of-a-specific-size/</guid>
       <description>This is the first post in a series I&amp;rsquo;m calling &amp;ldquo;Scripting Notebook,&amp;rdquo; in which I will explore ways of accomplishing various scripting tasks across several languages: Bash, CMD, PowerShell, and Python.
 Creating a File of Arbitrary Size Sometimes when you&amp;rsquo;re testing, for whatever reason, you need one or more files that are a particular size. You don&amp;rsquo;t care what they are, you just need some data to take up disk space, transfer over the network, etc.</description>
     </item>
     
     <item>
       <title>Interactive PowerShell, Part 5: Object Properties</title>
-      <link>http://www.craigforrester.com/posts/interactive-powershell-part-5-object-properties/</link>
+      <link>https://www.craigforrester.com/posts/interactive-powershell-part-5-object-properties/</link>
       <pubDate>Wed, 28 Feb 2018 18:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/posts/interactive-powershell-part-5-object-properties/</guid>
+      <guid>https://www.craigforrester.com/posts/interactive-powershell-part-5-object-properties/</guid>
       <description>In my previous post in this series, I talked about how PowerShell&amp;rsquo;s use of objects distinguishes it from other shells and what that means for how we use it. In this post, I&amp;rsquo;ll talk more about objects and their properties.
 Properties We&amp;rsquo;ve already talked a bit about PowerShell object properties, and said that properties are like the options on a particular model of a car: a car can be red, have leather interior, a navigation system, etc.</description>
     </item>
     
     <item>
       <title>Azure CLI Basics: Logging In</title>
-      <link>http://www.craigforrester.com/posts/azure-cli-basics-logging-in/</link>
+      <link>https://www.craigforrester.com/posts/azure-cli-basics-logging-in/</link>
       <pubDate>Mon, 26 Feb 2018 18:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/posts/azure-cli-basics-logging-in/</guid>
+      <guid>https://www.craigforrester.com/posts/azure-cli-basics-logging-in/</guid>
       <description>In my previous post, I discussed how to configure some basic Azure CLI settings and verify the installation. In this post, we&amp;rsquo;ll cover how to authenticate Azure CLI to one or more Azure Subscriptions and switch between those subscriptions.
 TL;DR If you&amp;rsquo;re in a hurry, here is a brief summary of the commands used in this post:
 # List currently authenticated subscriptions az account list # Log in to a subscription az login # Display subscriptions by Name and show which is selected az account list --query &amp;quot;[].</description>
@@ -85,19 +85,19 @@ TL;DR If you&amp;rsquo;re in a hurry, here is a brief summary of the commands us
     
     <item>
       <title>Interactive PowerShell, Part 4: Objects</title>
-      <link>http://www.craigforrester.com/posts/interactive-powershell-part-4-objects/</link>
+      <link>https://www.craigforrester.com/posts/interactive-powershell-part-4-objects/</link>
       <pubDate>Fri, 23 Feb 2018 18:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/posts/interactive-powershell-part-4-objects/</guid>
+      <guid>https://www.craigforrester.com/posts/interactive-powershell-part-4-objects/</guid>
       <description>In my previous post in this series, I discussed how to set up your PowerShell profile so that you could start collecting shortcuts and tools into it that will make working with PowerShell interactively much, much easier. In this post, I&amp;rsquo;d like to take a step back and talk about what distinguishes PowerShell from other shells and what that means for how we use it. This leads to a good question:</description>
     </item>
     
     <item>
       <title>Azure CLI Basics: Initial Configuration</title>
-      <link>http://www.craigforrester.com/posts/azure-cli-basics-initial-configuration/</link>
+      <link>https://www.craigforrester.com/posts/azure-cli-basics-initial-configuration/</link>
       <pubDate>Thu, 22 Feb 2018 18:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/posts/azure-cli-basics-initial-configuration/</guid>
+      <guid>https://www.craigforrester.com/posts/azure-cli-basics-initial-configuration/</guid>
       <description>In my previous post in this series, I discussed how to install Azure CLI using Python&amp;rsquo;s package manager, pip, and how to use it to keep it updated. In this post, we&amp;rsquo;ll cover how to set some default configuration.
 Verifying Azure CLI Installation To start with, it&amp;rsquo;s a good idea to verify the installation works and check the version installed:
 PS&amp;gt; az --version azure-cli (2.0.27) acr (2.0.21) acs (2.0.26) advisor (0.</description>
@@ -105,10 +105,10 @@ PS&amp;gt; az --version azure-cli (2.0.27) acr (2.0.21) acs (2.0.26) advisor (0.
     
     <item>
       <title>Install Azure CLI on Windows 10 using Python pip</title>
-      <link>http://www.craigforrester.com/posts/install-azure-cli-on-windows-10-using-python-pip/</link>
+      <link>https://www.craigforrester.com/posts/install-azure-cli-on-windows-10-using-python-pip/</link>
       <pubDate>Mon, 19 Feb 2018 21:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/posts/install-azure-cli-on-windows-10-using-python-pip/</guid>
+      <guid>https://www.craigforrester.com/posts/install-azure-cli-on-windows-10-using-python-pip/</guid>
       <description>TL;DR If you want to cut to the chase, here&amp;rsquo;s the complete list of commands:
 # Download the Python 3.6.4 installer with PowerShell Invoke-WebRequest -Uri &#39;https://www.python.org/ftp/python/3.6.4/python-3.6.4-amd64.exe&#39; -OutFile &#39;.\python-3.6.4-amd64.exe&#39; # Passive Install of Python for All Users # Run this from an elevated PowerShell prompt .\python-3.6.4-amd64.exe /passive TargetDir=&amp;quot;C:\Python&amp;quot; InstallAllUsers=1 PrependPath=1 Include_test=0  Run these in a new PowerShell window after installing Python:
 # Install Azure CLI system-wide pip install azure-cli # Upgrade Azure CLI later on pip install --upgrade azure-cli  For a fuller explanation, read on&amp;hellip;</description>
@@ -116,20 +116,20 @@ PS&amp;gt; az --version azure-cli (2.0.27) acr (2.0.21) acs (2.0.26) advisor (0.
     
     <item>
       <title>Interactive PowerShell, Part 3: Profiles</title>
-      <link>http://www.craigforrester.com/posts/interactive-powershell-part-3-profiles/</link>
+      <link>https://www.craigforrester.com/posts/interactive-powershell-part-3-profiles/</link>
       <pubDate>Fri, 16 Feb 2018 19:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/posts/interactive-powershell-part-3-profiles/</guid>
+      <guid>https://www.craigforrester.com/posts/interactive-powershell-part-3-profiles/</guid>
       <description>Profiles One of the first things I do when working interactively on a Linux system is customize a few key configuration files, one of which is .bash_aliases, so that I can work more comfortably and efficiently at the command line.
 PowerShell has its own equivalent of .bashrc in which you can create your own functions, aliases, and shortcuts to make working with PowerShell as an interactive shell much easier. It&amp;rsquo;s known as a profile.</description>
     </item>
     
     <item>
       <title>List Running Desktop Applications with PowerShell</title>
-      <link>http://www.craigforrester.com/posts/powershell-list-running-desktop-apps/</link>
+      <link>https://www.craigforrester.com/posts/powershell-list-running-desktop-apps/</link>
       <pubDate>Thu, 15 Feb 2018 19:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/posts/powershell-list-running-desktop-apps/</guid>
+      <guid>https://www.craigforrester.com/posts/powershell-list-running-desktop-apps/</guid>
       <description>Here&amp;rsquo;s a quick PowerShell tip&amp;hellip;
 TL;DR Have you ever wanted to get a list of running desktop applications in PowerShell? Maybe you want to see what you have open but would rather not fumble around with Task Manager?
 Here&amp;rsquo;s a one-liner to do just that:
@@ -139,10 +139,10 @@ Handles NPM(K) PM(K) WS(K) CPU(s) Id SI ProcessName ------- ------ ----- ----- -
     
     <item>
       <title>Interactive PowerShell, Part 2: Aliases</title>
-      <link>http://www.craigforrester.com/posts/interactive-powershell-part-2-aliases/</link>
+      <link>https://www.craigforrester.com/posts/interactive-powershell-part-2-aliases/</link>
       <pubDate>Wed, 14 Feb 2018 20:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/posts/interactive-powershell-part-2-aliases/</guid>
+      <guid>https://www.craigforrester.com/posts/interactive-powershell-part-2-aliases/</guid>
       <description>Getting Comfortable One of the first complaints you may have against PowerShell is how much typing you have to do if you&amp;rsquo;re going to use it interactively.
 Take the cmdlet used to output IP addresses on a Windows 10 system:
 Get-NetIPAddress  That&amp;rsquo;s 16 characters long, as compared with the 7 character ipconfig we all know and love. It&amp;rsquo;s even longer if you want to make the output readable in the shell:</description>
@@ -150,10 +150,10 @@ Get-NetIPAddress  That&amp;rsquo;s 16 characters long, as compared with the 7 ch
     
     <item>
       <title>Interactive PowerShell, Part 1: The Hidden Shell</title>
-      <link>http://www.craigforrester.com/posts/interactive-powershell-part-1/</link>
+      <link>https://www.craigforrester.com/posts/interactive-powershell-part-1/</link>
       <pubDate>Tue, 13 Feb 2018 20:00:00 -0500</pubDate>
       
-      <guid>http://www.craigforrester.com/posts/interactive-powershell-part-1/</guid>
+      <guid>https://www.craigforrester.com/posts/interactive-powershell-part-1/</guid>
       <description>A Shell? What&amp;rsquo;s That? Most of us that know PowerShell know it as an automation tool &amp;mdash; as a way to get remote systems to do things in repeatable ways.
 But for as many of us that know the scripting-side of PowerShell, I venture that far fewer know and use PowerShell as an interactive shell. Sure, we may occasionally use it as Command Prompt replacement, but are we truly harnessing the full capacity of PowerShell as a shell?</description>
     </item>
