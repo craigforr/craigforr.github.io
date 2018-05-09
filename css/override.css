@@ -1,6 +1,9 @@
 /* ----------------------------------------------------------------------
    Overrides for Cocoa Theme
 ---------------------------------------------------------------------- */
+section.main .container .content .post-item .meta {
+  min-width: 150px; !important
+}
 section.main .content .markdown ol li {
     list-style-type: decimal;
     list-style-position: inside;

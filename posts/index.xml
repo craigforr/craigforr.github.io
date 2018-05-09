@@ -6,10 +6,21 @@
     <description>Recent content in Posts on Craig Forrester</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Wed, 25 Apr 2018 17:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 08 May 2018 18:00:00 -0500</lastBuildDate>
     
 	<atom:link href="https://www.craigforrester.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Azure CLI Basics: Listing Resources</title>
+      <link>https://www.craigforrester.com/posts/azure-cli-basics-listing-resources/</link>
+      <pubDate>Tue, 08 May 2018 18:00:00 -0500</pubDate>
+      
+      <guid>https://www.craigforrester.com/posts/azure-cli-basics-listing-resources/</guid>
+      <description>In this post, we will cover some basic commands to list some resources in Azure.
+TL;DR If you just want to see a list of commands covered in this post:
+az account list az group list az network vnet list az network vnet subnet list -g $resource_group --vnet-name $vnet az network nsg list -g $resource_group az network nsg rule list -g $resource_group --nsg-name $nsg az network nic list az network nic ip-config list -g $resource_group --nic-name $nic az network public-ip list -g $resource_group az vm list -g $resource_group az vm list -g $resource_group --show-details  Listing Accounts First, as always, verify that you have logged in and that the correct subscription is selected by running az account list:</description>
+    </item>
     
     <item>
       <title>Convert Times Between Time Zones with PowerShell</title>
