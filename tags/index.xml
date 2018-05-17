@@ -23,16 +23,25 @@
     <item>
       <title>Azure</title>
       <link>https://www.craigforrester.com/tags/azure/</link>
-      <pubDate>Tue, 08 May 2018 18:00:00 -0500</pubDate>
+      <pubDate>Wed, 16 May 2018 17:00:00 -0400</pubDate>
       
       <guid>https://www.craigforrester.com/tags/azure/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>Azure Ad</title>
+      <link>https://www.craigforrester.com/tags/azure-ad/</link>
+      <pubDate>Wed, 16 May 2018 17:00:00 -0400</pubDate>
+      
+      <guid>https://www.craigforrester.com/tags/azure-ad/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Azure Cli</title>
       <link>https://www.craigforrester.com/tags/azure-cli/</link>
-      <pubDate>Tue, 08 May 2018 18:00:00 -0500</pubDate>
+      <pubDate>Wed, 16 May 2018 17:00:00 -0400</pubDate>
       
       <guid>https://www.craigforrester.com/tags/azure-cli/</guid>
       <description></description>
@@ -80,6 +89,15 @@
       <pubDate>Mon, 23 Apr 2018 18:00:00 -0500</pubDate>
       
       <guid>https://www.craigforrester.com/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Security</title>
+      <link>https://www.craigforrester.com/tags/security/</link>
+      <pubDate>Wed, 16 May 2018 17:00:00 -0400</pubDate>
+      
+      <guid>https://www.craigforrester.com/tags/security/</guid>
       <description></description>
     </item>
     

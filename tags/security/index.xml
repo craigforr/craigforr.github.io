@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Security on Craig Forrester</title>
+    <link>https://www.craigforrester.com/tags/security/</link>
+    <description>Recent content in Security on Craig Forrester</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 16 May 2018 17:00:00 -0400</lastBuildDate>
+    
+	<atom:link href="https://www.craigforrester.com/tags/security/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How to Create an Azure Service Principal with Limited Rights</title>
+      <link>https://www.craigforrester.com/posts/how-to-create-an-azure-service-principal-with-limited-rights/</link>
+      <pubDate>Wed, 16 May 2018 17:00:00 -0400</pubDate>
+      
+      <guid>https://www.craigforrester.com/posts/how-to-create-an-azure-service-principal-with-limited-rights/</guid>
+      <description>Role-Based Least Privilege In some cases, we have operations teams or developers that need tools or applications to be able access to their Azure virtual machines, but they only need the ability to perform basic operations: starting, stopping, restarting, or deallocating VMs. In this case, we can assign them a service principal for a given role with rights to perform only those operations. This is referred to as &amp;ldquo;role based access control&amp;rdquo; or &amp;ldquo;RBAC&amp;rdquo; and is in keeping with the best practice of least-privilege.</description>
+    </item>
+    
+  </channel>
+</rss>
