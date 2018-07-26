@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="author" content="Craig Forrester">
+<meta name="description" content="In this post, I&rsquo;m going to walk through how to expand a managed OS disk on an Azure virtual machine. In subsequent posts, we will cover how to convert this into a script for use interactively or with automation tools.
+In order to resize virtual hard disks, we have to deallocate the virtual machine first, because as of this writing resizing them on-the-fly is not possible.
+az vm deallocate \ --resource-group $rg \ --name $vm  In this example, and throughout the post, I refer to variables instead of the literal names.">
+
+
+<title>
+
+
+     Resize Azure Virtual Machine Disks with Azure CLI 
+
+</title>
+<link rel="canonical" href="https://www.craigforrester.com/posts/resize-azure-vm-disks-with-azure-cli/">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/color-brewer.min.css">
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/pygments.css">
+    <link rel="stylesheet" href="/css/main.css">
+    
+        <link rel="stylesheet" href="/css/override.css">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="/img/favicon.ico"
+
+>
+
+
+
+
+</head>
+
+
+<body lang="en">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+                
+                
+                
+                
+                
+                    
+                
+                    
+                
+                    
+                
+                
+                <a href="/"><img class="avatar" src="/img/profile.jpg" srcset="https://www.craigforrester.com/img/profile.jpg 1x"></a>
+            
+            <a href="/"><div class="name">Craig Forrester</div></a>
+            
+              <h3 class="self-intro">The Pleasure of Finding Things Out</h3>
+            
+            <nav>
+                <ul>
+                    
+                        <li class="nav-about"><a href="https://www.craigforrester.com/about/"><span>About</span></a></li>
+                    
+                        <li class="nav-posts"><a href="https://www.craigforrester.com/posts/"><span>Posts</span></a></li>
+                    
+                        <li class="nav-rss-feed"><a href="https://www.craigforrester.com/index.xml"><span>RSS</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="//github.com/craigforr" target="_blank" rel="noopener"><img class="icon" src="/img/github.svg" alt="github" /></a>
+        
+
+        
+
+        
+
+        
+            <a href="//linkedin.com/in/craigforrester" target="_blank" rel="noopener"><img class="icon" src="/img/linkedin.svg" alt="linkedin" /></a>
+        
+
+        
+
+        
+
+        
+
+        
+            <a href="mailto:cf@craigforrester.com"><img class="icon" src="/img/email.svg" alt="email" /></a>
+        
+
+        
+            <a href="https://www.craigforrester.com/index.xml"><img class="icon" src="/img/rss.svg" alt="rss" /></a>
+        
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Resize Azure Virtual Machine Disks with Azure CLI
+
+</div>
+
+                    <div class="initials"><a href="https://www.craigforrester.com/"></a></div>
+                </div>
+                <div class="meta">
+                    
+                    <div class="date" title='2018-07-25 18:00:00 EST'>July 25, 2018</div>
+                    
+                    
+		    <div class="reading-time"><div class="middot"></div>4 minutes read</div>
+                    
+                </div>
+            </div>
+            <div class="markdown">
+                
+
+<p>In this post, I&rsquo;m going to walk through how to expand a managed OS disk on an Azure virtual machine. In subsequent posts, we will cover how to convert this into a script for use interactively or with automation tools.</p>
+
+<p>In order to resize virtual hard disks, we have to deallocate the virtual machine first, because as of this writing resizing them on-the-fly is not possible.</p>
+
+<pre><code class="language-bash">az vm deallocate \
+    --resource-group $rg \
+    --name $vm
+</code></pre>
+
+<p>In this example, and throughout the post, I refer to variables instead of the literal names.  Using variables makes it easier to convert this to a script later and it allows you to use the examples on whatever specific VM you wish if you&rsquo;re following along.</p>
+
+<p>We are doing our work in Bash, so to use these variables names we simply assign them values, as in this example:</p>
+
+<pre><code class="language-bash">rg=lab1-rg
+vm=ubuntuserver1
+</code></pre>
+
+<p>If we want to verify our VM is deallocated, we can use this query, which filters the output on the virtual machine name, and outputs the name along with the power state:</p>
+
+<pre><code class="language-bash">az vm list \
+    --resource-group $rg \
+    --query &quot;[?name == '$vm'].{Name:name, PowerState:powerState}&quot; \
+    --show-details \
+    --output table
+</code></pre>
+
+<p>Example output:</p>
+
+<pre><code class="language-nohighlight">Name         PowerState
+-----------  --------------
+ubuntutest1  VM deallocated
+</code></pre>
+
+<p>Note that in the command above we had to include the <code>--show-details</code> switch in order to have the <code>powerState</code> property returned in the output.  Otherwise, that column would have been left off.</p>
+
+<p>Next we should determine the current size of the disk, so we can compare it against the size we want to expand it to.  The first step is to locate the disk ID and assign it to a variable, with the following query:</p>
+
+<pre><code class="language-bash">disk_id=$(az vm list -g $rg \
+            --query &quot;[?name == '$vm'].storageProfile.osDisk.managedDisk.id&quot; \
+            --output tsv)
+</code></pre>
+
+<p>Now that we have the disk ID assigned to <code>$disk_id</code>, we can use it to lookup the disk:</p>
+
+<pre><code class="language-bash">az disk list \
+    --resource-group $rg \
+    --query &quot;[?(id == '$disk_id')].{Name:name,Gb:diskSizeGb,Tier:sku.name}&quot; \
+    --output table
+</code></pre>
+
+<p>Example output:</p>
+
+<pre><code class="language-nohighlight">$ az disk list \
+&gt;     --resource-group $rg \
+&gt;     --query &quot;[?(id == '$disk_id')].{Name:name,Gb:diskSizeGb,Tier:sku.name}&quot; \
+&gt;     --output table
+Name                   Gb  Tier
+-------------------  ----  ------------
+ubuntutest1-disk-os    30  Standard_LRS
+</code></pre>
+
+<p>This is good output because it confirms both the current size of the disk, and reminds us what storage tier it&rsquo;s using, in case that&rsquo;s a concern.</p>
+
+<p><strong>Aside:</strong> If you&rsquo;re inquisitive, you may be asking why we didn&rsquo;t just look up the disk directly, by name.  We could have.  The reason we didn&rsquo;t is that most of the time we need to expand a disk, we are doing so based on some request that refers to the virtual machine by name, not the disk.  Additionally, in some environments disk names are &ldquo;square&rdquo; with the virtual machine names, and in others, they aren&rsquo;t.  So, it&rsquo;s a good idea to start at the source and programmatically move to the destination.</p>
+
+<p>Next, we need to store the current disk size to compare it against the requested size:</p>
+
+<pre><code class="language-bash">disk_size=$(az disk list -g $rg \
+            --query &quot;[?(id == '$disk_id')].diskSizeGb&quot; \
+            --output tsv)
+</code></pre>
+
+<p>(Ordinarily we wouldn&rsquo;t break those lines up, but doing so makes it easier to read.)</p>
+
+<p>Now that we have the current disk size assigned to <code>$disk_size</code>, we can verify that the requested size is greater than the current size:</p>
+
+<pre><code class="language-bash">if ! expr $disk_size_new \&gt; $disk_size &gt; /dev/null
+then
+    echo ERROR: Current disk size $disk_size GB is equal to \
+         or larger than the requested size of $disk_size_new GB.
+else
+    echo &quot;Make it so.&quot;
+fi
+</code></pre>
+
+<p>What we&rsquo;re doing is using the coreutil <code>expr</code> (short for &ldquo;expression&rdquo;) to evaluate whether <code>$disk_size_new</code> is greater than <code>$disk_size</code> (the current size of the disk).  You&rsquo;ll notice that instead of just using the greater-than carot here, we&rsquo;ve had to escape it with a backslash: <code>\&gt;</code>. The bang (<code>!</code>) indicates <code>NOT</code>, so the first condition is satisfied if the requested size is not larger than the existing.  And of course, where I&rsquo;ve got messages, you can do whatever you want with the conditions &mdash; exit the script, write an error, send an alert, etc.</p>
+
+<p>Now, without any further ado, let&rsquo;s expand the disk:</p>
+
+<pre><code class="language-bash">disk_size_new=50
+
+az disk update \
+    --resource-group $rg \
+    --ids $disk_id \
+    --size-gb $disk_size_new
+</code></pre>
+
+<p>An alternative way to do this is by the disk name:</p>
+
+<pre><code class="language-bash">disk_size_new=50
+disk_name=$(az disk list -g $rg --query &quot;[?(id == '$disk_id')].name&quot; -o tsv)
+
+az disk update \
+    --resource-group $rg \
+    --name $disk_name \
+    --size-gb $disk_size_new \
+    --output table
+</code></pre>
+
+<p>And then we verify our results:</p>
+
+<pre><code class="language-bash">az disk list \
+    --resource-group $rg \
+    --query &quot;[?name == '$disk_name'].{Name:name, DiskSize:diskSizeGb}&quot;
+</code></pre>
+
+<p>Example output:</p>
+
+<pre><code class="language-nohighlight">Name                   DiskSize
+-------------------  ----------
+ubuntutest1-disk-os          50
+</code></pre>
+
+<p>All that remains is to boot up the VM:</p>
+
+<pre><code class="language-bash">az vm start -g $rg -n $vm
+</code></pre>
+
+<p>That&rsquo;s it!  I hope that was helpful and informative.  Next time, we&rsquo;ll explore how to do disk expansions with PowerShell!</p>
+
+<h2 id="additional-reading">Additional Reading</h2>
+
+<ul>
+<li>Documentation: <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/linux/expand-disks">Expand virtual hard disks on a Linux VM in Azure</a></li>
+<li>Documentation: <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/windows/expand-os-disk">Expand the OS drive of a Windows VM in an Azure</a></li>
+</ul>
+
+                <br>
+		        <p><a href="/posts/">Back to posts</a></p>
+            </div>
+            <div class="disqus">
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-454251-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/powershell.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/dos.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+
+</body>
+</html>
+

@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://www.craigforrester.com/posts/resize-azure-vm-disks-with-azure-cli/</loc>
+    <lastmod>2018-07-25T18:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.craigforrester.com/posts/how-to-create-an-azure-service-principal-with-limited-rights/</loc>
     <lastmod>2018-05-16T17:00:00-04:00</lastmod>
   </url>
@@ -95,7 +100,7 @@
   
   <url>
     <loc>https://www.craigforrester.com/tags/azure/</loc>
-    <lastmod>2018-05-16T17:00:00-04:00</lastmod>
+    <lastmod>2018-07-25T18:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -107,13 +112,13 @@
   
   <url>
     <loc>https://www.craigforrester.com/tags/azure-cli/</loc>
-    <lastmod>2018-05-16T17:00:00-04:00</lastmod>
+    <lastmod>2018-07-25T18:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://www.craigforrester.com/tags/bash/</loc>
-    <lastmod>2018-03-29T08:00:00-05:00</lastmod>
+    <lastmod>2018-07-25T18:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -130,7 +135,7 @@
   
   <url>
     <loc>https://www.craigforrester.com/</loc>
-    <lastmod>2018-05-16T17:00:00-04:00</lastmod>
+    <lastmod>2018-07-25T18:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -142,7 +147,7 @@
   
   <url>
     <loc>https://www.craigforrester.com/posts/</loc>
-    <lastmod>2018-05-16T17:00:00-04:00</lastmod>
+    <lastmod>2018-07-25T18:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -178,13 +183,19 @@
   
   <url>
     <loc>https://www.craigforrester.com/categories/tutorials/</loc>
-    <lastmod>2018-05-08T18:00:00-05:00</lastmod>
+    <lastmod>2018-07-25T18:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://www.craigforrester.com/tags/ubuntu/</loc>
     <lastmod>2018-03-29T08:00:00-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.craigforrester.com/tags/virtual-machines/</loc>
+    <lastmod>2018-07-25T18:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
