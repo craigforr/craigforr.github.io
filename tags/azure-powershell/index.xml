@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Azure Powershell on Craig Forrester</title>
+    <link>https://www.craigforrester.com/tags/azure-powershell/</link>
+    <description>Recent content in Azure Powershell on Craig Forrester</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 01 Aug 2018 16:00:00 -0500</lastBuildDate>
+    
+	<atom:link href="https://www.craigforrester.com/tags/azure-powershell/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Resize Azure Virtual Machine Disks with Azure PowerShell</title>
+      <link>https://www.craigforrester.com/posts/resize-azure-vm-disks-with-azure-powershell/</link>
+      <pubDate>Wed, 01 Aug 2018 16:00:00 -0500</pubDate>
+      
+      <guid>https://www.craigforrester.com/posts/resize-azure-vm-disks-with-azure-powershell/</guid>
+      <description>In this post, I&amp;rsquo;m going to walk through how to expand a managed OS disk on an Azure virtual machine with PowerShell. In the previous post in this series, we covered how to achieve this with Azure CLI in Bash, and in later posts, we will cover how to convert these commands into scripts.
+Log In and Verify Subscription Before we do anything, as always, we want to be certain we have PowerShell connected to Azure Resource Manager, and that we are on the correct subscription.</description>
+    </item>
+    
+  </channel>
+</rss>

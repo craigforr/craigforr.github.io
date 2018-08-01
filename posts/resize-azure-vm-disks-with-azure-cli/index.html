@@ -10,8 +10,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="author" content="Craig Forrester">
 <meta name="description" content="In this post, I&rsquo;m going to walk through how to expand a managed OS disk on an Azure virtual machine. In subsequent posts, we will cover how to convert this into a script for use interactively or with automation tools.
-In order to resize virtual hard disks, we have to deallocate the virtual machine first, because as of this writing resizing them on-the-fly is not possible.
-az vm deallocate \ --resource-group $rg \ --name $vm  In this example, and throughout the post, I refer to variables instead of the literal names.">
+Log In and Verify Subscription I always like to include a reminder to validate that you are logged in to the correct Azure Subscription. For those of us with multiple clients and subscriptions to manage, failure to do this can have serious consequences, so I suggest do so every time, and building some kind of verification logic into your automation scripts as well, where it makes sense.">
 
 
 <title>
@@ -151,14 +150,25 @@ az vm deallocate \ --resource-group $rg \ --name $vm  In this example, and throu
                     <div class="date" title='2018-07-25 18:00:00 EST'>July 25, 2018</div>
                     
                     
-		    <div class="reading-time"><div class="middot"></div>4 minutes read</div>
+		    <div class="reading-time"><div class="middot"></div>5 minutes read</div>
                     
                 </div>
             </div>
             <div class="markdown">
                 
 
-<p>In this post, I&rsquo;m going to walk through how to expand a managed OS disk on an Azure virtual machine. In subsequent posts, we will cover how to convert this into a script for use interactively or with automation tools.</p>
+<p>In this post, I&rsquo;m going to walk through how to expand a <strong>managed OS disk</strong> on an Azure virtual machine. In subsequent posts, we will cover how to convert this into a script for use interactively or with automation tools.</p>
+
+<h2 id="log-in-and-verify-subscription">Log In and Verify Subscription</h2>
+
+<p>I always like to include a reminder to validate that you are logged in to the correct Azure Subscription.  For those of us with multiple clients and subscriptions to manage, failure to do this can have serious consequences, so I suggest do so every time, and building some kind of verification logic into your automation scripts as well, where it makes sense.</p>
+
+<pre><code class="language-bash">az account list -o table
+</code></pre>
+
+<p>Under the <code>IsDefault</code> column, make sure that you see <code>True</code> next to the subscription you are intending to work with.</p>
+
+<h2 id="deallocate-the-virtual-machine">Deallocate the Virtual Machine</h2>
 
 <p>In order to resize virtual hard disks, we have to deallocate the virtual machine first, because as of this writing resizing them on-the-fly is not possible.</p>
 
@@ -193,6 +203,8 @@ ubuntutest1  VM deallocated
 
 <p>Note that in the command above we had to include the <code>--show-details</code> switch in order to have the <code>powerState</code> property returned in the output.  Otherwise, that column would have been left off.</p>
 
+<h2 id="get-the-current-disk-size">Get the Current Disk Size</h2>
+
 <p>Next we should determine the current size of the disk, so we can compare it against the size we want to expand it to.  The first step is to locate the disk ID and assign it to a variable, with the following query:</p>
 
 <pre><code class="language-bash">disk_id=$(az vm list -g $rg \
@@ -225,12 +237,16 @@ ubuntutest1-disk-os    30  Standard_LRS
 
 <p>Next, we need to store the current disk size to compare it against the requested size:</p>
 
-<pre><code class="language-bash">disk_size=$(az disk list -g $rg \
+<pre><code class="language-bash">disk_size_new=50
+
+disk_size=$(az disk list -g $rg \
             --query &quot;[?(id == '$disk_id')].diskSizeGb&quot; \
             --output tsv)
 </code></pre>
 
 <p>(Ordinarily we wouldn&rsquo;t break those lines up, but doing so makes it easier to read.)</p>
+
+<h2 id="compare-current-disk-size-to-requested-size">Compare Current Disk Size to Requested Size</h2>
 
 <p>Now that we have the current disk size assigned to <code>$disk_size</code>, we can verify that the requested size is greater than the current size:</p>
 
@@ -244,6 +260,8 @@ fi
 </code></pre>
 
 <p>What we&rsquo;re doing is using the coreutil <code>expr</code> (short for &ldquo;expression&rdquo;) to evaluate whether <code>$disk_size_new</code> is greater than <code>$disk_size</code> (the current size of the disk).  You&rsquo;ll notice that instead of just using the greater-than carot here, we&rsquo;ve had to escape it with a backslash: <code>\&gt;</code>. The bang (<code>!</code>) indicates <code>NOT</code>, so the first condition is satisfied if the requested size is not larger than the existing.  And of course, where I&rsquo;ve got messages, you can do whatever you want with the conditions &mdash; exit the script, write an error, send an alert, etc.</p>
+
+<h2 id="update-the-disk-size">Update the Disk Size</h2>
 
 <p>Now, without any further ado, let&rsquo;s expand the disk:</p>
 
@@ -267,6 +285,8 @@ az disk update \
     --output table
 </code></pre>
 
+<h2 id="verify-final-disk-size">Verify Final Disk Size</h2>
+
 <p>And then we verify our results:</p>
 
 <pre><code class="language-bash">az disk list \
@@ -281,12 +301,20 @@ az disk update \
 ubuntutest1-disk-os          50
 </code></pre>
 
+<h2 id="start-up-the-virtual-machine">Start Up the Virtual Machine</h2>
+
 <p>All that remains is to boot up the VM:</p>
 
 <pre><code class="language-bash">az vm start -g $rg -n $vm
 </code></pre>
 
 <p>That&rsquo;s it!  I hope that was helpful and informative.  Next time, we&rsquo;ll explore how to do disk expansions with PowerShell!</p>
+
+<h2 id="change-log">Change Log</h2>
+
+<ul>
+<li><code>2018-07-26</code> - Added subheadings for easier reading and a reminder about checking subscriptions prior to starting.</li>
+</ul>
 
 <h2 id="additional-reading">Additional Reading</h2>
 

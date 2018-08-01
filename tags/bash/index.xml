@@ -18,8 +18,7 @@
       
       <guid>https://www.craigforrester.com/posts/resize-azure-vm-disks-with-azure-cli/</guid>
       <description>In this post, I&amp;rsquo;m going to walk through how to expand a managed OS disk on an Azure virtual machine. In subsequent posts, we will cover how to convert this into a script for use interactively or with automation tools.
-In order to resize virtual hard disks, we have to deallocate the virtual machine first, because as of this writing resizing them on-the-fly is not possible.
-az vm deallocate \ --resource-group $rg \ --name $vm  In this example, and throughout the post, I refer to variables instead of the literal names.</description>
+Log In and Verify Subscription I always like to include a reminder to validate that you are logged in to the correct Azure Subscription. For those of us with multiple clients and subscriptions to manage, failure to do this can have serious consequences, so I suggest do so every time, and building some kind of verification logic into your automation scripts as well, where it makes sense.</description>
     </item>
     
     <item>
