@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://www.craigforrester.com/posts/resize-an-azure-vm-windows-os-partition/</loc>
+    <lastmod>2018-08-08T17:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.craigforrester.com/posts/resize-azure-vm-disks-with-azure-powershell/</loc>
     <lastmod>2018-08-01T16:00:00-05:00</lastmod>
   </url>
@@ -105,7 +110,7 @@
   
   <url>
     <loc>https://www.craigforrester.com/tags/azure/</loc>
-    <lastmod>2018-08-01T16:00:00-05:00</lastmod>
+    <lastmod>2018-08-08T17:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -146,7 +151,7 @@
   
   <url>
     <loc>https://www.craigforrester.com/</loc>
-    <lastmod>2018-08-01T16:00:00-05:00</lastmod>
+    <lastmod>2018-08-08T17:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -158,13 +163,13 @@
   
   <url>
     <loc>https://www.craigforrester.com/posts/</loc>
-    <lastmod>2018-08-01T16:00:00-05:00</lastmod>
+    <lastmod>2018-08-08T17:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://www.craigforrester.com/tags/powershell/</loc>
-    <lastmod>2018-08-01T16:00:00-05:00</lastmod>
+    <lastmod>2018-08-08T17:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -181,6 +186,12 @@
   </url>
   
   <url>
+    <loc>https://www.craigforrester.com/tags/storage/</loc>
+    <lastmod>2018-08-08T17:00:00-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://www.craigforrester.com/tags/</loc>
     <lastmod>2018-03-29T08:00:00-05:00</lastmod>
     <priority>0</priority>
@@ -189,6 +200,12 @@
   <url>
     <loc>https://www.craigforrester.com/categories/tips/</loc>
     <lastmod>2018-05-16T17:00:00-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.craigforrester.com/categories/tutorial/</loc>
+    <lastmod>2018-08-08T17:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -212,7 +229,7 @@
   
   <url>
     <loc>https://www.craigforrester.com/tags/windows/</loc>
-    <lastmod>2018-03-29T08:00:00-05:00</lastmod>
+    <lastmod>2018-08-08T17:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   

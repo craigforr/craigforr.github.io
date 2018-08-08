@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="author" content="Craig Forrester">
+<meta name="description" content="Important
+As always, this post is provided &ldquo;as-is&rdquo; without any warranty of any kind, and contains operations which can irrevocably destroy data on your systems. Your systems, storage, and other devices may have configurations or edge cases I have not accounted for here. Take great care and test these commands and any resulting scripts you create in lab/test/development environments to avoid catastrophic data loss.
+It is a good idea to perform a full data backup or take a snapshot prior to performing potentially destructive operations.">
+
+
+<title>
+
+
+     Resize an Azure VM Windows OS Partition 
+
+</title>
+<link rel="canonical" href="https://www.craigforrester.com/posts/resize-an-azure-vm-windows-os-partition/">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/color-brewer.min.css">
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/pygments.css">
+    <link rel="stylesheet" href="/css/main.css">
+    
+        <link rel="stylesheet" href="/css/override.css">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="/img/favicon.ico"
+
+>
+
+
+
+
+</head>
+
+
+<body lang="en">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+                
+                
+                
+                
+                
+                    
+                
+                    
+                
+                    
+                
+                
+                <a href="/"><img class="avatar" src="/img/profile.jpg" srcset="https://www.craigforrester.com/img/profile.jpg 1x"></a>
+            
+            <a href="/"><div class="name">Craig Forrester</div></a>
+            
+              <h3 class="self-intro">The Pleasure of Finding Things Out</h3>
+            
+            <nav>
+                <ul>
+                    
+                        <li class="nav-about"><a href="https://www.craigforrester.com/about/"><span>About</span></a></li>
+                    
+                        <li class="nav-posts"><a href="https://www.craigforrester.com/posts/"><span>Posts</span></a></li>
+                    
+                        <li class="nav-rss-feed"><a href="https://www.craigforrester.com/index.xml"><span>RSS</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="//github.com/craigforr" target="_blank" rel="noopener"><img class="icon" src="/img/github.svg" alt="github" /></a>
+        
+
+        
+
+        
+
+        
+            <a href="//linkedin.com/in/craigforrester" target="_blank" rel="noopener"><img class="icon" src="/img/linkedin.svg" alt="linkedin" /></a>
+        
+
+        
+
+        
+
+        
+
+        
+            <a href="mailto:cf@craigforrester.com"><img class="icon" src="/img/email.svg" alt="email" /></a>
+        
+
+        
+            <a href="https://www.craigforrester.com/index.xml"><img class="icon" src="/img/rss.svg" alt="rss" /></a>
+        
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Resize an Azure VM Windows OS Partition
+
+</div>
+
+                    <div class="initials"><a href="https://www.craigforrester.com/"></a></div>
+                </div>
+                <div class="meta">
+                    
+                    <div class="date" title='2018-08-08 17:00:00 EST'>August 8, 2018</div>
+                    
+                    
+		    <div class="reading-time"><div class="middot"></div>6 minutes read</div>
+                    
+                </div>
+            </div>
+            <div class="markdown">
+                
+
+<blockquote>
+<p><strong>Important</strong></p>
+
+<p>As always, this post is provided &ldquo;as-is&rdquo; without any warranty of any kind, and contains operations which can irrevocably destroy data on your systems.  Your systems, storage, and other devices may have configurations or edge cases I have not accounted for here.  Take great care and test these commands and any resulting scripts you create in lab/test/development environments to avoid catastrophic data loss.</p>
+
+<p>It is a good idea to perform a full data backup or take a <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/windows/snapshot-copy-managed-disk" title="Create a snapshot of a VHD in Azure">snapshot</a> prior to performing potentially destructive operations.</p>
+
+<p><strong>You have been warned!</strong></p>
+</blockquote>
+
+<p>In the two previous posts in this series, we covered <a href="/posts/resize-azure-vm-disks-with-azure-cli/" title="Resize Azure Virtual Machine Disks with Azure CLI">how to resize an Azure VM disk with Azure CLI</a> and <a href="/posts/resize-azure-vm-disks-with-azure-powershell/" title="Resize Azure Virtual Machine Disks with PowerShell">how to resize Azure VM disks with PowerShell</a>. If you were following closely, you will have noticed that we did not address one key final task: resizing the partition within the guest OS on the VM.  I did not include it for two reasons.  First, depending on what kind of OS you are running in your VM (e.g., Windows or Linux), your method for resize a partition will vary.  Second, shorter posts are a little easier to digest than long one.</p>
+
+<p>There are two major OS types on which you are likely to resize a partition in Azure &mdash; Windows and Linux.  In this post, we will cover Windows, in the next post in this series, we&rsquo;ll cover how to resize a partition on Linux.</p>
+
+<h2 id="resize-the-partition">Resize the Partition</h2>
+
+<p>In order to benefit from resizing an Azure VM disk, we need to resize the partition of the disk within the guest operating system on the virtual machine.  On Windows, this is as simple as running the following PowerShell command lines:</p>
+
+<pre><code class="language-powershell">$drive_letter = 'C'
+
+$MaxSize = (Get-PartitionSupportedSize -DriveLetter $drive_letter).sizeMax
+
+Resize-Partition -DriveLetter $drive_letter -Size $MaxSize
+</code></pre>
+
+<p>The preceding partition cmdlets are available starting with Windows Server 2012.</p>
+
+<p>This is all well and good if we know the drive letter we want to expand, but what we want is a solution that will work for <em>any</em> circumstance with <em>any</em> drive letter.</p>
+
+<p>The simplest solution when we don&rsquo;t know the drive letter is simply to cycle through all the local disks and check whether they need expanding or not.  This has the added advantage of covering cases where we may have expanded multiple drives as well.</p>
+
+<p>If we simply use <code>Get-Partition</code> by itself, we will get a list of every partition, including ones that have no drive letter and we don&rsquo;t want to touch those, if there are any. So, we will need to filter the output of <code>Get-Partition</code> down to only those partitions with drive letters, as follow:</p>
+
+<pre><code class="language-powershell">Get-Partition | where { $_.DriveLetter -gt 0 } 
+</code></pre>
+
+<p>You may initially try <code>-ne $empty</code> or <code>-ne $null</code> or even <code>-ne ''</code> where we have <code>-gt 0</code> here, but if you try that out, you&rsquo;ll see that you still get partitions without drive letters.</p>
+
+<p>Now that we have a list of partitions with drive letters associated, we need to go through each of them one by one and compare their current size with the maximum supported size.  If the two are not equal &mdash; if the <code>SizeMax</code> property of the partition is greater than the <code>Size</code> property of the existing drive &ndash; we call <code>Resize-Partition</code> to expand the partition and underlying volume, using the bits of code I showed earlier:</p>
+
+<pre><code class="language-powershell">$drives = Get-Partition | where { $_.DriveLetter -gt 0 } 
+
+foreach ($drive in $drives) { 
+    Get-PartitionSupportedSize -DriveLetter $drive.DriveLetter | 
+        where { $_.SizeMax -gt $drive.Size } |
+        foreach {
+            Resize-Partition -DriveLetter $drive.DriveLetter -Size $_.SizeMax
+        }
+}
+</code></pre>
+
+<p>Notice a couple of things here.  First, note that the body of the first <code>foreach</code> loop is actually one long command line, with the individual sections broken up at the pipe character for better legibility (PowerShell allows us to break lines of code up on several key characters, the pipe <code>|</code> being one of them).  The second thing to notice is that the call to <code>Resize-Partition</code> here is almost exactly what we saw in the very first example, but we have simply replaced the variables with those that we are using in our <code>foreach</code> loop.</p>
+
+<h2 id="expansion-failure">Expansion Failure</h2>
+
+<p>Before we move on, I should point out a strange edge case that I tripped over in my own testing.  Namely, if the current size of the partition is less than 1 MB difference from the maximum partition size, the call to <code>Resize-Partition</code> will fail with an error like the following.</p>
+
+<p>Example:</p>
+
+<pre><code class="language-nohighlight">Resize-Partition : Size Not Supported
+At line:6 char:13
++             Resize-Partition -DriveLetter $drive.DriveLetter -Size $_.SizeMax
++             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (StorageWMI:ROOT/Microsoft/.../MSFT_Partition) [Resize-Partition], CimException
+    + FullyQualifiedErrorId : StorageWMI 4097,Resize-Partition
+
+</code></pre>
+
+<p>The work-around to this behavior was provided by user Vortex100 on a Reddit forum <a href="https://www.reddit.com/r/PowerShell/comments/3dxsvs/problem_im_having_with_getpartitionsupportedsize/ctclti3/" title="Problem I'm having with 'get-partitionsupportedsize' : PowerShell">post</a>: Shrink the partition by 1 MB first, then expand it to the maximum size.  In order for us to do this, we need to add another conditional to our code:</p>
+
+<pre><code class="language-powershell">$drives = Get-Partition | where { $_.DriveLetter -gt 0 } 
+
+foreach ($drive in $drives) { 
+    Get-PartitionSupportedSize -DriveLetter $drive.DriveLetter | 
+        where { $_.SizeMax -gt $drive.Size } |
+        foreach {
+
+            # Special handling for size differences less
+            # than 1 MB to avoid 'Size Not Supported' error
+
+            $difference = $_.SizeMax - $drive.Size
+
+            if ($difference -lt 1mb) {
+
+                $shrink = $drive.Size - 1mb
+
+                Resize-Partition `
+                    -DriveLetter $drive.DriveLetter `
+                    -Size $shrink
+
+            }
+
+            Resize-Partition `
+                -DriveLetter $drive.DriveLetter `
+                -Size $_.SizeMax
+        }
+}
+
+</code></pre>
+
+<p>Note that I have placed the expansion operation following <code>if</code> statement to do the shrinking operation without an <code>else</code> clause, because we want to perform the expansion every time, regardless of whether or not we need to shrink first to avoid the error.</p>
+
+<h2 id="formatting-new-volumes">Formatting New Volumes</h2>
+
+<p>There may be situations where you need both to resize the partition and format a volume on that partition as well &mdash; for example, when you attach a new disk to a virtual machine.  Or you may encounter a case where you&rsquo;ve expanded a disk that was never formatted.  In either case, it&rsquo;s convenient to do both in the same script.</p>
+
+<p>The first thing we want to do is get a list of disks whose partitions are <code>RAW</code>, which means that they have no partitions and are unformatted.  You <strong>do not</strong> want to simply format any volume that doesn&rsquo;t have a drive letter, as there are many cases where valid volumes exist that have no drive letter, such as certain system and recovery volumes.</p>
+
+<pre><code class="language-powershell">$disks = Get-Disk | where { $_.PartitionStyle -eq 'RAW' }
+</code></pre>
+
+<p>Next, we want to loop through all of those RAW disks and do three things:</p>
+
+<ol>
+<li>Initialize the disk.</li>
+<li>Create a new partition that takes up the entire disk.</li>
+<li>Format the new partition.</li>
+</ol>
+
+<pre><code class="language-powershell">foreach ($disk in $disks) {
+    Initialize-Disk -InputObject $disk
+    $part = New-Partition -InputObject $disk `
+                -UseMaximumSize -AssignDriveLetter 
+    Format-Volume -Partition $part -FileSystem NTFS -Confirm:$false
+}
+</code></pre>
+
+<p>Unless you have a particular need to use another, NTFS is the recommended file system.</p>
+
+<p>That&rsquo;s all there is to it for about 9 out of 10 cases you&rsquo;ll probably encounter.</p>
+
+<h2 id="additional-reading">Additional Reading</h2>
+
+<ul>
+<li>Documentation: <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/windows/snapshot-copy-managed-disk" title="Create a snapshot of a VHD in Azure">Create a snapshot of a VHD in Azure</a></li>
+<li>Documentation: <a href="https://docs.microsoft.com/en-us/powershell/module/storage/get-partitionsupportedsize?view=win10-ps">Get-PartitionSupportedSize</a></li>
+<li>Documentation: <a href="https://docs.microsoft.com/en-us/powershell/module/storage/resize-partition?view=win10-ps">Resize-Partition</a></li>
+<li>Blog: <a href="https://blogs.technet.microsoft.com/heyscriptingguy/2013/09/02/powertip-use-powershell-3-0-to-resize-partitions/">PowerTip: Use PowerShell 3.0 to Resize Partitions</a></li>
+<li>Forum: <a href="https://www.reddit.com/r/PowerShell/comments/3dxsvs/problem_im_having_with_getpartitionsupportedsize/ctclti3/" title="Problem I'm having with 'get-partitionsupportedsize' : PowerShell">Problem I&rsquo;m having with &lsquo;get-partitionsupportedsize&rsquo; : PowerShell</a></li>
+</ul>
+
+                <br>
+		        <p><a href="/posts/">Back to posts</a></p>
+            </div>
+            <div class="disqus">
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-454251-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/powershell.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/dos.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+
+</body>
+</html>
+
