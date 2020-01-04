@@ -6,10 +6,20 @@
     <description>Recent content in Azure on Craig Forrester</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Wed, 08 Aug 2018 17:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 31 Dec 2018 16:00:00 -0500</lastBuildDate>
     
 	<atom:link href="https://www.craigforrester.com/tags/azure/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Resize Azure Virtual Machine with Azure PowerShell</title>
+      <link>https://www.craigforrester.com/posts/resize-azure-virtual-machine-with-azure-powershell/</link>
+      <pubDate>Mon, 31 Dec 2018 16:00:00 -0500</pubDate>
+      
+      <guid>https://www.craigforrester.com/posts/resize-azure-virtual-machine-with-azure-powershell/</guid>
+      <description>In several previous posts, I discussed how to resize the virtual hard disks on an Azure virtual machine using Azure CLI and PowerShell. In this post, I&amp;rsquo;m going to walk through how to resize an Azure virtual machine with PowerShell, and cover how to convert these commands into a script.
+Log In and Verify Subscription As always, we want to be sure we have PowerShell connected to Azure and that we using the right subscription.</description>
+    </item>
     
     <item>
       <title>Resize an Azure VM Windows OS Partition</title>
@@ -101,7 +111,7 @@ PS&amp;gt; az --version azure-cli (2.0.27) acr (2.0.21) acs (2.0.26) advisor (0.
       
       <guid>https://www.craigforrester.com/posts/install-azure-cli-on-windows-10-using-python-pip/</guid>
       <description>TL;DR If you want to cut to the chase, here&amp;rsquo;s the complete list of commands:
-# Download the Python 3.6.4 installer with PowerShell Invoke-WebRequest -Uri &#39;https://www.python.org/ftp/python/3.6.4/python-3.6.4-amd64.exe&#39; -OutFile &#39;.\python-3.6.4-amd64.exe&#39; # Passive Install of Python for All Users # Run this from an elevated PowerShell prompt .\python-3.6.4-amd64.exe /passive TargetDir=&amp;quot;C:\Python&amp;quot; InstallAllUsers=1 PrependPath=1 Include_test=0  Run these in a new PowerShell window after installing Python:
+# Download the Python 3.6.4 installer with PowerShell Invoke-WebRequest -Uri &#39;https://www.python.org/ftp/python/3.6.4/python-3.6.4-amd64.exe&#39; -OutFile &#39;.\python-3.6.4-amd64.exe&#39; # Passive Install of Python for All Users # Run this from an elevated PowerShell prompt .\python-3.6.4-amd64.exe /passive TargetDir=&amp;quot;C:\Python&amp;quot; InstallAllUsers=1 PrependPath=1  Run these in a new PowerShell window after installing Python:
 # Install Azure CLI system-wide pip install azure-cli # Upgrade Azure CLI later on pip install --upgrade azure-cli  For a fuller explanation, read on&amp;hellip;</description>
     </item>
     

@@ -18,7 +18,7 @@
       
       <guid>https://www.craigforrester.com/posts/install-azure-cli-on-windows-10-using-python-pip/</guid>
       <description>TL;DR If you want to cut to the chase, here&amp;rsquo;s the complete list of commands:
-# Download the Python 3.6.4 installer with PowerShell Invoke-WebRequest -Uri &#39;https://www.python.org/ftp/python/3.6.4/python-3.6.4-amd64.exe&#39; -OutFile &#39;.\python-3.6.4-amd64.exe&#39; # Passive Install of Python for All Users # Run this from an elevated PowerShell prompt .\python-3.6.4-amd64.exe /passive TargetDir=&amp;quot;C:\Python&amp;quot; InstallAllUsers=1 PrependPath=1 Include_test=0  Run these in a new PowerShell window after installing Python:
+# Download the Python 3.6.4 installer with PowerShell Invoke-WebRequest -Uri &#39;https://www.python.org/ftp/python/3.6.4/python-3.6.4-amd64.exe&#39; -OutFile &#39;.\python-3.6.4-amd64.exe&#39; # Passive Install of Python for All Users # Run this from an elevated PowerShell prompt .\python-3.6.4-amd64.exe /passive TargetDir=&amp;quot;C:\Python&amp;quot; InstallAllUsers=1 PrependPath=1  Run these in a new PowerShell window after installing Python:
 # Install Azure CLI system-wide pip install azure-cli # Upgrade Azure CLI later on pip install --upgrade azure-cli  For a fuller explanation, read on&amp;hellip;</description>
     </item>
     

@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://www.craigforrester.com/posts/vagrant-getting-started-installation/</loc>
+    <lastmod>2019-01-03T18:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.craigforrester.com/posts/resize-azure-virtual-machine-with-azure-powershell/</loc>
+    <lastmod>2018-12-31T16:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.craigforrester.com/posts/resize-an-azure-vm-windows-os-partition/</loc>
     <lastmod>2018-08-08T17:00:00-05:00</lastmod>
   </url>
@@ -110,7 +120,7 @@
   
   <url>
     <loc>https://www.craigforrester.com/tags/azure/</loc>
-    <lastmod>2018-08-08T17:00:00-05:00</lastmod>
+    <lastmod>2018-12-31T16:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -128,7 +138,7 @@
   
   <url>
     <loc>https://www.craigforrester.com/tags/azure-powershell/</loc>
-    <lastmod>2018-08-01T16:00:00-05:00</lastmod>
+    <lastmod>2018-12-31T16:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -151,7 +161,13 @@
   
   <url>
     <loc>https://www.craigforrester.com/</loc>
-    <lastmod>2018-08-08T17:00:00-05:00</lastmod>
+    <lastmod>2019-01-03T18:00:00-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.craigforrester.com/tags/iac/</loc>
+    <lastmod>2019-01-03T18:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -163,13 +179,13 @@
   
   <url>
     <loc>https://www.craigforrester.com/posts/</loc>
-    <lastmod>2018-08-08T17:00:00-05:00</lastmod>
+    <lastmod>2019-01-03T18:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://www.craigforrester.com/tags/powershell/</loc>
-    <lastmod>2018-08-08T17:00:00-05:00</lastmod>
+    <lastmod>2018-12-31T16:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -211,7 +227,7 @@
   
   <url>
     <loc>https://www.craigforrester.com/categories/tutorials/</loc>
-    <lastmod>2018-08-01T16:00:00-05:00</lastmod>
+    <lastmod>2019-01-03T18:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -222,8 +238,20 @@
   </url>
   
   <url>
+    <loc>https://www.craigforrester.com/tags/vagrant/</loc>
+    <lastmod>2019-01-03T18:00:00-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://www.craigforrester.com/tags/virtual-machines/</loc>
-    <lastmod>2018-08-01T16:00:00-05:00</lastmod>
+    <lastmod>2018-12-31T16:00:00-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.craigforrester.com/tags/virtualbox/</loc>
+    <lastmod>2019-01-03T18:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
