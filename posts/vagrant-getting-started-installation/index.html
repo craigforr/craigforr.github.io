@@ -148,7 +148,7 @@ So what is Vagrant? Vagrant is a tool for defining virtual machines as code in o
                 </div>
                 <div class="meta">
                     
-                    <div class="date" title='2019-01-03 18:00:00 EST'>January 3, 2019</div>
+                    <div class="date" title='2020-01-03 18:00:00 EST'>January 3, 2020</div>
                     
                     
 		    <div class="reading-time"><div class="middot"></div>7 minutes read</div>
@@ -172,7 +172,7 @@ So what is Vagrant? Vagrant is a tool for defining virtual machines as code in o
 
 <h2 id="the-problems-vagrant-solves">The Problems Vagrant Solves</h2>
 
-<p>Explaining the problems Vagrant solves and how it works is best done by example.  Let&rsquo;s say you want to create virtual machine for testing your web application.  You could just install <a href="https://www.virtualbox.org/">VirtualBox</a> and manually configure it. But manual configuration is rife with problems and Vagrant helps solve many of them.</p>
+<p>Explaining the problems Vagrant solves and how it works is best done by example.  Let&rsquo;s say you want to create virtual machine for testing your web application.  You could just install <a href="https://www.virtualbox.org/">VirtualBox</a> and manually configure your VMs. But manual configuration is rife with problems and Vagrant helps solve many of them.</p>
 
 <p>Manual configuration is:</p>
 
@@ -226,7 +226,7 @@ So what is Vagrant? Vagrant is a tool for defining virtual machines as code in o
 <p>Vagrant uses the notion of <a href="https://www.vagrantup.com/docs/providers/">Providers</a> to define the virtualization platform on which it is deploying your virtual machines.  For our purposes here, I will be using the <a href="https://www.vagrantup.com/docs/virtualbox/">VirtualBox Provider</a>.</p>
 
 <blockquote>
-<p><strong>Note:</strong> Event if you a running Windows 10, as of this writing, I suggest that you still use VirtualBox instead of Hyper-V.  Why?  Hyper-V networking is problematic with Vagrant, because it is unable to make customizations which are necessary for build that are anything more than basic, single virtual machine deployments. In addition, VirtualBox is more widely used, and by defining your configurations for VirtualBox, you will be able to share them more widely and utilize the configurations used by others as well.</p>
+<p><strong>Note:</strong> Event if you a running Windows 10, as of this writing, I suggest that you still use VirtualBox instead of Hyper-V.  Why?  <a href="https://www.vagrantup.com/docs/hyperv/limitations.html">Hyper-V networking is problematic</a> with Vagrant, because it is unable to make customizations which are necessary for build that are anything more than basic, single virtual machine deployments. In addition, VirtualBox is more widely used, and by defining your configurations for VirtualBox, you will be able to share them more widely and utilize the configurations used by others as well.</p>
 </blockquote>
 
 <p>You will need <a href="https://www.virtualbox.org/manual/UserManual.html#installation">install VirtualBox</a>, which is very well-documented and fairly simple, so I will not cover that here.</p>
