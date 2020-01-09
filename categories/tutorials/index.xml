@@ -6,10 +6,21 @@
     <description>Recent content in Tutorials on Craig Forrester</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Fri, 03 Jan 2020 18:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Wed, 08 Jan 2020 18:00:00 -0500</lastBuildDate>
     
 	<atom:link href="https://www.craigforrester.com/categories/tutorials/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Getting Started with Vagrant: Vagrantfile</title>
+      <link>https://www.craigforrester.com/posts/vagrant-getting-started-vagrantfile/</link>
+      <pubDate>Wed, 08 Jan 2020 18:00:00 -0500</pubDate>
+      
+      <guid>https://www.craigforrester.com/posts/vagrant-getting-started-vagrantfile/</guid>
+      <description>Recap In my previous post, I discussed what Vagrant is, some details about getting it installed, and then the structure of a basic Vagrant deployment.
+In this post, we&amp;rsquo;ll cover in a bit more depth how to define virtual machines in Vagrant using a Vagrantfile.
+If you recall from that previous post, we initialized a VM using Vagrant&amp;rsquo;s init command. I mentioned that this creates a basic configuration. But what is that exactly?</description>
+    </item>
     
     <item>
       <title>Getting Started with Vagrant: Installation</title>

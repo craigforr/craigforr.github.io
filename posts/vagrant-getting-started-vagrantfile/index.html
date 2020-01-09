@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="author" content="Craig Forrester">
+<meta name="description" content="Recap In my previous post, I discussed what Vagrant is, some details about getting it installed, and then the structure of a basic Vagrant deployment.
+In this post, we&rsquo;ll cover in a bit more depth how to define virtual machines in Vagrant using a Vagrantfile.
+If you recall from that previous post, we initialized a VM using Vagrant&rsquo;s init command. I mentioned that this creates a basic configuration. But what is that exactly?">
+
+
+<title>
+
+
+     Getting Started with Vagrant: Vagrantfile 
+
+</title>
+<link rel="canonical" href="https://www.craigforrester.com/posts/vagrant-getting-started-vagrantfile/">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/color-brewer.min.css">
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:500">
+
+
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/pygments.css">
+    <link rel="stylesheet" href="/css/main.css">
+    
+        <link rel="stylesheet" href="/css/override.css">
+    
+
+
+
+
+<link rel="shortcut icon"
+
+    href="/img/favicon.ico"
+
+>
+
+
+
+
+</head>
+
+
+<body lang="en">
+
+<section class="header">
+    <div class="container">
+        <div class="content">
+            
+                
+                
+                
+                
+                
+                    
+                
+                    
+                
+                    
+                
+                
+                <a href="/"><img class="avatar" src="/img/profile.jpg" srcset="https://www.craigforrester.com/img/profile.jpg 1x"></a>
+            
+            <a href="/"><div class="name">Craig Forrester</div></a>
+            
+              <h3 class="self-intro">The Pleasure of Finding Things Out</h3>
+            
+            <nav>
+                <ul>
+                    
+                        <li class="nav-about"><a href="https://www.craigforrester.com/about/"><span>About</span></a></li>
+                    
+                        <li class="nav-posts"><a href="https://www.craigforrester.com/posts/"><span>Posts</span></a></li>
+                    
+                        <li class="nav-rss-feed"><a href="https://www.craigforrester.com/index.xml"><span>RSS</span></a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="//github.com/craigforr" target="_blank" rel="noopener"><img class="icon" src="/img/github.svg" alt="github" /></a>
+        
+
+        
+
+        
+
+        
+            <a href="//linkedin.com/in/craigforrester" target="_blank" rel="noopener"><img class="icon" src="/img/linkedin.svg" alt="linkedin" /></a>
+        
+
+        
+
+        
+
+        
+
+        
+            <a href="mailto:cf@craigforrester.com"><img class="icon" src="/img/email.svg" alt="email" /></a>
+        
+
+        
+            <a href="https://www.craigforrester.com/index.xml"><img class="icon" src="/img/rss.svg" alt="rss" /></a>
+        
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Getting Started with Vagrant: Vagrantfile
+
+</div>
+
+                    <div class="initials"><a href="https://www.craigforrester.com/"></a></div>
+                </div>
+                <div class="meta">
+                    
+                    <div class="date" title='2020-01-08 18:00:00 EST'>January 8, 2020</div>
+                    
+                    
+		    <div class="reading-time"><div class="middot"></div>5 minutes read</div>
+                    
+                </div>
+            </div>
+            <div class="markdown">
+                
+
+<h2 id="recap">Recap</h2>
+
+<p>In my <a href="/posts/vagrant-getting-started-installation/" title="Getting Started with Vagrant: Installation">previous post</a>, I discussed what Vagrant is, some details about getting it installed, and then the structure of a basic Vagrant deployment.</p>
+
+<p>In this post, we&rsquo;ll cover in a bit more depth how to define virtual machines in Vagrant using a Vagrantfile.</p>
+
+<p>If you recall from that previous post, we initialized a VM using Vagrant&rsquo;s <code>init</code> command.  I mentioned that this creates a basic configuration.  But what is that exactly?  And where is it stored?  The answer is: The <code>Vagrantfile</code>.  And by default it is stored in the current working directory &mdash; the directory from which you run <code>vagrant init</code>.</p>
+
+<h2 id="vagrantfile">Vagrantfile</h2>
+
+<p>Everything Vagrant does centers around this file.  It should be simply named &ldquo;<a href="https://www.vagrantup.com/docs/vagrantfile/">Vagrantfile</a>&rdquo; without any file extension.</p>
+
+<p>So, when we do an <code>init</code>, like with did with <code>vagrant init ubuntu/bionic64</code>, Vagrant creates this file for us if it does not already exist.  This default file Vagrant creates is very well-documented, and worth reading through to get familiar with the various configuration options.</p>
+
+<p>For our purposes here, we are primarily concerned with the following three lines:</p>
+
+<pre><code class="language-ruby">Vagrant.configure(&quot;2&quot;) do |config|
+  config.vm.box = &quot;ubuntu/bionic64&quot;
+end
+</code></pre>
+
+<p>This is a distillation of the entire default file.  Any of the other lines, starting with a hash (<code>#</code>), are considered commments.</p>
+
+<p>The first line of our distilled version tells Vagrant to use <a href="https://www.vagrantup.com/docs/vagrantfile/version.html">version 2</a> configuration (<code>Vagrant.configure(&quot;2&quot;)</code>), and to proceed with iterating through the configuration parameters for the virtual machine (<code>do |config|</code>) specified in the format <code>config.vm.PARAMETER</code>, where <code>PARAMETER</code> is just a generic placeholder for any of a number of documented <a href="https://www.vagrantup.com/docs/vagrantfile/machine_settings.html" title="config.vm - Vagrantfile - Vagrant by HashiCorp">machine settings</a>.  In our case, we have only one configuration parameter, called <code>box</code>, for which we&rsquo;ve specified <code>&quot;ubuntu/bionic64&quot;</code>. We then end the config block with the Ruby <code>end</code> statement.</p>
+
+<h2 id="boxes">Boxes</h2>
+
+<p>So, as you may imagine, every Vagrant development environment requires you to specify a base image &mdash; what Vagrant calls a &ldquo;box&rdquo;, and what is specified as &ldquo;ubuntu/bionic64&rdquo; in the configuration we are using here.  But how do you know <em>what</em> boxes are available and how to <em>specify</em> them?</p>
+
+<p>HashiCorp has taken care of this with &ldquo;<a href="&quot;https://vagrantcloud.com/search&quot;">Vagrant Cloud</a>,&rdquo; a publicly available registry of Vagrant boxes that you can search.</p>
+
+<p>Each box has a version history as well as a snippet of configuration text that you can use to jumpstart your environment, like this:</p>
+
+<pre><code>Vagrant.configure(&quot;2&quot;) do |config|
+  config.vm.box = &quot;hashicorp/precise64&quot;
+end
+</code></pre>
+
+<p>Looks familiar, doesn&rsquo;t it?</p>
+
+<h2 id="providers">Providers</h2>
+
+<p>You can specify any of a number of <a href="https://www.vagrantup.com/docs/providers/">Providers</a> to define the virtualization platform on which Vagrant deploys your virtual machines.
+Vagrant &ldquo;ships out of the box with support for VirtualBox, Hyper-V, and Docker&rdquo; and, by default, VirtualBox is the default provider it uses, which we can see in the output of our first <code>vagrant up</code>:</p>
+
+<pre><code class="language-output">Bringing machine 'default' up with 'virtualbox' provider...
+==&gt; default: Importing base box 'ubuntu/bionic64'...
+</code></pre>
+
+<p>While <a href="https://www.vagrantup.com/docs/virtualbox/">VirtualBox</a> is the default and we could simply add configuration without specifying it, we want to add the provider explicity, so that it is clear what we intend and what Vagrant is actually going to modify.  Thus, we add this block:</p>
+
+<pre><code>  config.vm.provider &quot;virtualbox&quot; do |v|
+  end
+</code></pre>
+
+<p>The complete <code>Vagrantfile</code> so far, look like this:</p>
+
+<pre><code class="language-ruby">Vagrant.configure(&quot;2&quot;) do |config|
+  config.vm.box = &quot;ubuntu/bionic64&quot;
+  # Generic VM configuration goes here
+  config.vm.provider &quot;virtualbox&quot; do |v|
+    # VirtualBox-specific configuration goes here
+  end
+end
+</code></pre>
+
+<blockquote>
+<p><strong>Note:</strong> If we want to allow for multiple providers, but prefer one over another we can specify the preference order like this:</p>
+
+<pre><code># Preference order runs top-down, first match preferred
+# Prefer Hyper-V over VMware Fusion
+# and prefer VMware Fusion over VirtualBox
+config.vm.provider &quot;hyperv&quot;
+config.vm.provider &quot;vmware_fusion&quot;
+config.vm.provider &quot;virtualbox&quot;
+</code></pre>
+</blockquote>
+
+<p>Now that we have VirtualBox specified, let&rsquo;s configure a few options we would typically set whenever we create a VM manually: processor, memory, and networking.</p>
+
+<h2 id="networking">Networking</h2>
+
+<p>While some settings can be added irrespective of the specific provider, most are provider-specific and need to be added in the provider block.  In other cases, they can be either.</p>
+
+<p>For example, we could add this line to specify a static IP address on the <a href="https://www.vagrantup.com/docs/networking/private_network.html" title="Private Networks - Networking - Vagrant by HashiCorp">private network</a>:</p>
+
+<pre><code class="language-ruby">config.vm.network &quot;private_network&quot;, ip: &quot;192.168.56.100&quot;
+</code></pre>
+
+<p>In context, here&rsquo;s how it would look:</p>
+
+<pre><code class="language-ruby">Vagrant.configure(&quot;2&quot;) do |config|
+  config.vm.box = &quot;ubuntu/bionic64&quot;
+  # Generic VM configuration goes here
+  config.vm.network &quot;private_network&quot;, ip: &quot;192.168.56.100&quot;
+  config.vm.provider &quot;virtualbox&quot; do |v|
+    # VirtualBox-specific configuration goes here
+  end
+end
+</code></pre>
+
+<p>Notice that we have it outside the <code>&quot;virtualbox&quot;</code> provider block, with generic VM configuration.</p>
+
+<p>This can alternatively (and somewhat confusingly, perhaps) be configured specifically at the provider level, like this:</p>
+
+<pre><code class="language-ruby">Vagrant.configure(&quot;2&quot;) do |config|
+  config.vm.box = &quot;ubuntu/bionic64&quot;
+  # Generic VM configuration goes here
+  config.vm.provider &quot;virtualbox&quot; do |v|
+    # VirtualBox-specific configuration goes here
+    v.network :private_network, ip: &quot;192.168.56.100&quot;
+  end
+end
+</code></pre>
+
+<p>Note how the <code>v.network</code> parameter is instead nested in the <code>&quot;virtualbox&quot;</code> provider block now.</p>
+
+<p>You will see this specified both ways in other people&rsquo;s Vagrantfiles, so it&rsquo;s important to note that anything not specified in the provider-specific block (here <code>&quot;virtualbox&quot;</code>) can apply to any provider used, often with fewer customization options.</p>
+
+<h2 id="cpu-and-memory">CPU and Memory</h2>
+
+<p>To specify the amount of memory and virtual CPUs we want to have assigned to our VM, we can simply add a couple of like-named parameters to the VirtualBox configuration section, as follows:</p>
+
+<pre><code class="language-ruby">v.cpus = 2
+v.memory = 1024 # Megabytes
+</code></pre>
+
+<p>Note that memory is specified in megabytes.</p>
+
+<p>Our <code>Vagrantfile</code> so far:</p>
+
+<pre><code class="language-ruby">Vagrant.configure(&quot;2&quot;) do |config|
+  config.vm.box = &quot;ubuntu/bionic64&quot;
+  config.vm.provider &quot;virtualbox&quot; do |v|
+    v.cpus = 2
+    v.memory = 1024
+    v.network :private_network, ip: &quot;192.168.56.100&quot;
+  end
+end
+</code></pre>
+
+<p>This takes care of basic configuration in our Vagrantfile.  Next time, we&rsquo;ll discuss how to specify any post-deployment configuration we want to perform on our virtual machines with <a href="https://www.vagrantup.com/docs/provisioning/">Provisioners</a>&hellip;.</p>
+
+<h2 id="additional-reading">Additional Reading</h2>
+
+<ul>
+<li><a href="https://www.vagrantup.com/docs/vagrantfile/">Vagrantfile</a></li>
+<li><a href="https://www.vagrantup.com/docs/vagrantfile/machine_settings.html" title="config.vm - Vagrantfile - Vagrant by HashiCorp">Vagrantfile Machine Settings</a></li>
+<li><a href="https://www.vagrantup.com/docs/boxes.html" title="Boxes - Vagrant by HashiCorp">Vagrant Boxes</a></li>
+<li><a href="&quot;https://vagrantcloud.com/search&quot;">Vagrant Cloud</a></li>
+<li><a href="https://www.vagrantup.com/docs/providers/">Vagrant Providers</a></li>
+<li><a href="https://www.vagrantup.com/docs/provisioning/">Vagrant Provisioners</a></li>
+</ul>
+
+<!-- Links -->
+
+<!-- EOF -->
+
+                <br>
+		        <p><a href="/posts/">Back to posts</a></p>
+            </div>
+            <div class="disqus">
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-454251-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/powershell.min.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/dos.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+
+</body>
+</html>
+

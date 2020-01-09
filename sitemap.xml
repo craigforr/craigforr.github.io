@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://www.craigforrester.com/posts/vagrant-getting-started-vagrantfile/</loc>
+    <lastmod>2020-01-08T18:00:00-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.craigforrester.com/posts/vagrant-getting-started-installation/</loc>
     <lastmod>2020-01-03T18:00:00-05:00</lastmod>
   </url>
@@ -161,13 +166,13 @@
   
   <url>
     <loc>https://www.craigforrester.com/</loc>
-    <lastmod>2020-01-03T18:00:00-05:00</lastmod>
+    <lastmod>2020-01-08T18:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://www.craigforrester.com/tags/iac/</loc>
-    <lastmod>2020-01-03T18:00:00-05:00</lastmod>
+    <lastmod>2020-01-08T18:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -179,7 +184,7 @@
   
   <url>
     <loc>https://www.craigforrester.com/posts/</loc>
-    <lastmod>2020-01-03T18:00:00-05:00</lastmod>
+    <lastmod>2020-01-08T18:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -227,7 +232,7 @@
   
   <url>
     <loc>https://www.craigforrester.com/categories/tutorials/</loc>
-    <lastmod>2020-01-03T18:00:00-05:00</lastmod>
+    <lastmod>2020-01-08T18:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -239,7 +244,7 @@
   
   <url>
     <loc>https://www.craigforrester.com/tags/vagrant/</loc>
-    <lastmod>2020-01-03T18:00:00-05:00</lastmod>
+    <lastmod>2020-01-08T18:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -251,7 +256,7 @@
   
   <url>
     <loc>https://www.craigforrester.com/tags/virtualbox/</loc>
-    <lastmod>2020-01-03T18:00:00-05:00</lastmod>
+    <lastmod>2020-01-08T18:00:00-05:00</lastmod>
     <priority>0</priority>
   </url>
   
