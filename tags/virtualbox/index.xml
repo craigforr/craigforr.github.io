@@ -29,8 +29,8 @@ If you recall from that previous post, we initialized a VM using Vagrant&amp;rsq
       
       <guid>https://www.craigforrester.com/posts/vagrant-getting-started-installation/</guid>
       <description>In this post, I&amp;rsquo;ll discuss what Vagrant is, some details about getting it installed, and then the structure of a basic Vagrant deployment.
-What is Vagrant? Vagrant is one of those tools that, once you begin using it, you find yourself saying: &amp;ldquo;Wait &amp;ndash; How long has this existed?&amp;rdquo; and &amp;ldquo;Why haven&amp;rsquo;t been using it all these years?!&amp;rdquo;
-So what is Vagrant? Vagrant is a tool for defining virtual machines as code in order to make the process of creating, maintaining, sharing, and cleaning up after them much faster, easier, more consistent, and less error prone.</description>
+What is Vagrant? Vagrant is one of those tools that, once you begin using it, you find yourself saying: &amp;ldquo;Wait &amp;ndash; How long has this existed?&amp;rdquo; and &amp;ldquo;Why haven&amp;rsquo;t I been using it all these years?!&amp;rdquo;
+So, the, what is Vagrant? Vagrant is a tool for defining virtual machines as code in order to make the process of creating, maintaining, sharing, and cleaning up after them much faster, easier, more consistent, and less error prone.</description>
     </item>
     
   </channel>
