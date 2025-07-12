@@ -1,0 +1,71 @@
+baseURL: https://www.craigforrester.com/
+languageCode: en-us
+title: Craig Forrester
+copyright: "© 1999-2025 Craig Forrester"
+theme:
+  - hugo-admonitions
+  - PaperMod
+menu:
+languages:
+  en:
+    languageName: "English"
+    weight: 1
+    taxonomies:
+      category: categories
+      tag: tags
+      series: series
+    menu:
+      main:
+        - name: Posts
+          url: posts/
+          weight: 10
+        - name: Categories
+          url: categories/
+          weight: 30
+        - name: Tags
+          url: tags/
+          weight: 35
+        - name: Series
+          url: series/
+          weight: 40
+        - name: 🔍 Search
+          url: search/
+          weight: 99
+      footer:
+        - name: Posts
+          url: posts/
+          weight: 10
+        - name: Categories
+          url: categories/
+          weight: 30
+        - name: Tags
+          url: tags/
+          weight: 35
+        - name: 🔍 Search
+          url: search/
+          weight: 99
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+params:
+  profileMode:
+    enabled: false
+
+  homeInfoParams:
+    Title: Craig Forrester
+    Content: >
+      Craig Forrester is a Lead Senior Engineer specializing in Cloud Infrastructure, AI Operations, and DevOps workflows.  He likes his coffee black, his text editor modal, and his key switches brown.  Just like AI, Craig makes mistakes, so always do additional research and test everything in a lab or sandbox environment.
+
+  socialIcons: # optional
+    - name: "EMail"
+      url: "mailto:cf@craigforrester.com"
+    - name: "GitHub"
+      url: "https://github.com/craigforr"
+    - name: "LinkedIn"
+      url: "https://www.linkedin.com/in/craigforrester/"
+
+# EOF

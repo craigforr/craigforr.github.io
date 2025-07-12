@@ -1,0 +1,7 @@
+[submodule "docs/themes/PaperMod"]
+	path = docs/themes/PaperMod
+	url = https://github.com/adityatelange/hugo-PaperMod.git
+[submodule "docs/themes/hugo-admonitions"]
+	path = docs/themes/hugo-admonitions
+	url = https://github.com/KKKZOZ/hugo-admonitions.git
+	branch = main
