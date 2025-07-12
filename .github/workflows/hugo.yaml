@@ -17,8 +17,10 @@ jobs:
 
       - name: Hugo Setup
         uses: peaceiris/actions-hugo@v2.2.1
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
         with:
-          hugo-version: '0.147.3'
+          hugo-version: '0.147.9'
           extended: true
 
       - name: Submodules
