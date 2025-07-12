@@ -1,0 +1,10 @@
+# Set default behavior to automatically normalize line endings
+* text=auto
+
+# Treat binary files correctly
+*.gif binary
+*.jpg binary
+*.png binary
+*.zip binary
+
+# EOF
