@@ -1,24 +1,21 @@
-name: Publish Site
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches:
-      - master
-    paths:
-      - 'docs/**'
+      - main
+  schedule:
+    - cron: '0 0 * * *'
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
 
       - name: Hugo Setup
-        uses: peaceiris/actions-hugo@v2.2.1
-        env:
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+        uses: peaceiris/actions-hugo@v2
         with:
           hugo-version: '0.147.9'
           extended: true
@@ -28,18 +25,12 @@ jobs:
           git submodule sync && git submodule update --init
 
       - name: Build
-        run: make build
-
-      - name: Disable Jekyll
-        run: touch ./docs/public/.nojekyll
+        run: hugo -d public --gc --minify --cleanDestinationDir
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v2.4.0
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          emptyCommits: false
-        env:
-          ACTIONS_DEPLOY_KEY: ${{ secrets.GITHUB_TOKEN }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: ./docs/public
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
 
 # EOF
